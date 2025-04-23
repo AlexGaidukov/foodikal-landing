@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foodical</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <a href="#" class="logo" aria-label="Foodical Home">
+        <img src="img/Foodikal-logo.png" alt="Foodical logo" class="logo__img" />
+        
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#hero" class="nav__link">Home</a></li>
+          <li><a href="#menu" class="nav__link">Menu</a></li>
+        </ul>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero__container">
+        <h1 class="hero__headline">Eat Bold. Eat Foodical.</h1>
+        <p class="hero__subtitle">A fresh, modern take on food menus. Minimal. Impactful. Delicious.</p>
+        <a href="#menu" class="cta-btn">View Menu</a>
+      </div>
+    </section>
+
+    <section class="menu" id="menu">
+      <div class="container menu__container">
+        <h2 class="section__header">Our Menu</h2>
+        <div class="menu__grid">
+          <div class="menu__item">
+            <div class="menu__icon"></div>
+            <h3 class="menu__title">Signature Bowl</h3>
+            <p class="menu__desc">A vibrant mix of fresh ingredients, crafted for flavor and balance.</p>
+          </div>
+          <div class="menu__item">
+            <div class="menu__icon"></div>
+            <h3 class="menu__title">Classic Sandwich</h3>
+            <p class="menu__desc">Bold flavors between artisan bread, served with a modern twist.</p>
+          </div>
+          <div class="menu__item">
+            <div class="menu__icon"></div>
+            <h3 class="menu__title">Seasonal Salad</h3>
+            <p class="menu__desc">Crisp, colorful, and always in season. Simple, yet unforgettable.</p>
+          </div>
+          <div class="menu__item">
+            <div class="menu__icon"></div>
+            <h3 class="menu__title">Dessert Bite</h3>
+            <p class="menu__desc">A sweet finish, crafted to delight and surprise the senses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <span>© 2025 Foodical. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
