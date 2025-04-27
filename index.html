@@ -16,7 +16,7 @@
 <body>
   <header class="header">
     <div class="container header__container">
-      <a href="#" class="logo" aria-label="Foodikal Home">
+      <a href="#hero" class="logo" aria-label="Foodikal Home">
         <img src="img/Foodikal-logo.png" alt="Foodikal logo" class="logo__img" />
       </a>
       <nav class="nav" id="nav">
@@ -26,9 +26,14 @@
         </ul>
       </nav>
       <div class="lang-switcher">
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="sr">SR</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
+        <div class="custom-select lang-custom-select" tabindex="0">
+  <div class="custom-select__selected">EN</div>
+  <div class="custom-select__dropdown">
+    <div class="custom-select__option" data-lang="en">EN</div>
+    <div class="custom-select__option" data-lang="sr">SR</div>
+    <div class="custom-select__option" data-lang="ru">RU</div>
+  </div>
+</div>
       </div>
       <button class="nav__toggle" id="navToggle" aria-label="Open menu">
         <span></span><span></span><span></span>

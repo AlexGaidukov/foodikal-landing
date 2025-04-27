@@ -66,11 +66,41 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      setLanguage(btn.getAttribute('data-lang'));
+  // Custom language dropdown
+  const langCustom = document.querySelector('.lang-custom-select');
+  if (langCustom) {
+    const selected = langCustom.querySelector('.custom-select__selected');
+    const dropdown = langCustom.querySelector('.custom-select__dropdown');
+    const options = langCustom.querySelectorAll('.custom-select__option');
+
+    // Open/close dropdown
+    langCustom.addEventListener('click', function(e) {
+      langCustom.classList.toggle('open');
     });
-  });
+    // Close dropdown on blur (keyboard nav)
+    langCustom.addEventListener('blur', function() {
+      langCustom.classList.remove('open');
+    });
+    // Close dropdown on outside click
+    document.addEventListener('click', function(e) {
+      if (!langCustom.contains(e.target)) {
+        langCustom.classList.remove('open');
+      }
+    });
+    // Option click
+    options.forEach(option => {
+      option.addEventListener('click', function(e) {
+        const lang = option.getAttribute('data-lang');
+        setLanguage(lang);
+        selected.textContent = option.textContent;
+        options.forEach(opt => opt.classList.remove('active'));
+        option.classList.add('active');
+        langCustom.classList.remove('open');
+      });
+    });
+    // Set initial active
+    options[0].classList.add('active');
+  }
 
   // Set default language
   setLanguage('en');

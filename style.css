@@ -104,6 +104,105 @@ body {
   background: var(--color-accent);
   color: #fff4d3;
 }
+
+.lang-select {
+  background: var(--color-bg);
+  border: none;
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  appearance: none;
+  box-shadow: 0 2px 8px rgba(184, 157, 94, 0.06);
+}
+.lang-select:focus,
+.lang-select:hover {
+  background: var(--color-accent);
+  color: #fff4d3;
+  outline: none;
+}
+
+.lang-select option {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-family: inherit;
+  padding: 0.5rem 0.9rem;
+}
+
+/* Custom Select Dropdown for Language Switcher */
+.custom-select {
+  position: relative;
+  width: 4.2rem;
+  user-select: none;
+  font-size: 0.97rem;
+  font-family: inherit;
+}
+.custom-select__selected {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 0.23rem 0.7rem;
+  border-radius: 1.2rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  box-shadow: 0 2px 8px rgba(184, 157, 94, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background 0.2s, color 0.2s;
+}
+.custom-select.open .custom-select__selected,
+.custom-select__selected:hover,
+.custom-select__selected:focus {
+  background: var(--color-accent);
+  color: #fff4d3;
+}
+.custom-select__dropdown {
+  display: none;
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 100%;
+  background: var(--color-bg);
+  border-radius: 1.2rem;
+  box-shadow: 0 6px 24px rgba(184, 157, 94, 0.14);
+  z-index: 100;
+  margin-top: 0.2rem;
+  overflow: hidden;
+}
+.custom-select.open .custom-select__dropdown {
+  display: block;
+}
+.custom-select__option {
+  padding: 0.23rem 0.7rem;
+  cursor: pointer;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: background 0.2s, color 0.2s;
+  font-weight: 700;
+  font-size: 0.97rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.custom-select__option:hover,
+.custom-select__option.active {
+  background: var(--color-accent);
+  color: #fff4d3;
+}
+
+
 .logo {
   display: flex;
   align-items: center;
@@ -176,11 +275,17 @@ body {
   transition: all 0.3s;
 }
 .hero {
-  padding: 1rem 0 1rem 0;
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5rem 0 3rem 0;
+  scroll-margin-top: 4rem;
   border-bottom: 1px solid var(--color-accent2);
   background: linear-gradient(rgba(22,33,20,0.5), rgba(22,33,20,0.2)), url('img/Banner_dish.png') center/cover no-repeat;
   color: #fff;
-  position: relative;
 }
 .hero__container {
   display: flex;
