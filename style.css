@@ -266,6 +266,12 @@ body {
   cursor: pointer;
   padding: 0.5rem;
 }
+
+@media (max-width: 900px) {
+  .nav__toggle {
+    display: flex;
+  }
+}
 .nav__toggle span {
   display: block;
   width: 28px;
@@ -445,10 +451,96 @@ body {
   font-size: 1rem;
 }
 /* Responsive Styles */
+.nav__close {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .hero__headline {
     font-size: 3.2rem;
   }
+  .nav__list {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-top: 2.5rem;
+  }
+  .nav__list li {
+    width: 100%;
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+  .nav__list li:last-child {
+    margin-bottom: 0;
+  }
+  .nav__close {
+    display: block;
+    position: absolute;
+    top: 2.2rem;
+    right: 1.2rem;
+    left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.24rem;
+    height: 2.24rem;
+    background: none;
+    border: none;
+    font-size: 1.76rem;
+    color: #111;
+    z-index: 110;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav__close:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    width: auto;
+    min-width: 0;
+    max-width: 100vw;
+    height: 100vh;
+    background: var(--color-bg);
+    box-shadow: -6px 0 32px rgba(184, 157, 94, 0.14);
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.77,0,0.18,1);
+    z-index: 100;
+    display: flex;
+  }
+  .nav.open {
+    transform: translateX(0);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: max-content;
+    min-width: 0;
+    max-width: 100vw;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Fit nav to content width + 2rem (1rem each side) */
+  .nav {
+    box-sizing: content-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
   .container {
     width: 96vw;
   }
@@ -458,27 +550,6 @@ body {
     flex-direction: row;
     gap: 1rem;
   }
-  .nav {
-    display: none;
-  }
-  .nav.open {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--color-bg);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-  }
-  .nav__list {
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-  .nav__toggle {
-    display: flex;
-  }
+  /* All nav stacking styles are handled in the 900px block above. No need to repeat or override nav display here. */
 }
+

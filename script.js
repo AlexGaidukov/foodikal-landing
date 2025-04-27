@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     en: {
       'nav.home': 'Home',
       'nav.menu': 'Menu',
-      'hero.headline': 'Eat Bold. Eat Foodikal.',
-      'hero.subtitle': 'A fresh, modern take on food menus. Minimal. Impactful. Delicious.',
+      'hero.headline': 'You work. We feed you.',
+      'hero.subtitle': 'Everyone focuses on what they do best.',
       'hero.cta': 'View Menu',
       'menu.header': 'Our Menu',
       'menu.item1.title': 'Breaded white fish with Tartar sauce',
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
     sr: {
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
-      'hero.headline': 'Jedite hrabro. Jedite Foodikal.',
-      'hero.subtitle': 'Svez, moderan pristup jelovnicima. Minimalno. Uticajno. Ukusno.',
+      'hero.headline': 'Vi radite. Mi vas hranimo.',
+      'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
       'hero.cta': 'Pogledaj meni',
       'menu.header': 'Naš Meni',
       'menu.item1.title': 'Bela riba u pohu sa tartar sosom',
@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function () {
     ru: {
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
-      'hero.headline': 'Ешь смело. Ешь Foodikal.',
-      'hero.subtitle': 'Свежий, современный взгляд на меню. Минимализм. Впечатляюще. Вкусно.',
+      'hero.headline': 'Вы работаете. Мы кормим.',
+      'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
       'hero.cta': 'Посмотреть меню',
       'menu.header': 'Наше меню',
       'menu.item1.title': 'Рыба в панировке с соусом Тар-Тар',
@@ -65,6 +65,40 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
   }
+
+  // Hamburger menu slide animation and close button
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  const navClose = document.querySelector('.nav__close');
+
+  function openNavMenu() {
+    nav.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNavMenu() {
+    nav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (navToggle) {
+    navToggle.addEventListener('click', (e) => {
+      openNavMenu();
+    });
+  }
+  if (navClose) {
+    navClose.addEventListener('click', (e) => {
+      closeNavMenu();
+    });
+  }
+  // Also close menu when clicking a nav link (optional, for better UX)
+  nav.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeNavMenu();
+    });
+  });
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeNavMenu();
+  });
 
   // Custom language dropdown
   const langCustom = document.querySelector('.lang-custom-select');
@@ -105,24 +139,4 @@ document.addEventListener('DOMContentLoaded', function () {
   // Set default language
   setLanguage('en');
 
-  // Hamburger menu toggle
-  const navToggle = document.getElementById('navToggle');
-  const nav = document.getElementById('nav');
-
-  navToggle.addEventListener('click', function () {
-    nav.classList.toggle('open');
-    document.body.classList.toggle('nav-open');
-    navToggle.setAttribute('aria-label', nav.classList.contains('open') ? 'Close menu' : 'Open menu');
-  });
-
-  // Close nav on link click (mobile)
-  document.querySelectorAll('.nav__link').forEach(link => {
-    link.addEventListener('click', () => {
-      if (nav.classList.contains('open')) {
-        nav.classList.remove('open');
-        document.body.classList.remove('nav-open');
-        navToggle.setAttribute('aria-label', 'Open menu');
-      }
-    });
-  });
 });
