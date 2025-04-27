@@ -232,19 +232,30 @@ body {
   transform: scale(1.04);
 }
 .menu {
-  padding: 6rem 0 6rem 0;
+  padding: 2rem 0 6rem 0;
   border-bottom: 1px solid var(--color-accent2);
+  scroll-margin-top: 4rem;
 }
 .menu__container {
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
+
+.menu__photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 1rem;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  display: block;
+}
 .section__header {
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   color: var(--color-text);
   text-transform: uppercase;
   border-left: 5px solid var(--color-accent);
@@ -252,25 +263,46 @@ body {
 }
 .menu__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
+
+@media (max-width: 750px) {
+  .menu__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+@media (max-width: 900px) {
+  .menu__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .menu__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .menu__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
   background: #fff;
   border-radius: 2.5rem;
   box-shadow: 0 2px 16px rgba(184, 157, 94, 0.06);
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.2rem;
-  border: 1px solid var(--color-accent2);
-  position: relative;
+  padding: 1.5rem 2rem;
+  border: 1px solid #d7c7a2;
   overflow: hidden;
   transition: box-shadow 0.2s, border 0.2s;
 }
-.menu__item:hover {
-  box-shadow: 0 6px 32px rgba(184, 157, 94, 0.14);
+
+.menu__text {
+  flex: 1;
   border-color: var(--color-accent);
 }
 .menu__icon {
@@ -284,17 +316,18 @@ body {
   justify-content: center;
 }
 .menu__title {
-  font-size: 2rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 0.2rem 0;
   color: var(--color-text);
   text-transform: uppercase;
+  line-height: 1.2;
 }
 .menu__desc {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--color-accent4);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.3;
 }
 .footer {
   background: var(--color-bg);

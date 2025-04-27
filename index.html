@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Foodikal</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,27 +47,35 @@
 
     <section class="menu" id="menu">
       <div class="container menu__container">
-        <h2 class="section__header">Our Menu</h2>
+        <h2 class="section__header"><span data-i18n="menu.header">Our Menu</span></h2>
         <div class="menu__grid">
           <div class="menu__item">
-            <div class="menu__icon"></div>
-            <h3 class="menu__title">Signature Bowl</h3>
-            <p class="menu__desc">A vibrant mix of fresh ingredients, crafted for flavor and balance.</p>
+            <img src="img/menu_item_1_400.jpg" alt="Breaded white fish with Tartar souce / Рыба в панировке с соусом Тар-Тар" class="menu__photo">
+            <div class="menu__text">
+              <h3 class="menu__title"><span data-i18n="menu.item1.title">Breaded white fish with Tartar sauce</span></h3>
+              <p class="menu__desc"><span data-i18n="menu.item1.desc">Tender white fish fillet, breaded and fried to golden perfection. Served with creamy homemade tartar sauce.</span></p>
+            </div>
           </div>
           <div class="menu__item">
-            <div class="menu__icon"></div>
-            <h3 class="menu__title">Classic Sandwich</h3>
-            <p class="menu__desc">Bold flavors between artisan bread, served with a modern twist.</p>
+            <img src="img/menu_item_2_400.jpg" alt="Chicken sausages with Potato Wedges / Колбаски куринные с картофельными дольками" class="menu__photo">
+            <div class="menu__text">
+              <h3 class="menu__title"><span data-i18n="menu.item2.title">Chicken sausages with Potato Wedges</span></h3>
+              <p class="menu__desc"><span data-i18n="menu.item2.desc">Juicy chicken sausages served with crispy golden potato wedges and a side of fresh herbs.</span></p>
+            </div>
           </div>
           <div class="menu__item">
-            <div class="menu__icon"></div>
-            <h3 class="menu__title">Seasonal Salad</h3>
-            <p class="menu__desc">Crisp, colorful, and always in season. Simple, yet unforgettable.</p>
+            <img src="img/menu_item_3_400.jpg" alt="Pasta with chicken and spinach / Паста с лососем" class="menu__photo">
+            <div class="menu__text">
+              <h3 class="menu__title"><span data-i18n="menu.item3.title">Pasta with chicken and spinach</span></h3>
+              <p class="menu__desc"><span data-i18n="menu.item3.desc">Tender pasta tossed with juicy chicken, fresh spinach, and a creamy sauce.</span></p>
+            </div>
           </div>
           <div class="menu__item">
-            <div class="menu__icon"></div>
-            <h3 class="menu__title">Dessert Bite</h3>
-            <p class="menu__desc">A sweet finish, crafted to delight and surprise the senses.</p>
+            <img src="img/menu_item_4_400.jpg" alt="Cole Slaw / Коул-слоу" class="menu__photo">
+            <div class="menu__text">
+              <h3 class="menu__title"><span data-i18n="menu.item4.title">Cole Slaw</span></h3>
+              <p class="menu__desc"><span data-i18n="menu.item4.desc">Classic coleslaw salad made with fresh cabbage, carrots, and a creamy dressing.</span></p>
+            </div>
           </div>
         </div>
       </div>
