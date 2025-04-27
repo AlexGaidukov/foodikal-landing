@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foodical</title>
+  <title>Foodikal</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,20 @@
 <body>
   <header class="header">
     <div class="container header__container">
-      <a href="#" class="logo" aria-label="Foodical Home">
-        <img src="img/Foodikal-logo.png" alt="Foodical logo" class="logo__img" />
-        
+      <a href="#" class="logo" aria-label="Foodikal Home">
+        <img src="img/Foodikal-logo.png" alt="Foodikal logo" class="logo__img" />
       </a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
-          <li><a href="#hero" class="nav__link">Home</a></li>
-          <li><a href="#menu" class="nav__link">Menu</a></li>
+          <li><a href="#hero" class="nav__link" data-i18n="nav.home">Home</a></li>
+          <li><a href="#menu" class="nav__link" data-i18n="nav.menu">Menu</a></li>
         </ul>
       </nav>
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="sr">SR</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
       <button class="nav__toggle" id="navToggle" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -31,9 +35,9 @@
   <main>
     <section class="hero" id="hero">
       <div class="container hero__container">
-        <h1 class="hero__headline">Eat Bold. Eat Foodical.</h1>
-        <p class="hero__subtitle">A fresh, modern take on food menus. Minimal. Impactful. Delicious.</p>
-        <a href="#menu" class="cta-btn">View Menu</a>
+        <h1 class="hero__headline" data-i18n="hero.headline">Eat Bold. Eat Foodikal.</h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">A fresh, modern take on food menus. Minimal. Impactful. Delicious.</p>
+        <a href="#menu" class="cta-btn" data-i18n="hero.cta">View Menu</a>
       </div>
     </section>
 
@@ -68,7 +72,7 @@
 
   <footer class="footer">
     <div class="container footer__container">
-      <span>© 2025 Foodical. All rights reserved.</span>
+      <span>© 2025 Foodikal. All rights reserved.</span>
     </div>
   </footer>
 

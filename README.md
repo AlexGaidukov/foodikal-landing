@@ -1,4 +1,4 @@
-# Foodical
+# Foodikal
 
 A modern, minimalist food menu website. Built with semantic HTML5, custom CSS, and minimal JavaScript. Designed for easy deployment to GitHub Pages.
 
@@ -28,4 +28,4 @@ A modern, minimalist food menu website. Built with semantic HTML5, custom CSS, a
 - Adjust accent colors or typography by editing `style.css`.
 
 ---
-© 2025 Foodical. All rights reserved.
+© 2025 Foodikal. All rights reserved.
