@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   // Language switcher functionality
+  // Only use hardcoded translations for nav/hero on index.html, not for menu items
   const translations = {
     en: {
       'nav.home': 'Home',
@@ -10,14 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.subtitle': 'Everyone focuses on what they do best.',
       'hero.cta': 'View Menu',
       'menu.header': 'Our Menu',
-      'menu.item1.title': 'Breaded white fish with Tartar sauce',
-      'menu.item1.desc': 'Tender white fish fillet, breaded and fried to golden perfection. Served with creamy homemade tartar sauce.',
-      'menu.item2.title': 'Chicken sausages with Potato Wedges',
-      'menu.item2.desc': 'Juicy chicken sausages served with crispy golden potato wedges.',
-      'menu.item3.title': 'Pasta with chicken and spinach',
-      'menu.item3.desc': 'Tender pasta tossed with juicy chicken, fresh spinach, and a creamy sauce.',
-      'menu.item4.title': 'Cole Slaw',
-      'menu.item4.desc': 'Classic coleslaw salad made with fresh cabbage, carrots, and a creamy dressing.',
     },
     sr: {
       'nav.home': 'Početna',
@@ -26,14 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
       'hero.cta': 'Pogledaj meni',
       'menu.header': 'Naš Meni',
-      'menu.item1.title': 'Bela riba u pohu sa tartar sosom',
-      'menu.item1.desc': 'Filet bele ribe u hrskavoj pohovanoj korici, pržen do zlatne boje. Posluženo sa domaćim tartar sosom.',
-      'menu.item2.title': 'Pileće kobasice sa krompir pireom',
-      'menu.item2.desc': 'Sočne pileće kobasice sa hrskavim krompirom.',
-      'menu.item3.title': 'Pasta sa piletinom i spanaćem',
-      'menu.item3.desc': 'Nežna pasta sa sočnom piletinom, svežim spanaćem i kremastim sosom.',
-      'menu.item4.title': 'Kolslo salata',
-      'menu.item4.desc': 'Klasična kolslo salata od svežeg kupusa, šargarepe i kremastog preljeva.',
     },
     ru: {
       'nav.home': 'Главная',
@@ -42,16 +27,23 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
       'hero.cta': 'Посмотреть меню',
       'menu.header': 'Наше меню',
-      'menu.item1.title': 'Рыба в панировке с соусом Тар-Тар',
-      'menu.item1.desc': 'Нежное филе белой рыбы в хрустящей панировке, обжаренное до золотистой корочки. Подается с домашним соусом тартар.',
-      'menu.item2.title': 'Колбаски куриные с картофельными дольками',
-      'menu.item2.desc': 'Сочные куриные колбаски с хрустящими картофельными дольками.',
-      'menu.item3.title': 'Паста с лососем',
-      'menu.item3.desc': 'Паста с лососем в нежном сливочном соусе.',
-      'menu.item4.title': 'Коул-слоу',
-      'menu.item4.desc': 'Классический салат коул-слоу из свежей капусты, моркови и сливочной заправки.',
     },
   };
+
+  function setLanguage(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+    // Optional: highlight active button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    // On menu.html, update the menu content
+    if (typeof window.updateMenu === 'function') window.updateMenu(lang);
+  }
 
   function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -126,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
       option.addEventListener('click', function(e) {
         const lang = option.getAttribute('data-lang');
         setLanguage(lang);
+        // Also update menu if available (menu.html only)
+        if (typeof window.updateMenu === 'function') window.updateMenu(lang);
         selected.textContent = option.textContent;
         options.forEach(opt => opt.classList.remove('active'));
         option.classList.add('active');

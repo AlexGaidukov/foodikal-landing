@@ -366,7 +366,7 @@ body {
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.15em;
   color: var(--color-text);
   text-transform: uppercase;
   border-left: 5px solid var(--color-accent);
@@ -539,8 +539,6 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-}
-
   .container {
     width: 96vw;
   }
@@ -553,3 +551,127 @@ body {
   /* All nav stacking styles are handled in the 900px block above. No need to repeat or override nav display here. */
 }
 
+/* --- Menu Page Styles --- */
+body.menu-page {
+  background: #1d3a2f;
+  color: #fff4d3;
+}
+.menu-page .menu-section {
+  background: none;
+  box-shadow: none;
+  border: none;
+  margin: 0 0 3.5rem 0;
+  padding: 0;
+}
+.menu-page .menu-section .section__header {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 0 2.5rem 0;
+  color: #fff4d3;
+  background: none;
+  text-align: center;
+  border-left: none;
+  padding-left: 0;
+}
+.menu-page .section__header-line {
+  display: inline-block;
+  width: 5px;
+  height: 80px;
+  background: var(--color-accent);
+  margin-right: 0.8rem;
+  margin-left: 0;
+  border-radius: 0;
+  align-self: center;
+  vertical-align: middle;
+  margin-top: 0;
+}
+.menu-page .menu__grid {
+  display: flex;
+  gap: 3.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.menu-page .menu__column {
+  display: flex;
+  flex-direction: column;
+  gap: 2.1rem;
+  min-width: 270px;
+  max-width: 330px;
+}
+.menu-page .menu__item {
+  margin-bottom: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.menu-page .menu__item strong, .menu-page .menu__item em {
+  text-align: left;
+  width: 100%;
+}
+.menu-page .menu__item strong {
+  display: block;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 1.22rem;
+  color: #fff4d3;
+  font-weight: 700;
+  margin-bottom: 0 !important;
+  letter-spacing: 0.03em;
+  line-height: 1 !important;
+
+}
+.menu-page .menu__item em {
+  display: block;
+  font-style: italic;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #e5e5d7;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 0 !important;
+  line-height: 1 !important;
+
+}
+@media (max-width: 900px) {
+  .menu-page .menu__grid {
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: stretch;
+  }
+  .menu-page .menu__column {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .menu-page .menu-section .section__header {
+    font-size: 2.1rem;
+  }
+}
+@media (max-width: 600px) {
+  .menu-page main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.menu-page main > .menu-section:first-child {
+  margin-top: 2rem;
+}
+
+
+
+.menu-page .menu__item br {
+  display: none !important;
+}
+
+/* --- End of menu page styles --- */
