@@ -10,7 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.headline': 'You work. We feed you.',
       'hero.subtitle': 'Everyone focuses on what they do best.',
       'hero.cta': 'View Menu',
-      'menu.header': 'Our Menu',
+      'order.cta': 'Make order',
+      'menu.header': 'Dishes from Our Menu',
+      'menu.item1.title': 'Breaded white fish with Tartar sauce',
+      'menu.item1.desc': 'Tender white fish fillet, breaded and fried to golden perfection. Served with creamy homemade tartar sauce.',
+      'menu.item2.title': 'Chicken sausages with Potato Wedges',
+      'menu.item2.desc': 'Juicy chicken sausages served with crispy golden potato wedges and a side of fresh herbs.',
+      'menu.item3.title': 'Pasta with chicken and spinach',
+      'menu.item3.desc': 'Tender pasta tossed with juicy chicken, fresh spinach, and a creamy sauce.',
+      'menu.item4.title': 'Cole Slaw',
+      'menu.item4.desc': 'Classic coleslaw salad made with fresh cabbage, carrots, and a creamy dressing.',
     },
     sr: {
       'nav.home': 'Početna',
@@ -18,7 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.headline': 'Vi radite. Mi vas hranimo.',
       'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
       'hero.cta': 'Pogledaj meni',
-      'menu.header': 'Naš Meni',
+      'order.cta': 'Napravi porudžbinu',
+      'menu.header': 'Jela iz našeg menija',
+      'menu.item1.title': 'Bela riba pohovana sa tartar sosom',
+      'menu.item1.desc': 'Belo riblje file pohovano i prženo do zlatne boje. Služi se sa domaćim tartar sosom.',
+      'menu.item2.title': 'Pileće kobasice sa krompirima',
+      'menu.item2.desc': 'Sočne pileće kobasice sa hrskavim krompirima i svežim začinskim biljem.',
+      'menu.item3.title': 'Pasta sa piletinom i spanaćem',
+      'menu.item3.desc': 'Pasta sa sočnom piletinom, svežim spanaćem i kremastim sosom.',
+      'menu.item4.title': 'Koleraba salata',
+      'menu.item4.desc': 'Klasična salata od kupusa, šargarepe i kremastog preliva.',
     },
     ru: {
       'nav.home': 'Главная',
@@ -26,11 +44,21 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.headline': 'Вы работаете. Мы кормим.',
       'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
       'hero.cta': 'Посмотреть меню',
-      'menu.header': 'Наше меню',
+      'order.cta': 'Сделать заказ',
+      'menu.header': 'Блюда из нашего меню',
+      'menu.item1.title': 'Белая рыба в панировке с соусом Тартар',
+      'menu.item1.desc': 'Нежное филе белой рыбы, панированное и обжаренное до золотистой корочки. Подается с домашним соусом тартар.',
+      'menu.item2.title': 'Куриные колбаски с картофелем',
+      'menu.item2.desc': 'Сочные куриные колбаски с хрустящим картофелем и свежей зеленью.',
+      'menu.item3.title': 'Паста с курицей и шпинатом',
+      'menu.item3.desc': 'Паста с нежной курицей, свежим шпинатом и сливочным соусом.',
+      'menu.item4.title': 'Коул-слоу',
+      'menu.item4.desc': 'Классический салат из свежей капусты, моркови и сливочной заправки.',
     },
   };
 
   function setLanguage(lang) {
+    localStorage.setItem('selectedLanguage', lang);
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[lang][key]) {
@@ -41,21 +69,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
-    // On menu.html, update the menu content
+    // Always update menu items if updateMenu exists
     if (typeof window.updateMenu === 'function') window.updateMenu(lang);
-  }
-
-  function setLanguage(lang) {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (translations[lang][key]) {
-        el.textContent = translations[lang][key];
-      }
-    });
-    // Optional: highlight active button
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-    });
   }
 
   // Hamburger menu slide animation and close button
@@ -118,19 +133,25 @@ document.addEventListener('DOMContentLoaded', function () {
       option.addEventListener('click', function(e) {
         const lang = option.getAttribute('data-lang');
         setLanguage(lang);
-        // Also update menu if available (menu.html only)
-        if (typeof window.updateMenu === 'function') window.updateMenu(lang);
+        localStorage.setItem('selectedLanguage', lang);
         selected.textContent = option.textContent;
         options.forEach(opt => opt.classList.remove('active'));
         option.classList.add('active');
-        langCustom.classList.remove('open');
+        // Always close the dropdown after selection, with a short delay to avoid race with toggle
+        setTimeout(() => langCustom.classList.remove('open'), 50);
       });
     });
-    // Set initial active
-    options[0].classList.add('active');
+    // Set initial active based on saved language
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    options.forEach(opt => {
+      const isActive = opt.getAttribute('data-lang') === savedLang;
+      opt.classList.toggle('active', isActive);
+      if (isActive) selected.textContent = opt.textContent;
+    });
   }
 
-  // Set default language
-  setLanguage('en');
+  // Set default language from localStorage if available
+  const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+  setLanguage(savedLang);
 
 });

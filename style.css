@@ -343,9 +343,15 @@ body {
   transform: scale(1.04);
 }
 .menu {
-  padding: 2rem 0 6rem 0;
-  border-bottom: 1px solid var(--color-accent2);
+  padding: 2rem 0 0 0;
+  /* Removed border-bottom to eliminate divider line */
   scroll-margin-top: 4rem;
+}
+
+.cta-double-btns {
+  background: none;
+  padding: 2.5rem 0 2.5rem 0;
+  margin-top: 0rem;
 }
 .menu__container {
   display: flex;
@@ -551,6 +557,84 @@ body {
   /* All nav stacking styles are handled in the 900px block above. No need to repeat or override nav display here. */
 }
 
+/* --- Double CTA Buttons Section --- */
+.cta-double-btns {
+  background: none;
+  padding: 2.5rem 0 2.5rem 0;
+  margin-top: 0rem;
+}
+.cta-double-btns__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  gap: 0;
+}
+.cta-double-btns__col {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .cta-double-btns__row {
+    max-width: 98vw;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .cta-double-btns__col {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.cta-double-btns .cta-btn {
+  height: 56px;
+  min-width: 180px;
+  font-size: 1.18rem;
+  padding: 0 2.5rem;
+  font-weight: 700;
+  border-radius: 1.8rem;
+  text-align: center;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(184, 157, 94, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cta-double-btns .cta-btn {
+  min-width: 180px;
+  font-size: 1.18rem;
+  padding: 1.1rem 2.5rem;
+  font-weight: 700;
+  border-radius: 1.8rem;
+  text-align: center;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(184, 157, 94, 0.09);
+}
+.cta-btn--secondary {
+  background: #fff;
+  color: var(--color-accent4);
+  border: 2px solid var(--color-accent4);
+}
+.cta-btn--secondary:hover {
+  background: var(--color-accent4);
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .cta-double-btns__container {
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 98vw;
+  }
+  .cta-double-btns .cta-btn {
+    width: 100%;
+    min-width: 0;
+    padding: 1.1rem 0;
+  }
+}
+
 /* --- Menu Page Styles --- */
 body.menu-page {
   background: #1d3a2f;
@@ -665,7 +749,7 @@ body.menu-page {
 }
 
 .menu-page main > .menu-section:first-child {
-  margin-top: 2rem;
+  margin-top: 0rem;
 }
 
 
