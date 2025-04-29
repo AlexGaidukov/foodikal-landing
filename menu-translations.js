@@ -7,7 +7,8 @@ window.menuTranslations = {
       soups: "Soups",
       salads: "Salads",
       main: "Main Course",
-      sides: "Side Dishes & Drinks"
+      sides: "Side Dishes",
+      drinks: "Drinks"
     },
     dishes: {
       breakfast: [
@@ -76,7 +77,9 @@ window.menuTranslations = {
         { name: "Baked cauliflower", desc: "Cauliflower, garlic oil." },
         { name: "Spicy rice", desc: "Rice, turmeric." },
         { name: "Pasta with butter", desc: "Pasta, butter." },
-        { name: "Vegetable stew", desc: "Red pepper, potatoes, eggplant, onion, celery root, carrots." },
+        { name: "Vegetable stew", desc: "Red pepper, potatoes, eggplant, onion, celery root, carrots." }
+      ],
+      drinks: [
         { name: "Apple", desc: "Green apple." },
         { name: "Apple, Orange, Celery, Beetroot", desc: "Cherry, sugar, lemon juice, star anise, cloves." },
         { name: "Drink with currant", desc: "Blackcurrant, sugar." },
@@ -93,7 +96,8 @@ window.menuTranslations = {
       soups: "Supe",
       salads: "Salate",
       main: "Glavno jelo",
-      sides: "Prilozi i pića"
+      sides: "Prilozi",
+      drinks: "Pića"
     },
     dishes: {
       breakfast: [
@@ -103,7 +107,15 @@ window.menuTranslations = {
         { name: "Ovsena kaša sa začinjenim voćnim džemom na običnom / kokos mleku", desc: "Ovsene pahuljice, chia semenke, kokosova pavlaka, mleko, med, voćni džem." },
         { name: "Griz kaša sa začinjenim voćnim džemom na običnom / kokos mleku", desc: "Griz, obično mleko / kokos mleko, voćni džem." },
         { name: "Pirinač kaša sa začinjenim voćnim džemom na običnom / kokos mleku", desc: "Pirinač, obično mleko / kokos mleko, voćni džem." },
-        { name: "Mafini sa malinama", desc: "Puter, mleko, vanila, jaje, pšenično brašno, malina." }
+        { name: "Mafini sa malinama", desc: "Puter, mleko, vanila, jaje, pšenično brašno, malina." },
+        { name: "Slatke palačinke", desc: "Pšenično brašno, kefir, jaje, puter." },
+        { name: "Omlet sa sirom", desc: "Jaje, mocarela, peršun, čeri paradajz." },
+        { name: "Musli sa svežim bobičastim voćem", desc: "Ovsene pahuljice, ekspandirana pšenica, mlečna čokolada, kakao puter, kakao prah, lešnik, borovnica." },
+        { name: "Sendvič sa piletinom", desc: "Hleb, zelena salata, piletina, Cezar sos, marinirani krastavac, peršun, sriracha, bosiljak." },
+        { name: "Sendvič sa salatom od jaja", desc: "Hleb, majonez, sriracha, jaje, krastavac, mladi luk." },
+        { name: "Sendvič sa tunjevinom", desc: "Hleb, zelena salata, majonez, soja sos, slatka paprika, tunjevina, jaje, krastavac." },
+        { name: "Daraniki sa sosom od pečuraka", desc: "Krompir, luk, pšenično brašno, šampinjoni, pavlaka, mirođija." },
+        { name: "Banana hleb", desc: "Jaje, puter, pšenično brašno, banana, jogurt." }
       ],
       soups: [
         { name: "Boršč sa govedinom", desc: "Cvekla, šargarepa, luk, krompir, kupus, beli luk, paradajz pasta, sirće, sušeni mirođija, govedina." },
@@ -154,14 +166,16 @@ window.menuTranslations = {
         { name: "Pečeni karfiol", desc: "Karfiol, ulje od belog luka." },
         { name: "Začinjeni pirinač", desc: "Pirinač, kurkuma." },
         { name: "Pasta sa puterom", desc: "Pasta, puter." },
-        { name: "Povrtni đuveč", desc: "Crvena paprika, krompir, plavi patlidžan, luk, koren celera, šargarepa." },
-        { name: "Sok od jabuke", desc: "Zelena jabuka." },
-        { name: "Miks od jabuke, narandže, celera i cvekle", desc: "Višnja, šećer, limunov sok, anis, karanfilić." },
-        { name: "Mors od crne ribizle", desc: "Crna ribizla, šećer." },
-        { name: "Mors od pasjeg trna", desc: "Pasji trn, šećer, anis." },
-        { name: "Sok od grejpfruta", desc: "Svež grejpfrut." },
-        { name: "Sok od narandže", desc: "Sveža narandža." },
-        { name: "Mors od višnje, anisa i karanfilića", desc: "Višnja, anis i sok od karanfilića." }
+        { name: "Povrtni đuveč", desc: "Crvena paprika, krompir, plavi patlidžan, luk, koren celera, šargarepa." }
+      ],
+      drinks: [
+        { name: "Jabuka", desc: "Zelena jabuka." },
+        { name: "Jabuka, narandža, celer, cvekla", desc: "Višnja, šećer, limunov sok, anis, karanfilić." },
+        { name: "Napitek od crne ribizle", desc: "Crna ribizla, šećer." },
+        { name: "Napitek od pasjeg trna", desc: "Pasji trn, šećer, anis." },
+        { name: "Grejpfrut", desc: "Svež grejpfrut." },
+        { name: "Narandža", desc: "Sveža narandža." },
+        { name: "Višnja storm", desc: "Višnja, anis i sok od karanfilića." }
       ]
     }
   },
@@ -171,7 +185,8 @@ window.menuTranslations = {
       soups: "Супы",
       salads: "Салаты",
       main: "Основное блюдо",
-      sides: "Гарниры и напитки"
+      sides: "Гарниры",
+      drinks: "Напитки"
     },
     dishes: {
       breakfast: [
@@ -240,7 +255,9 @@ window.menuTranslations = {
         { name: "Запечённая цветная капуста", desc: "Цветная капуста, чесночное масло." },
         { name: "Острый рис", desc: "Рис, куркума." },
         { name: "Паста с маслом", desc: "Паста, масло." },
-        { name: "Овощное рагу", desc: "Красный перец, картофель, баклажан, лук, корень сельдерея, морковь." },
+        { name: "Овощное рагу", desc: "Красный перец, картофель, баклажан, лук, корень сельдерея, морковь." }
+      ],
+      drinks: [
         { name: "Сок из яблока", desc: "Зеленое яблоко." },
         { name: "Микс из яблока, апельсина, сельдерея, свёклы", desc: "Вишня, сахар, лимонный сок, бадьян, гвоздика." },
         { name: "Морс смородина", desc: "Черная смородина, сахар." },

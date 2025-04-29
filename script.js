@@ -69,18 +69,21 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
-    renderMenu(lang);
+    if (typeof window.updateMenu === 'function') {
+      window.updateMenu(lang);
+    }
   }
 
   function renderMenu(lang) {
     const t = window.menuTranslations[lang];
-    const sectionOrder = ['breakfast', 'soups', 'salads', 'main', 'sides'];
+    const sectionOrder = ['breakfast', 'soups', 'salads', 'main', 'sides', 'drinks'];
     const sectionIdMap = {
       breakfast: 'breakfast',
       soups: 'soups',
       salads: 'salads',
       main: 'main-course',
-      sides: 'side-drinks',
+      sides: 'sides',
+      drinks: 'drinks',
     };
     sectionOrder.forEach(section => {
       const sectionEl = document.getElementById(sectionIdMap[section]);
@@ -88,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const grid = sectionEl.querySelector('.menu__grid');
       grid.innerHTML = "";
       const dishes = t.dishes[section] || [];
+      if (!Array.isArray(dishes) || dishes.length === 0) return;
       const colCount = dishes.length < 9 ? 2 : 3;
       const colLength = Math.ceil(dishes.length / colCount);
       for (let c = 0; c < colCount; c++) {

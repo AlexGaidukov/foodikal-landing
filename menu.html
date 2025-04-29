@@ -58,11 +58,13 @@
       <h2 class="section__header"><span class="section__header-line"></span><span data-menu-category="main">MAIN COURSE</span></h2>
       <div class="menu__grid"></div>
     </section>
-    <section class="menu-section" id="side-drinks">
-      <h2 class="section__header"><span class="section__header-line"></span><span data-menu-category="sides">SIDE DISHES & DRINKS</span></h2>
+    <section class="menu-section" id="sides">
+      <h2 class="section__header"><span class="section__header-line"></span><span data-menu-category="sides">SIDE DISHES</span></h2>
       <div class="menu__grid"></div>
-  </div>
-</div>
+    </section>
+    <section class="menu-section" id="drinks">
+      <h2 class="section__header"><span class="section__header-line"></span><span data-menu-category="drinks">DRINKS</span></h2>
+      <div class="menu__grid"></div>
     </section>
   </main>
 
@@ -78,13 +80,14 @@
         if (t.categories[key]) el.innerText = t.categories[key];
       });
       // Dishes (iterate by section, in order: breakfast, soups, salads, main, sides)
-      const sectionOrder = ['breakfast', 'soups', 'salads', 'main', 'sides'];
+      const sectionOrder = ['breakfast', 'soups', 'salads', 'main', 'sides', 'drinks'];
       const sectionIdMap = {
         breakfast: 'breakfast',
         soups: 'soups',
         salads: 'salads',
         main: 'main-course',
-        sides: 'side-drinks',
+        sides: 'sides',
+        drinks: 'drinks',
       };
       sectionOrder.forEach(section => {
         const sectionEl = document.getElementById(sectionIdMap[section]);
