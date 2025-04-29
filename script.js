@@ -69,9 +69,53 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
-    // Always update menu items if updateMenu exists
-    if (typeof window.updateMenu === 'function') window.updateMenu(lang);
+    renderMenu(lang);
   }
+
+  function renderMenu(lang) {
+    const t = window.menuTranslations[lang];
+    const sectionOrder = ['breakfast', 'soups', 'salads', 'main', 'sides'];
+    const sectionIdMap = {
+      breakfast: 'breakfast',
+      soups: 'soups',
+      salads: 'salads',
+      main: 'main-course',
+      sides: 'side-drinks',
+    };
+    sectionOrder.forEach(section => {
+      const sectionEl = document.getElementById(sectionIdMap[section]);
+      if (!sectionEl) return;
+      const grid = sectionEl.querySelector('.menu__grid');
+      grid.innerHTML = "";
+      const dishes = t.dishes[section] || [];
+      const colCount = dishes.length < 9 ? 2 : 3;
+      const colLength = Math.ceil(dishes.length / colCount);
+      for (let c = 0; c < colCount; c++) {
+        const colDishes = dishes.slice(c * colLength, (c + 1) * colLength);
+        const colDiv = document.createElement('div');
+        colDiv.className = 'menu__column';
+        colDishes.forEach(dish => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'menu__item';
+          itemDiv.setAttribute('data-menu-item', '');
+          itemDiv.innerHTML = `<strong>${dish.name}</strong><br><em>${dish.desc}</em>`;
+          colDiv.appendChild(itemDiv);
+        });
+        grid.appendChild(colDiv);
+      }
+    });
+  }
+
+  function updateMenuAndCategories(lang) {
+    const t = window.menuTranslations[lang];
+    document.querySelectorAll('[data-menu-category]').forEach((el) => {
+      const key = el.getAttribute('data-menu-category');
+      if (t.categories[key]) el.innerText = t.categories[key];
+    });
+    renderMenu(lang);
+  }
+
+  window.updateMenu = updateMenuAndCategories;
 
   // Hamburger menu slide animation and close button
   const nav = document.getElementById('nav');
@@ -154,4 +198,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const savedLang = localStorage.getItem('selectedLanguage') || 'en';
   setLanguage(savedLang);
 
+  // Ensure menu is updated on load with the correct language
+  if (typeof window.updateMenu === 'function') {
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    window.updateMenu(savedLang);
+  }
 });

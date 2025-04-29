@@ -11,8 +11,22 @@ window.menuTranslations = {
     },
     dishes: {
       breakfast: [
-
-      ],
+  { name: "Pancakes with ham and cheese", desc: "Eggs, sugar, cream, wheat flour, milk, cheese, ham." },
+  { name: "Pancakes stuffed with chicken", desc: "Eggs, sugar, cream, wheat flour, milk, chicken fillet, cream, champignons." },
+  { name: "Pancakes with jam in the assortment", desc: "Eggs, sugar, cream, wheat flour, milk, jam." },
+  { name: "Oatmeal porridge with spiced berry jam on regular / coconut milk", desc: "Oatmeal, chia seeds, coconut cream, milk, honey, berry jam." },
+  { name: "Semolina porridge with spiced berry jam on regular / coconut milk", desc: "Semolina, regular milk / coconut milk, berry jam." },
+  { name: "Rice porridge with spiced berry jam on regular / coconut milk", desc: "Rice, regular milk / coconut milk, berry jam." },
+  { name: "Raspberry muffins", desc: "Butter, milk, vanilla extract, egg, wheat flour, raspberry." },
+  { name: "Sweet fritters", desc: "Wheat flour, kefir, egg, butter." },
+  { name: "Omelet with cheese", desc: "Egg, mozzarella, parsley, cherry tomatoes." },
+  { name: "Muesli with fresh berries", desc: "Oatmeal flakes, puffed wheat, milk chocolate, cocoa butter, cocoa powder, hazelnuts, blueberries." },
+  { name: "Pulled chicken sandwich", desc: "Bread, green salad, chicken, Caesar sauce, pickled cucumber, parsley, sriracha, basil." },
+  { name: "Egg salad sandwich", desc: "Bread, mayonnaise, sriracha, egg, cucumber, green onions." },
+  { name: "Tuna Sandwich", desc: "Bread, green salad, mayonnaise, soy sauce, sweet paprika, tuna, egg, cucumber." },
+  { name: "Hashbrowns with mushroom sauce", desc: "Potatoes, onions, wheat flour, champignons, cream, dill." },
+  { name: "Banana bread", desc: "Egg, butter, wheat flour, banana, yogurt." }
+],
       soups: [
         { name: "Borscht with beef", desc: "Beetroot, carrots, onions, potatoes, cabbage, garlic, tomato past, vinegar, dried dill, beef." },
         { name: "Chicken soup with potatoes", desc: "Onion, carrot, champignons, potatoes, chicken." },
