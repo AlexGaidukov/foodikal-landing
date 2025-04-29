@@ -740,16 +740,29 @@ body.menu-page {
   .menu-page .menu-section .section__header {
     font-size: 2.1rem;
   }
+  /* Add 1rem gap from sides for 600-900px */
+  .menu-page main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 @media (max-width: 600px) {
   .menu-page main {
     padding-left: 2rem;
     padding-right: 2rem;
+    padding-bottom: 2rem;
+  }
+  .menu-page .menu-section:first-of-type .section__header {
+    margin-top: 2rem;
   }
 }
 
 .menu-page main > .menu-section:first-child {
-  margin-top: 0rem;
+  /* Remove margin override so section header margin works */
+}
+
+.menu-page main > .menu-section:first-child .section__header {
+  margin-top: 2rem;
 }
 
 

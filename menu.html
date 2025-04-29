@@ -15,7 +15,7 @@
   <!-- Header (copied from index.html for consistency) -->
   <header class="header">
     <div class="container header__container">
-      <a href="#hero" class="logo" aria-label="Foodikal Home">
+      <a href="index.html" class="logo" aria-label="Foodikal Home">
         <img src="img/Foodikal-logo.png" alt="Foodikal logo" class="logo__img" />
       </a>
       <nav class="nav" id="nav">
@@ -171,19 +171,27 @@
       });
       // Dishes (iterate by section, in order: breakfast, soups, salads, main, sides)
       const sectionOrder = ['breakfast', 'soups', 'salads', 'main', 'sides'];
-      let itemIndex = 0;
+      const sectionIdMap = {
+        breakfast: 'breakfast',
+        soups: 'soups',
+        salads: 'salads',
+        main: 'main-course',
+        sides: 'side-drinks',
+      };
       sectionOrder.forEach(section => {
+        const sectionEl = document.getElementById(sectionIdMap[section]);
+        if (!sectionEl) return;
+        const items = sectionEl.querySelectorAll('[data-menu-item]');
         const dishes = t.dishes[section];
         if (Array.isArray(dishes)) {
-          dishes.forEach(dish => {
-            const item = items[itemIndex];
+          dishes.forEach((dish, i) => {
+            const item = items[i];
             if (item) {
               const strong = item.querySelector('strong');
               const em = item.querySelector('em');
               if (strong) strong.innerText = dish.name;
               if (em) em.innerText = dish.desc;
             }
-            itemIndex++;
           });
         }
       });
