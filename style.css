@@ -65,7 +65,6 @@ body {
 .menu-page main > .menu-section:first-child,
 main > .hero:first-child {
   margin-top: 0 !important;
-  padding-top: 0 !important;
 }
 
 .nav__list,
@@ -389,11 +388,24 @@ main > .hero:first-child {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 5rem 0 2rem 0;
+  padding: 5rem 0;
   scroll-margin-top: 4rem;
   border-bottom: 1px solid var(--color-accent2);
   background: linear-gradient(rgba(22,33,20,0.5), rgba(22,33,20,0.2)), url('img/Banner_dish.png') center/cover no-repeat;
   color: #fff;
+}
+
+.hero__container > *:first-child {
+  margin-top: 0 !important;
+}
+.hero__container > *:last-child {
+  margin-bottom: 0 !important;
+}
+.hero__headline {
+  margin: 0 0 2rem 0;
+}
+#hero-cta-btn {
+  margin: 2rem 0 0 0;
 }
 .hero__container {
   display: flex;
