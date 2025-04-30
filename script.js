@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Only use hardcoded translations for nav/hero on index.html, not for menu items
   const translations = {
     en: {
+      'modal.header': 'Contact your personal manager',
+      'modal.btn1': 'Telegram',
+      'modal.btn2': 'Viber',
+      'modal.btn3': 'Call us',
       'nav.home': 'Home',
       'nav.menu': 'Menu',
       'hero.headline': 'You work. We feed you.',
@@ -22,11 +26,15 @@ document.addEventListener('DOMContentLoaded', function () {
       'menu.item4.desc': 'Classic coleslaw salad made with fresh cabbage, carrots, and a creamy dressing.',
     },
     sr: {
+      'modal.header': 'Kontaktirajte svog ličnog menadžera',
+      'modal.btn1': 'Telegram',
+      'modal.btn2': 'Viber',
+      'modal.btn3': 'Pozovi nas',
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
       'hero.headline': 'Vi radite. Mi vas hranimo.',
       'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
-      'hero.cta': 'Pogledaj meni',
+      'hero.cta': 'Meni',
       'order.cta': 'Napravi porudžbinu',
       'menu.header': 'Jela iz našeg menija',
       'menu.item1.title': 'Bela riba pohovana sa tartar sosom',
@@ -39,11 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
       'menu.item4.desc': 'Klasična salata od kupusa, šargarepe i kremastog preliva.',
     },
     ru: {
+      'modal.header': 'Свяжитесь с персональным менеджером',
+      'modal.btn1': 'Telegram',
+      'modal.btn2': 'Viber',
+      'modal.btn3': 'Позвонить',
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
       'hero.headline': 'Вы работаете. Мы кормим.',
       'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
-      'hero.cta': 'Посмотреть меню',
+      'hero.cta': 'Наше меню',
       'order.cta': 'Сделать заказ',
       'menu.header': 'Блюда из нашего меню',
       'menu.item1.title': 'Белая рыба в панировке с соусом Тартар',
@@ -57,8 +69,20 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   };
 
+  
   function setLanguage(lang) {
+    updateModalLang(lang);
+    updateModalText(lang);
     localStorage.setItem('selectedLanguage', lang);
+    // Update language switcher indicator
+    const langCustom = document.querySelector('.lang-custom-select');
+    if (langCustom) {
+      const selected = langCustom.querySelector('.custom-select__selected');
+      if (selected) {
+        let code = lang.toUpperCase();
+        selected.textContent = code;
+      }
+    }
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[lang][key]) {
@@ -120,6 +144,142 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   window.updateMenu = updateMenuAndCategories;
+
+  // Modal logic
+  const modal = document.getElementById('global-modal');
+  const modalHeader = document.getElementById('modal-header');
+  const modalButtons = document.getElementById('modal-buttons');
+  const modalClose = document.querySelector('.modal-close');
+  let currentLang = localStorage.getItem('selectedLanguage') || 'en';
+
+  // Attach modal open to all Make order buttons
+  function attachModalToOrderButtons() {
+    const orderBtns = document.querySelectorAll('[data-i18n="order.cta"]');
+    orderBtns.forEach(btn => {
+      btn.onclick = function(e) {
+        e.preventDefault();
+        openModal();
+      };
+    });
+  }
+  document.addEventListener('DOMContentLoaded', attachModalToOrderButtons);
+  attachModalToOrderButtons();
+
+  // Update modal text on language change
+  function updateModalLang(lang) {
+    currentLang = lang;
+    updateModalText(lang);
+  }
+  window.updateModalLang = updateModalLang;
+
+  if (modalClose) {
+    modalClose.onclick = closeModal;
+  }
+  if (modal) {
+    modal.onclick = function(e) {
+      if (e.target === modal) closeModal();
+    };
+  }
+
+  function updateModalText(lang) {
+    if (!modalHeader || !modalButtons) return;
+    const modalHeaderText = document.getElementById('modal-header-text');
+    if (modalHeaderText) {
+      modalHeaderText.textContent = translations[lang]['modal.header'];
+    }
+    modalButtons.innerHTML = '';
+    // Button data: [textKey, href, target]
+    const btnData = [
+      {textKey: 'btn1', href: 'https://t.me/foodikal', target: '_blank'},
+      {textKey: 'btn2', href: 'viber://chat/?number=%2B381615736624', target: '_self'},
+      {textKey: 'btn3', href: 'tel:+381615736624', target: '_self'}
+    ];
+    const iconPaths = [
+      'img/icons/icon-telegram.png',
+      'img/icons/icon-viber.png',
+      'img/icons/icon-phone.png'
+    ];
+    btnData.forEach((btnInfo, idx) => {
+      const a = document.createElement('a');
+      a.className = 'modal-action-btn';
+      // Add icon
+      const icon = document.createElement('img');
+      icon.src = iconPaths[idx];
+      // Get label from translations (prefer window.menuTranslations if available)
+      let label = btnInfo.textKey;
+      if (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal[btnInfo.textKey]) {
+        label = window.menuTranslations[lang].modal[btnInfo.textKey];
+      } else if (translations[lang] && translations[lang][`modal.${btnInfo.textKey}`]) {
+        label = translations[lang][`modal.${btnInfo.textKey}`];
+      } else if (translations['en'] && translations['en'][`modal.${btnInfo.textKey}`]) {
+        label = translations['en'][`modal.${btnInfo.textKey}`];
+      }
+      icon.alt = label + ' icon';
+      icon.className = 'modal-action-btn__icon';
+      a.appendChild(icon);
+      // Add text
+      const span = document.createElement('span');
+      span.className = 'modal-action-btn__text';
+      span.textContent = label;
+      a.appendChild(span);
+      a.href = btnInfo.href;
+      a.target = btnInfo.target;
+      a.rel = btnInfo.target === '_blank' ? 'noopener noreferrer' : '';
+      modalButtons.appendChild(a);
+    });
+  }
+
+  function openModal() {
+    updateModalText(currentLang);
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  if (modalClose) {
+    modalClose.onclick = closeModal;
+  }
+  if (modal) {
+    modal.onclick = function(e) {
+      if (e.target === modal) closeModal();
+    };
+  }
+  // Attach modal open to all Make order buttons
+  function attachModalToOrderButtons() {
+    const orderBtns = document.querySelectorAll('[data-i18n="order.cta"]');
+    orderBtns.forEach(btn => {
+      btn.onclick = function(e) {
+        e.preventDefault();
+        openModal();
+      };
+    });
+  }
+  // Attach modal open to hero CTA button (after openModal is defined)
+  var heroCtaBtn = document.getElementById('hero-cta-btn');
+  if (heroCtaBtn) {
+    heroCtaBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal();
+    });
+  }
+  // Attach modal open to header order link
+  var headerOrderLink = document.getElementById('header-order-link');
+  if (headerOrderLink) {
+    headerOrderLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal();
+    });
+  }
+  document.addEventListener('DOMContentLoaded', attachModalToOrderButtons);
+  attachModalToOrderButtons();
+  // Update modal text on language change
+  function updateModalLang(lang) {
+    currentLang = lang;
+    updateModalText(lang);
+  }
+  window.updateModalLang = updateModalLang;
 
   // Hamburger menu slide animation and close button
   const nav = document.getElementById('nav');

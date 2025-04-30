@@ -2,6 +2,10 @@
 window.menuTranslations = {
 // Grouped translations structure below
   en: {
+    modal: {
+
+
+    },
     categories: {
       breakfast: "Breakfast",
       soups: "Soups",
@@ -91,6 +95,12 @@ window.menuTranslations = {
     }
   },
   sr: {
+    modal: {
+      header: "Kontaktirajte svog ličnog menadžera",
+      btn1: "Telegram",
+      btn2: "Viber",
+      btn3: "Pozovite nas"
+    },
     categories: {
       breakfast: "Doručak",
       soups: "Supe",
@@ -180,6 +190,9 @@ window.menuTranslations = {
     }
   },
   ru: {
+    modal: {
+
+    },
     categories: {
       breakfast: "Завтрак",
       soups: "Супы",

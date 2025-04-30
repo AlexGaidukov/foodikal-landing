@@ -24,6 +24,7 @@
         <ul class="nav__list">
           <li><a href="#hero" class="nav__link" data-i18n="nav.home">Home</a></li>
           <li><a href="menu.html" class="nav__link" data-i18n="nav.menu">Menu</a></li>
+          <li><a href="#" class="nav__link cta-link" id="header-order-link" data-i18n="order.cta">Make order</a></li>
         </ul>
       </nav>
       <div class="lang-switcher">
@@ -45,9 +46,9 @@
   <main>
     <section class="hero" id="hero">
       <div class="container hero__container">
-        <h1 class="hero__headline" data-i18n="hero.headline">Eat Bold. Eat Foodikal.</h1>
+        <h1 class="hero__headline" data-i18n="hero.headline"></h1>
         <p class="hero__subtitle" data-i18n="hero.subtitle"></p>
-        <a href="#menu" class="cta-btn" data-i18n="hero.cta">View Menu</a>
+        <button class="cta-btn" id="hero-cta-btn" data-i18n="order.cta">Make Order</button>
       </div>
     </section>
 
@@ -97,6 +98,16 @@
       </div>
     </section>
   </main>
+
+<!-- Modal Pop-up for Contact Manager -->
+<div id="global-modal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <button class="modal-close nav__close" aria-label="Close modal">&#10005;</button>
+    <h2 id="modal-header" class="section__header modal__header"><span class="modal-header-line"></span><span class="modal-header-text-wrap"><span id="modal-header-text"></span></span></h2>
+    <div id="modal-buttons" class="modal-buttons"></div>
+  </div>
+</div>
+
 
   <footer class="footer">
     <div class="container footer__container">

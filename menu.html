@@ -14,32 +14,33 @@
 <body class="menu-page">
   <!-- Header (copied from index.html for consistency) -->
   <header class="header">
-    <div class="container header__container">
-      <a href="index.html" class="logo" aria-label="Foodikal Home">
-        <img src="img/Foodikal-logo.png" alt="Foodikal logo" class="logo__img" />
-      </a>
-      <nav class="nav" id="nav">
-        <button class="nav__close" aria-label="Close menu">&#10005;</button>
-        <ul class="nav__list">
-          <li><a href="index.html#hero" class="nav__link" data-i18n="nav.home">Home</a></li>
-          <li><a href="menu.html" class="nav__link" data-i18n="nav.menu">Menu</a></li>
-        </ul>
-      </nav>
-      <div class="lang-switcher">
-        <div class="custom-select lang-custom-select" tabindex="0">
-          <div class="custom-select__selected">EN</div>
-          <div class="custom-select__dropdown">
-            <div class="custom-select__option" data-lang="en">EN</div>
-            <div class="custom-select__option" data-lang="sr">SR</div>
-            <div class="custom-select__option" data-lang="ru">RU</div>
-          </div>
+  <div class="container header__container">
+    <a href="index.html#hero" class="logo" aria-label="Foodikal Home">
+      <img src="img/Foodikal-logo.png" alt="Foodikal logo" class="logo__img" />
+    </a>
+    <nav class="nav" id="nav">
+      <button class="nav__close" aria-label="Close menu">&#10005;</button>
+      <ul class="nav__list">
+        <li><a href="index.html#hero" class="nav__link" data-i18n="nav.home">Home</a></li>
+        <li><a href="menu.html" class="nav__link" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="#" class="nav__link cta-link" id="header-order-link" data-i18n="order.cta">Make order</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <div class="custom-select lang-custom-select" tabindex="0">
+        <div class="custom-select__selected">EN</div>
+        <div class="custom-select__dropdown">
+          <div class="custom-select__option" data-lang="en">EN</div>
+          <div class="custom-select__option" data-lang="sr">SR</div>
+          <div class="custom-select__option" data-lang="ru">RU</div>
         </div>
       </div>
-      <button class="nav__toggle" id="navToggle" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
-  </header>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
   <main>
     <section class="menu-section" id="breakfast">
@@ -67,6 +68,16 @@
       <div class="menu__grid"></div>
     </section>
   </main>
+
+<!-- Modal Pop-up for Contact Manager -->
+<div id="global-modal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <button class="modal-close nav__close" aria-label="Close modal">&#10005;</button>
+    <h2 id="modal-header" class="section__header modal__header"><span class="modal-header-line"></span><span class="modal-header-text-wrap"><span id="modal-header-text"></span></span></h2>
+    <div id="modal-buttons" class="modal-buttons"></div>
+  </div>
+</div>
+
 
   <script src="menu-translations.js"></script>
   <script>
