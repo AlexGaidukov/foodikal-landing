@@ -18,7 +18,7 @@ window.menuTranslations = {
       breakfast: [
         { name: "Banana bread", desc: "Egg, wheat flour, banana, yogurt"},
         { name: "Plain pancakes 3 pcs", desc: "Egg, cream, wheat flour, milk"},
-        { name: "Pancakes with ham and cheese", desc: "Egg, cream 20 %, wheat flour, milk, Gauda cheese, turkey ham"},
+        { name: "Pancakes with ham and cheese", desc: "Egg, cream 20%, wheat flour, milk, Gauda cheese, turkey ham"},
         { name: "Finnish-style pancake with sweet cream and raspberry", desc: "Egg, wheat flour, milk, cream, vanilla extract, cornstarch, raspberry"},
         { name: "Finnish-style pancake with chicken", desc: "Egg, wheat flour, milk, minced chicken, onion"},
         { name: "Beef Burrito", desc: "Tortilla, beef, cabbage, tomato, beans, rice, garlic oil, Sriracha, lemon juice, yogurt, ketchup"},
@@ -86,12 +86,12 @@ window.menuTranslations = {
       ],
       drinks: [
         { name: "Bubble & Rose Lemonade", desc: "Lemon juice, lemon, carbonated water, rose syrup, bubble-gum syrup"},
-        { name: "Elderberry lemonade (0.33)", desc: "Lemon juice, lemon, sparkling water, elderberry syrup"},
+        { name: "Elderberry lemonade 0.33", desc: "Lemon juice, lemon, sparkling water, elderberry syrup"},
         { name: "Mix Orange, Grapefruit and Beetroot 0.33", desc: "Apple, orange, celery, beetroot"},
-        { name: "Mix Apple / Spinach / Celery (0.33)", desc: "Apple, spinach, celery"},
+        { name: "Mix Apple / Spinach / Celery 0.33", desc: "Apple, spinach, celery"},
         { name: "Drink with currant 0.33", desc: "Blackcurrant, sugar"},
         { name: "Drink with sea buckthorn 0.33", desc: "Sea buckthorn, sugar, star anise"},
-        { name: "Smoothie Orange, Pear, Spinach 0.33 ", desc: "Orange, pear, spinach"},
+        { name: "Smoothie Orange, Pear, Spinach 0.33", desc: "Orange, pear, spinach"},
         { name: "Apple Juice 0.33", desc: "Green apple"},
         { name: "Grapefruit Juice 0.33", desc: "Fresh grapefruit"},
         { name: "Orange Juice 0.33", desc: "Fresh orange"},
@@ -137,14 +137,14 @@ window.menuTranslations = {
         { name: "Zelena supa od kupusa", desc: "Krompir, Jaje, Luk, Limunov sok, Sveža blitva"},
         { name: "Pileća supa sa krompirom", desc: "Luk, Šargarepa, Šampinjoni, Krompir, Piletina"},
         { name: "Okroška sa kobasicom i kvasom", desc: "Jaje, Krompir, Krastavac, Rotkvica, Ćureća šunka, Peršun, Kvas"},
-        { name: "Čorba od slatkog krompira (Vegan) ", desc: "Luk, Šargarepa, Slatki krompir, Beli luk ulje"},
+        { name: "Čorba od slatkog krompira (Vegan)", desc: "Luk, Šargarepa, Slatki krompir, Beli luk ulje"},
         { name: "Hladna supa sa jogurtom", desc: "Jogurt, Beli luk ulje, Sveža nana, Krastavac"},
         { name: "Teleća supa", desc: "Govedina, Šargarepa, Celer, Luk, Peršun"}
       ],
       salads: [
-        { name: "Aučuk (Vegan) ", desc: "Paradajz, Luk, Peršun"},
+        { name: "Aučuk (Vegan)", desc: "Paradajz, Luk, Peršun"},
         { name: "Vinegret salata (Vegan)", desc: "Cvekla, Krompir, Šargarepa, Kiseli krastavac, Grašak, Luk"},
-        { name: "Korejske tikvice (Vegan) ", desc: "Tikvica, Sirće, Slatka paprika, Sriracha sos"},
+        { name: "Korejske tikvice (Vegan)", desc: "Tikvica, Sirće, Slatka paprika, Sriracha sos"},
         { name: "Salata od kupusa sa povrćem", desc: "Beli kupus, Svež paradajz, Svež krastavac"},
         { name: "Šargarepa u korejskom stilu (Vegan)", desc: "Šargarepa, Začin, Beli luk"},
         { name: "Salata sa krompir pitom", desc: "Piletina, Krastavac, Slatka paprika, Krompir, Soja sos, Pavlaka, Slatka pavlaka, Začin 13 začina"},
@@ -160,11 +160,11 @@ window.menuTranslations = {
         { name: "Bečka šnicela sa Cezar sosom (Bez prilozi)", desc: "Piletina, Prezle, Pšenično brašno, Cezar sos"},
         { name: "Prženi pirinač sa lignjama", desc: "Pirinač, Lignje, Luk, Paradajz, Slatka paprika, Paradajz pasta, Beli luk ulje, Sriracha sos, Pesto sos sa belim lukom"},
         { name: "Tikvice sa povrćem i gaudom", desc: "Sveža tikvica, Paradajz, Slatka paprika, Gauda sir"},
-        { name: "Kijevski kotlet sa pire krompirom", desc: "Krompir, Mleko, Pileće mleveno meso, Peršun, Mirođija, Limunova korica, Limunov sok, Prezle, Mleveni biber, Sušeni beli luk, Kuhinjska so"},
+        { name: "Kijevski kotlet sa pire krompirom", desc: "Krompir, Mleko, Pileće mleveno meso, Peršun, Mirođija, Limunova korica, Limunov sok, Prezle, Mleveni biber, Sušeni beli luk"},
         { name: "Pileće kobasice with krompir", desc: "Pileće mleveno meso, Gauda sir, Kečap, Krompir, Luk, Ruzmarin"},
         { name: "Pileći file u sosu od sira (Bez prilozi)", desc: "Pileći file, Čedar sir, Pavlaka, Biljno ulje"},
         { name: "Pileći kari sa pirinčem", desc: "Piletina, Boranija, Čeri paradajz, Susam, Beli luk ulje, Kari, Tom-yam pasta, Kokosova pavlaka, Pavlaka, Pirinač, Pirinčano sirće 5%, Šećer"},
-        { name: "Lagman sa govedinom", desc: "Udon rezanci, Govedina, Luk, Šargarepa, Krompir, Celer, Kumin, Korijander, Slatka paprika, Crvena slatka paprika, Paradajz pasta, Kuhinjska so, Mleveni crni biber, Mladi luk, Suncokretovo ulje"},
+        { name: "Lagman sa govedinom", desc: "Udon rezanci, Govedina, Luk, Šargarepa, Krompir, Celer, Kumin, Korijander, Slatka paprika, Crvena slatka paprika, Paradajz pasta, Mleveni crni biber, Mladi luk"},
         { name: "Mutabal", desc: "Plavi patlidžan, Leblebije, Beli luk, Jogurt, Tahini, Limunov sok, Karfiol, Beli luk ulje, Slatka paprika"},
         { name: "Pasta sa kobasicama", desc: "Tagliatelle, Kobasice, Pavlaka, Kečap, Beli luk ulje, Sriracha sos, Slatka paprika"},
         { name: "Pasta sa piletinom i spanaćem", desc: "Tagliatelle, Piletina, Spanać, Pavlaka, Beli luk, Origano"},
@@ -185,17 +185,17 @@ window.menuTranslations = {
         { name: "Pečeni karfiol", desc: "Karfiol, Beli luk ulje"}
       ],
       drinks: [
-      { name: "Limunada Bubble & Rose 0,33", desc: "Limunov sok, limun, gazirana voda, sirup od ruže, sirup bubble gum"},
-      { name: "Limunada Zova 0,33", desc: "Limunov sok, limun, gazirana voda, sirup od zove"},
-      { name: "Mešavina od pomorandže, grejpfruta i cvekle 0,33", desc: "Pomorandža, grejpfrut, cvekla"},
-      { name: "Mešavina jabuka / spanaća / celera 0,33", desc: "Jabuka, spanać, celer"},
-      { name: "Mors ribizla 0,33", desc: "Crna ribizla, šećer"},
-      { name: "Napitak od morskog trna 0,33", desc: "Pasji trn (morski trn), šećer, badijan"},
-      { name: " Smuti od pomorandže, kruške, spanaća 0,33", desc: "Pomorandža, kruška, spanać"},
-      { name: "Jabuka 0,33", desc: "Zelena jabuka"},
-      { name: "Grejpfrut 0,33", desc: "Grejpfrut"},
-      { name: "Narandža 0,33", desc: "Pomorandža"},
-      { name: "Voćni napitak od trešanja, zvezdastog anisa i karanfilića 0,33", desc: "Višnja, Šećer, Limunov sok, Badijan, Karanfilić"}
+      { name: "Limunada Bubble & Rose 0.33", desc: "Limunov sok, limun, gazirana voda, sirup od ruže, sirup bubble gum"},
+      { name: "Limunada Zova 0.33", desc: "Limunov sok, limun, gazirana voda, sirup od zove"},
+      { name: "Mešavina od pomorandže, grejpfruta i cvekle 0.33", desc: "Pomorandža, grejpfrut, cvekla"},
+      { name: "Mešavina jabuka / spanaća / celera 0.33", desc: "Jabuka, spanać, celer"},
+      { name: "Mors ribizla 0.33", desc: "Crna ribizla, šećer"},
+      { name: "Napitak od morskog trna 0.33", desc: "Pasji trn (morski trn), šećer, badijan"},
+      { name: " Smuti od pomorandže, kruške, spanaća 0.33", desc: "Pomorandža, kruška, spanać"},
+      { name: "Jabuka 0.33", desc: "Zelena jabuka"},
+      { name: "Grejpfrut 0.33", desc: "Grejpfrut"},
+      { name: "Narandža 0.33", desc: "Pomorandža"},
+      { name: "Voćni napitak od trešanja, zvezdastog anisa i karanfilića 0.33", desc: "Višnja, Šećer, Limunov sok, Badijan, Karanfilić"}
       ]
     }
   },
@@ -223,10 +223,10 @@ window.menuTranslations = {
         { name: "Омлет с сыром", desc: "Яйцо, Сыр Моцарелла, Петрушка, Черри"},
         { name: "Сэндвич с рваной курицей с соусом Чеддер", desc: "Хлеб, Курица, Соус Чеддер с халапеньо, Перец сладкий, Кукуруза, Сметана, Соус Шрирача, Чеснок, Петрушка"},
         { name: "Сэндвич с тунцом", desc: "Хлеб, Листовой салат, Майонез, Соевый соус, Паприка сладкая, Тунец, Яйцо, Огурец"},
-        { name: "Финский блин с кремом и малиной", desc: "Яйцо, Молоко, Мука пшеничная, Сливки, Ваниль, Крахмал кукуруз., Малина"},
-        { name: "Финский блин с курицей", desc: "Яйцо, Молоко, Мука пшен., Фарш кур., Лук"},
+        { name: "Финский блин с кремом и малиной", desc: "Яйцо, Молоко, Мука пшеничная, Сливки, Ваниль, Крахмал кукурузный, Малина"},
+        { name: "Финский блин с курицей", desc: "Яйцо, Молоко, Мука пшеничная, Фарш куриный, Лук"},
         { name: "Хашбрауны с грибным соусом", desc: "Картофель, Шампиньоны, Сливки"},
-        { name: "Холодная каша", desc: "Хлопья овс., Йогурт, Груша, Семена льна, Мёд, Кокосовая стружка"},
+        { name: "Холодная каша", desc: "Хлопья овсянные, Йогурт, Груша, Семена льна, Мёд, Кокосовая стружка"},
         { name: "Штрудель", desc: "Тесто фило, Яблоки, Корица молотая"}
       ],
       soups: [
@@ -239,7 +239,7 @@ window.menuTranslations = {
         { name: "Чорба с телятиной", desc: "Говядина, Морковь, Сельдерей, Лук, Петрушка"}
       ],
       salads: [
-        { name: "Ачучук (Vegan) ", desc: "Томат, Лук, Петрушка"},
+        { name: "Ачучук (Vegan)", desc: "Томат, Лук, Петрушка"},
         { name: "Винегрет (Vegan)", desc: "Свекла, Картофель, Морковь, Огурец солёный, Горошек, Лук"},
         { name: "Кабачки по-корейски (кабачки хе) (Vegan)", desc: "Кабачок, Уксус столовый, Паприка сладкая, Соус Шрирача"},
         { name: "Капустный салат с овощами", desc: "Капуста белокочанная, Томат свежий, Огурец свежий"},
@@ -248,20 +248,20 @@ window.menuTranslations = {
         { name: "Салат с рваной курицей и арахисом", desc: "Перец сладкий, Огурец, Кунжут, Арахис"}
       ],
       main: [
-        { name: "Бифштекс с яйцом и картофельным гратеном", desc: "Говядина, Свинина, Курица, Перец черный, Яйцо, Картофель, Корень сельд."},
+        { name: "Бифштекс с яйцом и картофельным гратеном", desc: "Говядина, Свинина, Курица, Перец черный, Яйцо, Картофель, Корень сельдерея"},
         { name: "Белая рыба под сливочно-шпинатным соусом (Без гарнира)", desc: "Филе белой рыбы, Сливки, Шпинат, Лимон"},
         { name: "Бефстроганов c картофелем", desc: "Картофель, Говядина, Шампиньоны, Сметана, Сливки"},
         { name: "Боул с курицей", desc: "Рис, Курица, Брокколи, Соус терияки, Соевый соус, Кунжутное масло, Черри, Мёд"},
         { name: "Веганский вок с овощами", desc: "Соба, Перец, Цветная капуста, Стручковая фасоль, Морковь, Соевый соус, Имбирь, Чеснок, Кунжут"},
         { name: "Веганская котлета с овощным гарниром", desc: "Цветная капуста, кукуруза, морковь, брокколи"},
-        { name: "Венский шницель с соусом Цезарь (Без гарнира)", desc: "Курица, Сухари пан., Мука пшен., Соус Цезарь"},
+        { name: "Венский шницель с соусом Цезарь (Без гарнира)", desc: "Курица, Сухари панировочные, Мука пшеничная, Соус Цезарь"},
         { name: "Жареный рис с кальмаром", desc: "Рис, Кальмар, Лук, Томат, Перец сладкий, Томатная паста, Масло чесночное, Соус Шрирача, Соус Песто с чесноком"},
         { name: "Кабачок с овощами и гаудой", desc: "Кабачок свежий, Томат, Перец сладкий, Сыр Гауда"},
-        { name: "Котлета по-киевски с пюре", desc: "Картофель, Молоко, Фарш куриный, Петрушка, Укроп, Лимонная цедра, Лимонный сок, Сухари панировочные, Перец молотый, Сушеный чеснок, Соль поваренная пищевая"},
+        { name: "Котлета по-киевски с пюре", desc: "Картофель, Молоко, Фарш куриный, Петрушка, Укроп, Лимонная цедра, Лимонный сок, Сухари панировочные, Перец молотый, Сушеный чеснок"},
         { name: "Куриные колбаски с картофелем", desc: "Фарш куриный, Сыр Гауда, Кетчуп, Картофель, Лук, Розмарин"},
         { name: "Куриное филе в сырном соусе (Без гарнира)", desc: "Куриное филе, Сыр Чеддер, Сливки, Растительное масло"},
         { name: "Курица карри с рисом", desc: "Курица, Фасоль стручковая, Черри, Кунжут, Масло чесночное, Карри, Паста том-ям, Сливки кокосовые, Сливки, Рис, Рисовый уксус 5 %, Сахар"},
-        { name: "Лагман с говядиной", desc: "Удон, Говядина, Лук, Морковь, Картофель, Сельдерей, Кумин, Кориандр, Паприка сладкая, Перец красный сладкий, Томатная паста, Соль поваренная пищевая, Перец черный молотый, Лук зеленый, Масло растительное подсолнечное"},
+        { name: "Лагман с говядиной", desc: "Удон, Говядина, Лук, Морковь, Картофель, Сельдерей, Кумин, Кориандр, Паприка сладкая, Перец красный сладкий, Томатная паста, Перец черный молотый, Лук зеленый"},
         { name: "Мутабал", desc: "Баклажан, Нут, Чеснок, Йогурт, Тахини, Лимонный сок, Цветная капуста, Масло чесночное, Паприка сладкая"},
         { name: "Паста с колбасками", desc: "Тальятелле, Колбаски, Сливки, Кетчуп, Масло чесночное, Соус Шрирача, Паприка сладкая"},
         { name: "Паста с курицей и шпинатом", desc: "Тальятелле, Курица, Шпинат, Сливки, Чеснок, Орегано"},
@@ -269,7 +269,7 @@ window.menuTranslations = {
         { name: "Пасуль с охотничьим пршутом", desc: "Охотничий пршут, Колбаски, Томат, Фасоль"},
         { name: "Плов с говядиной", desc: "Рис, Лук, Морковь, Нут, Изюм, Чеснок, Кумин, Кориандр, Говядина, Петрушка"},
         { name: "Рулет из курицы с ливером с ягодным соусом и печеным картофелем", desc: "Курица, Печень, Розмарин, Семечки тыкв., Смородина, Яблоки, Мед, Картофель"},
-        { name: "Рыба в панировке с соусом тар-тар (Без гарнира)", desc: "Филе белой рыбы, Сухари пан., Соус тар-тар"},
+        { name: "Рыба в панировке с соусом тар-тар (Без гарнира)", desc: "Филе белой рыбы, Сухари панировочные, Соус тар-тар"},
         { name: "Салат Цезарь", desc: "Салат, Томат, Яйцо, Курица, Хлеб, Соус Цезарь"},
         { name: "Свинина в кисло-сладком соусе с рисом", desc: "Перец сладкий, Свинина, Гриб муэр, Соевый соус, Кунжут, Рис"},
         { name: "Стейк из форели", desc: "Форель, Соевый соус, Лимон, Рис, Куркума"}
@@ -277,22 +277,22 @@ window.menuTranslations = {
       sides: [
         { name: "Гречка", desc: "Гречка, Масло"},
         { name: "Макароны с маслом", desc: "Макароны, Масло сливочное"},
-        { name: "Овощное рагу", desc: "Перец сладкий, Картофель, Баклажан, Корень сельд., Морковь"},
+        { name: "Овощное рагу", desc: "Перец сладкий, Картофель, Баклажан, Корень сельдерея, Морковь"},
         { name: "Пряный рис", desc: "Рис, Куркума"},
         { name: "Цветная капуста запеченная", desc: "Цветная капуста, Чесночное масло"}
       ],
       drinks: [
-        { name: "Лимонад Bubble & Rose (0,33)", desc: "Лимонный сок, лимон, газированная вода, сироп роза, сироп бабл гам"},
-        { name: "Лимонад Zova (0,33)", desc: "Лимонный сок, лимон, газированная вода, сироп Бузина"},
+        { name: "Лимонад Bubble & Rose 0.33", desc: "Лимонный сок, лимон, газированная вода, сироп роза, сироп бабл гам"},
+        { name: "Лимонад Zova 0.33", desc: "Лимонный сок, лимон, газированная вода, сироп Бузина"},
         { name: "Микс (Апельсин /Грейпфрут / Свекла 0.33)", desc: "Апельсин, грейпфрут, свёкла"},
-        { name: "Микс Яблоко / Шпинат / Сельдерей (0,33)", desc: "Яблоко, шпинат, сельдерей"},
-        { name: "Морс Смородина 0,33", desc: "Черная смородина, сахар"},
-        { name: "Морс Облепиха 0,33", desc: "Облепиха, сахар, бадьян"},
-        { name: "Смузи (Апельсин, Груша, Шпинат) 0,30 ", desc: "Апельсин, груша, шпинат"},
-        { name: "Apple (Яблоко) 0,33 ", desc: "Зеленое Яблоко"},
-        { name: "Grapefruit (Грейпфрут) 0,33", desc: "Грейпфрут"},
-        { name: "Orange (Апельсин) 0,33", desc: "Апельсин"},
-        { name: "Cherry Storm (Морс из вишни, бадьяна, и гвоздики) 0,33", desc: "Вишня, Сахар, Сок Лимона, Бадьян, Гвоздика"}
+        { name: "Микс Яблоко / Шпинат / Сельдерей 0.33", desc: "Яблоко, шпинат, сельдерей"},
+        { name: "Морс Смородина 0.33", desc: "Черная смородина, сахар"},
+        { name: "Морс Облепиха 0.33", desc: "Облепиха, сахар, бадьян"},
+        { name: "Смузи (Апельсин, Груша, Шпинат) 0.30 ", desc: "Апельсин, груша, шпинат"},
+        { name: "Apple (Яблоко) 0.33 ", desc: "Зеленое Яблоко"},
+        { name: "Grapefruit (Грейпфрут) 0.33", desc: "Грейпфрут"},
+        { name: "Orange (Апельсин) 0.33", desc: "Апельсин"},
+        { name: "Cherry Storm (Морс из вишни, бадьяна, и гвоздики) 0.33", desc: "Вишня, сахар, Сок лимона, Бадьян, Гвоздика"}
       ]
     }
   }
