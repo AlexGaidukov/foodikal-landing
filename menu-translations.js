@@ -42,7 +42,7 @@ window.menuTranslations = {
         { name: "Okroshka with ham and kvass", desc: "Egg, potatoes, fresh radish, turkey ham, parsley, kvass" }
        ],
       salads: [
-        { name: "Auchuk (Vegan) ", desc: "Fresh tomato, red onion, parsley"},
+        { name: "Achik-chuchuk (Vegan) ", desc: "Fresh tomato, red onion, parsley"},
         { name: "Russian beet salad (Vegan)", desc: "Beetroot, potatoes, carrots, pickled cucumber, peas"},
         { name: "Korean style zucchini (Vegan) ", desc: "Zucchini, vinegar, sweet paprika, sriracha sauce"},
         { name: "Cabbage salad with vegetables", desc: "Cabbage, tomato, cucumber"},
@@ -142,7 +142,7 @@ window.menuTranslations = {
         { name: "Teleća supa", desc: "Govedina, Šargarepa, Celer, Luk, Peršun"}
       ],
       salads: [
-        { name: "Aučuk (Vegan)", desc: "Paradajz, Luk, Peršun"},
+        { name: "Ačučuk (Vegan)", desc: "Paradajz, Luk, Peršun"},
         { name: "Vinegret salata (Vegan)", desc: "Cvekla, Krompir, Šargarepa, Kiseli krastavac, Grašak, Luk"},
         { name: "Korejske tikvice (Vegan)", desc: "Tikvica, Sirće, Slatka paprika, Sriracha sos"},
         { name: "Salata od kupusa sa povrćem", desc: "Beli kupus, Svež paradajz, Svež krastavac"},
@@ -191,7 +191,7 @@ window.menuTranslations = {
       { name: "Mešavina jabuka / spanaća / celera 0.33", desc: "Jabuka, spanać, celer"},
       { name: "Mors ribizla 0.33", desc: "Crna ribizla, šećer"},
       { name: "Napitak od morskog trna 0.33", desc: "Pasji trn (morski trn), šećer, badijan"},
-      { name: " Smuti od pomorandže, kruške, spanaća 0.33", desc: "Pomorandža, kruška, spanać"},
+      { name: "Smuti od pomorandže, kruške, spanaća 0.33", desc: "Pomorandža, kruška, spanać"},
       { name: "Jabuka 0.33", desc: "Zelena jabuka"},
       { name: "Grejpfrut 0.33", desc: "Grejpfrut"},
       { name: "Narandža 0.33", desc: "Pomorandža"},
