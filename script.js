@@ -233,10 +233,22 @@ document.addEventListener('DOMContentLoaded', function () {
     updateModalText(currentLang);
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    // Update URL with hash
+    if (window.history.pushState) {
+      window.history.pushState(null, null, '#order');
+    } else {
+      window.location.hash = 'order';
+    }
   }
   function closeModal() {
     modal.style.display = 'none';
     document.body.style.overflow = '';
+    // Remove the hash from URL
+    if (window.history.pushState) {
+      window.history.pushState('', document.title, window.location.pathname + window.location.search);
+    } else {
+      window.location.hash = '';
+    }
   }
   if (modalClose) {
     modalClose.onclick = closeModal;
@@ -366,5 +378,81 @@ document.addEventListener('DOMContentLoaded', function () {
   if (typeof window.updateMenu === 'function') {
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
     window.updateMenu(savedLang);
+  }
+
+  // Initialize modal functionality
+  function initModal() {
+    console.log('Initializing modal...');
+    
+    // Function to safely open modal
+    function safeOpenModal() {
+      try {
+        if (typeof openModal === 'function') {
+          openModal();
+          console.log('Modal opened successfully');
+          return true;
+        } else {
+          console.error('openModal function not found');
+          return false;
+        }
+      } catch (error) {
+        console.error('Error opening modal:', error);
+        return false;
+      }
+    }
+
+    // Check for #order hash and open modal if needed
+    function checkHash() {
+      console.log('Checking hash:', window.location.hash);
+      if (window.location.hash === '#order') {
+        console.log('Order hash detected, attempting to open modal...');
+        // Try to open immediately, if that fails, try again after a short delay
+        if (!safeOpenModal()) {
+          setTimeout(safeOpenModal, 300);
+        }
+      }
+    }
+
+    // Set up hash change listener
+    window.addEventListener('hashchange', checkHash);
+    
+    // Check hash on initial load (with a small delay to ensure everything is ready)
+    setTimeout(checkHash, 100);
+    
+    // Expose debug functions
+    window.debugModal = {
+      open: safeOpenModal,
+      close: closeModal,
+      checkHash: checkHash
+    };
+    
+    console.log('Modal initialization complete');
+    console.log('Debug functions available at window.debugModal');
+  }
+
+  // Initialize modal after everything else is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initModal);
+  } else {
+    // DOM already loaded
+    initModal();
+  }
+});
+
+// Direct approach - add this at the very end of the file
+window.addEventListener('load', function() {
+  console.log('Page fully loaded, checking for hash...');
+  if (window.location.hash === '#order') {
+    console.log('Found #order hash, attempting to open modal...');
+    // Try to find and click the order button
+    const orderButtons = document.querySelectorAll('[data-i18n="order.cta"]');
+    console.log('Found order buttons:', orderButtons.length);
+    
+    if (orderButtons.length > 0) {
+      console.log('Clicking the first order button...');
+      orderButtons[0].click();
+    } else {
+      console.error('No order buttons found on the page');
+    }
   }
 });
