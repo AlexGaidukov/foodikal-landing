@@ -230,6 +230,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function openModal() {
+    // Send Google Analytics event
+    if (window.gtag) {
+      gtag('event', 'open_contact_modal', {
+        'event_category': 'engagement',
+        'event_label': 'Contact Personal Manager',
+        'value': 1
+      });
+    }
+    
     updateModalText(currentLang);
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
