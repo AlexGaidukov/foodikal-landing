@@ -1178,7 +1178,7 @@ body.menu-page {
 .modal-buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0rem;
   align-items: center;
 }
 

@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Call us',
-      'modal.btn4': 'Email us',
       'nav.home': 'Home',
       'nav.menu': 'Menu',
       'hero.headline': 'You work. We feed you.',
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Pozovi nas',
-      'modal.btn4': 'Pošaljite nam email',
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
       'hero.headline': 'Vi radite. Mi vas hranimo.',
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Позвонить',
-      'modal.btn4': 'Написать на почту',
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
       'hero.headline': 'Вы работаете. Мы кормим.',
@@ -195,14 +192,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnData = [
       {textKey: 'btn1', href: 'https://t.me/foodikal', target: '_blank', eventCategory: 'Contact', eventLabel: 'Telegram'},
       {textKey: 'btn2', href: 'viber://chat/?number=%2B381615736624', target: '_self', eventCategory: 'Contact', eventLabel: 'Viber'},
-      {textKey: 'btn3', href: 'tel:+381615736624', target: '_self', eventCategory: 'Contact', eventLabel: 'Phone Call'},
-      {textKey: 'btn4', href: 'mailto:foodikal@protonmail.com', target: '_self', eventCategory: 'Contact', eventLabel: 'Email'}
+      {textKey: 'btn3', href: 'tel:+381615736624', target: '_self', eventCategory: 'Contact', eventLabel: 'Phone Call'}
     ];
     const iconPaths = [
       'img/icons/icon-telegram.png',
       'img/icons/icon-viber.png',
-      'img/icons/icon-phone.png',
-      'img/icons/icon-mail.png'
+      'img/icons/icon-phone.png'
     ];
     btnData.forEach((btnInfo, idx) => {
       const a = document.createElement('a');
