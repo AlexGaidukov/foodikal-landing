@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Call us',
+      'modal.btn4': 'Email us',
       'nav.home': 'Home',
       'nav.menu': 'Menu',
       'hero.headline': 'You work. We feed you.',
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Pozovi nas',
+      'modal.btn4': 'Pošaljite nam email',
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
       'hero.headline': 'Vi radite. Mi vas hranimo.',
@@ -51,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Позвонить',
+      'modal.btn4': 'Написать на почту',
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
       'hero.headline': 'Вы работаете. Мы кормим.',
@@ -188,16 +191,18 @@ document.addEventListener('DOMContentLoaded', function () {
       modalHeaderText.textContent = translations[lang]['modal.header'];
     }
     modalButtons.innerHTML = '';
-    // Button data: [textKey, href, target]
+    // Button data: [textKey, href, target, eventCategory, eventLabel]
     const btnData = [
-      {textKey: 'btn1', href: 'https://t.me/foodikal', target: '_blank'},
-      {textKey: 'btn2', href: 'viber://chat/?number=%2B381615736624', target: '_self'},
-      {textKey: 'btn3', href: 'tel:+381615736624', target: '_self'}
+      {textKey: 'btn1', href: 'https://t.me/foodikal', target: '_blank', eventCategory: 'Contact', eventLabel: 'Telegram'},
+      {textKey: 'btn2', href: 'viber://chat/?number=%2B381615736624', target: '_self', eventCategory: 'Contact', eventLabel: 'Viber'},
+      {textKey: 'btn3', href: 'tel:+381615736624', target: '_self', eventCategory: 'Contact', eventLabel: 'Phone Call'},
+      {textKey: 'btn4', href: 'mailto:foodikal@protonmail.com', target: '_self', eventCategory: 'Contact', eventLabel: 'Email'}
     ];
     const iconPaths = [
       'img/icons/icon-telegram.png',
       'img/icons/icon-viber.png',
-      'img/icons/icon-phone.png'
+      'img/icons/icon-phone.png',
+      'img/icons/icon-mail.png'
     ];
     btnData.forEach((btnInfo, idx) => {
       const a = document.createElement('a');
@@ -225,6 +230,20 @@ document.addEventListener('DOMContentLoaded', function () {
       a.href = btnInfo.href;
       a.target = btnInfo.target;
       a.rel = btnInfo.target === '_blank' ? 'noopener noreferrer' : '';
+      
+      // Add click event listener for Google Analytics
+      a.addEventListener('click', function(e) {
+        if (window.gtag) {
+          gtag('event', 'click', {
+            'event_category': btnInfo.eventCategory,
+            'event_label': btnInfo.eventLabel,
+            'value': 1
+          });
+        }
+        // Allow default navigation to proceed
+        return true;
+      });
+      
       modalButtons.appendChild(a);
     });
   }
