@@ -241,6 +241,38 @@ document.addEventListener('DOMContentLoaded', function () {
       
       modalButtons.appendChild(a);
     });
+    // Add pressable email button
+    const emailBtn = document.createElement('button');
+    emailBtn.type = 'button';
+    emailBtn.className = 'modal-action-btn modal-action-btn--email';
+    emailBtn.style.userSelect = 'all';
+    const emailSpan = document.createElement('span');
+    emailSpan.className = 'modal-action-btn__text';
+    emailSpan.textContent = 'foodikal@protonmail.com';
+    emailBtn.appendChild(emailSpan);
+    emailBtn.addEventListener('click', function() {
+      const email = 'foodikal@protonmail.com';
+      // Google Analytics event
+      if (window.gtag) {
+        gtag('event', 'email_copy', {
+          'event_category': 'Contact',
+          'event_label': 'Email Copy',
+          'value': 1
+        });
+      }
+      // Copy to clipboard
+      navigator.clipboard.writeText(email).then(function() {
+        // Show notification by replacing button content
+        const original = emailBtn.innerHTML;
+        emailBtn.innerHTML = '<span class="modal-action-btn__text">Email copied to clipboard</span>';
+        emailBtn.disabled = true;
+        setTimeout(function() {
+          emailBtn.innerHTML = original;
+          emailBtn.disabled = false;
+        }, 600);
+      });
+    });
+    modalButtons.appendChild(emailBtn);
   }
 
   function openModal() {

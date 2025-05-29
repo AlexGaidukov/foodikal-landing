@@ -1201,6 +1201,40 @@ body.menu-page {
   transition: background 0.2s, color 0.2s;
   cursor: pointer;
   text-align: center;
+  position: relative;
+}
+
+.modal-action-btn--email {
+  /* Match all sizing, font, and height to .modal-action-btn */
+  width: 100%;
+  max-width: 260px;
+  font-size: inherit;
+  font-weight: 700;
+  padding: 0.6rem 0.7rem;
+  border-radius: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent2);
+  color: #fff4d3;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  height: 56px;
+  min-height: 56px;
+  box-sizing: border-box;
+}
+.modal-action-btn--email:focus,
+.modal-action-btn--email:active {
+  outline: none;
+  background: var(--color-accent3);
+  color: var(--color-bg);
+}
+.modal-action-btn--email[disabled] {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 .modal-action-btn__icon {
