@@ -229,7 +229,21 @@ document.addEventListener('DOMContentLoaded', function () {
       // Add click event listener for Google Analytics
       a.addEventListener('click', function(e) {
         if (window.gtag) {
-          gtag('event', 'click', {
+          let eventName = '';
+          switch (btnInfo.eventLabel) {
+            case 'Telegram':
+              eventName = 'telegram_click';
+              break;
+            case 'Viber':
+              eventName = 'viber_click';
+              break;
+            case 'Phone Call':
+              eventName = 'call_click';
+              break;
+            default:
+              eventName = 'contact_click';
+          }
+          gtag('event', eventName, {
             'event_category': btnInfo.eventCategory,
             'event_label': btnInfo.eventLabel,
             'value': 1
