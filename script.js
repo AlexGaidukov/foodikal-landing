@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const itemDiv = document.createElement('div');
           itemDiv.className = 'menu__item';
           itemDiv.setAttribute('data-menu-item', '');
-          itemDiv.innerHTML = `<strong>${dish.name}</strong><br><em>${dish.desc}</em>`;
+          itemDiv.innerHTML = `<strong>${dish.name}</strong>${dish.price ? `<span class='menu__price'>${dish.price}</span>` : ''}<em>${dish.desc}</em>`;
           colDiv.appendChild(itemDiv);
         });
         grid.appendChild(colDiv);

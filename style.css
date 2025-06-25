@@ -1009,7 +1009,19 @@ body.menu-page {
   margin-bottom: 0 !important;
   letter-spacing: 0.03em;
   line-height: 1 !important;
-
+}
+.menu-page .menu__price {
+  display: block;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #b89d5e;
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  position: relative;
+  top: -0.2em;
 }
 .menu-page .menu__item em {
   display: block;
@@ -1106,7 +1118,7 @@ body.menu-page {
 }
 .modal__header > .modal-header-line {
   align-self: stretch;
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   margin-bottom: 0.5rem;
   width: 5px;
   background: var(--color-accent);
@@ -1169,7 +1181,7 @@ body.menu-page {
   z-index: 10;
 }
 .modal-content h2 {
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   margin-bottom: 2rem;
   font-size: 1.5rem;
   color: var(--color-accent4);
