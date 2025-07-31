@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.cta': 'View Menu',
       'order.cta': 'Make order',
       'menu.header': 'Dishes from Our Menu',
+      'services.header': 'Our Services',
+      'services.title1': 'Regular meals delivery for offices',
+      'services.title2': 'Setting up the buffet in your place',
+      'services.title3': 'Catering and banquets for events',
       'menu.item1.title': 'Finnish pancake with sweet cream and raspberry',
       'menu.item1.desc': 'Start your morning with a tender Finnish pancake topped with airy sweet cream and juicy raspberries.',
       'menu.item2.title': 'Okroshka with ham and kvass',
@@ -37,6 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.cta': 'Meni',
       'order.cta': 'Napravi porudžbinu',
       'menu.header': 'Jela iz našeg menija',
+      'services.header': 'Naše usluge',
+      'services.title1': 'Redovna dostava obroka za kancelarije',
+      'services.title2': 'Postavljanje švedskog stola na vašoj lokaciji',
+      'services.title3': 'Ketering i banketi za događaje',
       'menu.item1.title': 'Finska palačinka sa šlagom i malinama',
       'menu.item1.desc': 'Započnite jutro nežnom finskom palačinkom sa vazdušastim kremom i sočnim malinama.',
       'menu.item2.title': 'Okroška sa kobasicom i kvasom',
@@ -58,6 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.cta': 'Наше меню',
       'order.cta': 'Сделать заказ',
       'menu.header': 'Блюда из нашего меню',
+      'services.header': 'Наши услуги',
+      'services.title1': 'Регулярная доставка питания в офисы',
+      'services.title2': 'Организация шведского стола в вашей локации',
+      'services.title3': 'Кейтеринг и банкеты для мероприятий',
       'menu.item1.title': 'Финский блин с кремом и малиной',
       'menu.item1.desc': 'Начните утро с нежного финского блина с воздушным кремом и сочной малиной.',
       'menu.item2.title': 'Окрошка с колбасой и квасом',
@@ -73,7 +85,13 @@ document.addEventListener('DOMContentLoaded', function () {
   function setLanguage(lang) {
     updateModalLang(lang);
     updateModalText(lang);
-    localStorage.setItem('selectedLanguage', lang);
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
     // Update language switcher indicator
     const langCustom = document.querySelector('.lang-custom-select');
     if (langCustom) {
@@ -83,19 +101,13 @@ document.addEventListener('DOMContentLoaded', function () {
         selected.textContent = code;
       }
     }
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (translations[lang][key]) {
-        el.textContent = translations[lang][key];
-      }
-    });
-    // Optional: highlight active button
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
     if (typeof window.updateMenu === 'function') {
       window.updateMenu(lang);
     }
+    localStorage.setItem('selectedLanguage', lang);
   }
 
   function renderMenu(lang) {
