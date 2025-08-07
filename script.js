@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
       breakfast: 'breakfast',
       soups: 'soups',
       salads: 'salads',
-      main: 'main-course',
+      main: 'main',
       sides: 'sides',
       drinks: 'drinks',
     };
