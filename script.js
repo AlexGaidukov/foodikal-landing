@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Call us',
+      'modal.instructions': 'Or leave your details and we\u2019ll contact you.',
+      'modal.leave': 'Leave your contact details',
+      'modal.form.name': 'Name',
+      'modal.form.contact': 'How should we contact you?',
+      'modal.form.send': 'Send',
+      'modal.form.thanks': 'Thank you! We will contact you soon.',
       'nav.home': 'Home',
       'nav.menu': 'Menu',
       'hero.headline': 'You work. We feed you.',
@@ -34,6 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Pozovi nas',
+      'modal.instructions': 'Ili ostavite svoje podatke i kontaktiraćemo vas.',
+      'modal.leave': 'Ostavite svoje podatke za kontakt',
+      'modal.form.name': 'Ime',
+      'modal.form.contact': 'Kako da vas kontaktiramo?',
+      'modal.form.send': 'Pošalji',
+      'modal.form.thanks': 'Hvala! Uskoro ćemo vam se javiti.',
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
       'hero.headline': 'Vi radite. Mi vas hranimo.',
@@ -59,6 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
       'modal.btn3': 'Позвонить',
+      'modal.instructions': 'Или оставьте свои контакты — мы свяжемся с вами.',
+      'modal.leave': 'Оставить контактные данные',
+      'modal.form.name': 'Имя',
+      'modal.form.contact': 'Как с вами связаться?',
+      'modal.form.send': 'Отправить',
+      'modal.form.thanks': 'Спасибо! Мы скоро свяжемся с вами.',
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
       'hero.headline': 'Вы работаете. Мы кормим.',
@@ -299,6 +317,143 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
     modalButtons.appendChild(emailBtn);
+
+    // Instruction text and collapsible contact form
+    const instructionWrap = document.createElement('div');
+    instructionWrap.className = 'modal-instructions';
+    const instructionText = document.createElement('strong');
+    let instructionLabel = (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal.instructions)
+      ? window.menuTranslations[lang].modal.instructions
+      : (translations[lang] && translations[lang]['modal.instructions'])
+        ? translations[lang]['modal.instructions']
+        : (translations['en'] && translations['en']['modal.instructions'])
+          ? translations['en']['modal.instructions']
+          : 'Or you can leave your information, so we will contact you';
+    instructionText.textContent = instructionLabel;
+    instructionWrap.appendChild(instructionText);
+    modalButtons.appendChild(instructionWrap);
+
+    // Leave contacts button
+    const leaveBtn = document.createElement('button');
+    leaveBtn.type = 'button';
+    leaveBtn.className = 'modal-action-btn modal-leave-btn';
+    const leaveSpan = document.createElement('span');
+    leaveSpan.className = 'modal-action-btn__text';
+    let leaveLabel = (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal.leave)
+      ? window.menuTranslations[lang].modal.leave
+      : (translations[lang] && translations[lang]['modal.leave'])
+        ? translations[lang]['modal.leave']
+        : (translations['en'] && translations['en']['modal.leave'])
+          ? translations['en']['modal.leave']
+          : 'Leave contacts';
+    leaveSpan.textContent = leaveLabel;
+    leaveBtn.appendChild(leaveSpan);
+    modalButtons.appendChild(leaveBtn);
+
+    // Form container
+    const formContainer = document.createElement('div');
+    formContainer.className = 'modal-form';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.className = 'modal-input';
+    nameInput.setAttribute('maxlength', '60');
+    nameInput.placeholder = (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal.name)
+      ? window.menuTranslations[lang].modal.name
+      : (translations[lang] && translations[lang]['modal.form.name'])
+        ? translations[lang]['modal.form.name']
+        : (translations['en'] && translations['en']['modal.form.name'])
+          ? translations['en']['modal.form.name']
+          : 'Name';
+    const contactInput = document.createElement('input');
+    contactInput.type = 'text';
+    contactInput.className = 'modal-input';
+    contactInput.setAttribute('maxlength', '160');
+    contactInput.placeholder = (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal.contact)
+      ? window.menuTranslations[lang].modal.contact
+      : (translations[lang] && translations[lang]['modal.form.contact'])
+        ? translations[lang]['modal.form.contact']
+        : (translations['en'] && translations['en']['modal.form.contact'])
+          ? translations['en']['modal.form.contact']
+          : 'How to contact';
+    const sendBtn = document.createElement('button');
+    sendBtn.type = 'button';
+    sendBtn.className = 'modal-action-btn';
+    const sendSpan = document.createElement('span');
+    sendSpan.className = 'modal-action-btn__text';
+    sendSpan.textContent = (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal.send)
+      ? window.menuTranslations[lang].modal.send
+      : (translations[lang] && translations[lang]['modal.form.send'])
+        ? translations[lang]['modal.form.send']
+        : (translations['en'] && translations['en']['modal.form.send'])
+          ? translations['en']['modal.form.send']
+          : 'Send';
+    sendBtn.appendChild(sendSpan);
+    formContainer.appendChild(nameInput);
+    formContainer.appendChild(contactInput);
+    formContainer.appendChild(sendBtn);
+    modalButtons.appendChild(formContainer);
+
+    // Replace button with form
+    leaveBtn.addEventListener('click', function() {
+      // GA: leave contacts click
+      if (window.gtag) {
+        gtag('event', 'leave_contacts', {
+          'event_category': 'Contact',
+          'event_label': 'Leave Contacts',
+          'value': 1
+        });
+      }
+      // Animate button out, then show form
+      leaveBtn.classList.add('fade-out');
+      setTimeout(function() {
+        leaveBtn.style.display = 'none';
+        formContainer.classList.add('open');
+        formContainer.classList.add('modal-fade-in');
+      }, 180);
+    });
+
+    // Send handler
+    sendBtn.addEventListener('click', function() {
+      const name = nameInput.value.trim().slice(0, 60);
+      const contact = contactInput.value.trim().slice(0, 160);
+      if (!name || !contact) {
+        [nameInput, contactInput].forEach((el) => {
+          if (!el.value.trim()) {
+            el.classList.add('modal-input--error');
+            setTimeout(() => el.classList.remove('modal-input--error'), 800);
+          }
+        });
+        return;
+      }
+      // GA: send contacts submit
+      if (window.gtag) {
+        gtag('event', 'send_contatcs', {
+          'event_category': 'Contact',
+          'event_label': 'Send Contacts',
+          'value': 1
+        });
+      }
+
+      fetch('https://contact-form-worker.x-gs-x.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, contact })
+      }).catch(() => {});
+      // Show thank you text, replacing inputs and send button
+      const thanksText = (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal.thanks)
+        ? window.menuTranslations[lang].modal.thanks
+        : (translations[lang] && translations[lang]['modal.form.thanks'])
+          ? translations[lang]['modal.form.thanks']
+          : (translations['en'] && translations['en']['modal.form.thanks'])
+            ? translations['en']['modal.form.thanks']
+            : 'Thank you! We will contact you soon.';
+      formContainer.innerHTML = '';
+      const thanksEl = document.createElement('div');
+      thanksEl.className = 'modal-thanks';
+      thanksEl.textContent = thanksText;
+      thanksEl.classList.add('modal-fade-in');
+      formContainer.appendChild(thanksEl);
+    });
   }
 
   function openModal() {

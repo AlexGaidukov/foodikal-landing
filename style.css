@@ -1381,3 +1381,73 @@ body.menu-page {
   color: #fff4d3;
   outline: none;
 }
+
+/* Modal instructions and contact form */
+.modal-instructions {
+  margin: 0.2rem 0 0.8rem 0;
+  color: var(--color-accent4);
+  text-align: center;
+}
+.modal-instructions strong {
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+.modal-form {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  display: none;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, transform 0.25s ease;
+}
+.modal-form.open {
+  display: flex;
+  max-height: 320px; /* large enough to reveal inputs + button */
+  opacity: 1;
+  transform: translateY(0);
+}
+.modal-input {
+  width: 100%;
+  height: 44px;
+  border-radius: 1rem;
+  border: 1px solid #d7c7a2;
+  padding: 0.5rem 0.9rem;
+  font-family: inherit;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(184, 157, 94, 0.06);
+}
+.modal-input:focus {
+  outline: none;
+  border-color: var(--color-accent4);
+}
+.modal-input--error {
+  border-color: #c96b6b;
+}
+
+.modal-thanks {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--color-accent3);
+  text-align: center;
+}
+
+/* Button fade-out when revealing form */
+.modal-leave-btn.fade-out {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Generic fade-in for content replacements */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.modal-fade-in {
+  animation: modalFadeIn 220ms ease forwards;
+}

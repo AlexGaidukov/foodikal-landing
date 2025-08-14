@@ -3,7 +3,12 @@ window.menuTranslations = {
 // Grouped translations structure below
   en: {
     modal: {
-
+      instructions: "Or leave your details and we’ll contact you.",
+      leave: "Leave your contact details",
+      name: "Name",
+      contact: "How should we contact you?",
+      send: "Send",
+      thanks: "Thank you! We will contact you soon."
     },
     categories: {
       breakfast: "Breakfast",
@@ -107,7 +112,13 @@ window.menuTranslations = {
       header: "Kontaktirajte svog ličnog menadžera",
       btn1: "Telegram",
       btn2: "Viber",
-      btn3: "Pozovite nas"
+      btn3: "Pozovite nas",
+      instructions: "Ili ostavite svoje podatke i kontaktiraćemo vas.",
+      leave: "Ostavite svoje podatke za kontakt",
+      name: "Ime",
+      contact: "Kako da vas kontaktiramo?",
+      send: "Pošalji",
+      thanks: "Hvala! Uskoro ćemo vam se javiti."
     },
     categories: {
       breakfast: "Doručak",
@@ -211,7 +222,13 @@ window.menuTranslations = {
       header: "Свяжитесь с вашим менеджером",
       btn1: "Телеграм",
       btn2: "Вайбер",
-      btn3: "Позвонить нам"
+      btn3: "Позвонить нам",
+      instructions: "Или оставьте свои контакты — мы свяжемся с вами.",
+      leave: "Оставить контактные данные",
+      name: "Имя",
+      contact: "Как с вами связаться?",
+      send: "Отправить",
+      thanks: "Спасибо! Мы скоро свяжемся с вами."
     },
     categories: {
       breakfast: "Завтрак",
