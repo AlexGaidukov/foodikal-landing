@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.headline': 'You work. We feed you.',
       'hero.subtitle': 'Everyone focuses on what they do best.',
       'hero.cta': 'View Menu',
-      'order.cta': 'Make order',
+      'order.cta': 'Contact us',
+      'order.cta.bottom': 'Make order',
       'menu.header': 'Dishes from Our Menu',
       'services.header': 'Our Services',
       'services.title1': 'Regular meals delivery for offices',
@@ -51,7 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.headline': 'Vi radite. Mi vas hranimo.',
       'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
       'hero.cta': 'Meni',
-      'order.cta': 'Napravi porudžbinu',
+      'order.cta': 'Kontaktirajte nas',
+      'order.cta.bottom': 'Napravi porudžbinu',
       'menu.header': 'Jela iz našeg menija',
       'services.header': 'Naše usluge',
       'services.title1': 'Redovna dostava obroka za kancelarije',
@@ -82,7 +84,8 @@ document.addEventListener('DOMContentLoaded', function () {
       'hero.headline': 'Вы работаете. Мы кормим.',
       'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
       'hero.cta': 'Наше меню',
-      'order.cta': 'Сделать заказ',
+      'order.cta': 'Связаться с нами',
+      'order.cta.bottom': 'Сделать заказ',
       'menu.header': 'Блюда из нашего меню',
       'services.header': 'Наши услуги',
       'services.title1': 'Регулярная доставка питания в офисы',
@@ -184,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Attach modal open to all Make order buttons
   function attachModalToOrderButtons() {
-    const orderBtns = document.querySelectorAll('[data-i18n="order.cta"]');
+    const orderBtns = document.querySelectorAll('[data-i18n="order.cta"], [data-i18n="order.cta.bottom"]');
     orderBtns.forEach(btn => {
       btn.onclick = function(e) {
         e.preventDefault();
@@ -437,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch('https://contact-form-worker.x-gs-x.workers.dev/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, contact })
+        body: JSON.stringify({ name, contact, lang: currentLang })
       }).catch(() => {});
       // Show thank you text, replacing inputs and send button
       const thanksText = (window.menuTranslations && window.menuTranslations[lang] && window.menuTranslations[lang].modal && window.menuTranslations[lang].modal.thanks)
@@ -494,9 +497,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.target === modal) closeModal();
     };
   }
-  // Attach modal open to all Make order buttons
+  // Attach modal open to all Make order/Contact buttons
   function attachModalToOrderButtons() {
-    const orderBtns = document.querySelectorAll('[data-i18n="order.cta"]');
+    const orderBtns = document.querySelectorAll('[data-i18n="order.cta"], [data-i18n="order.cta.bottom"]');
     orderBtns.forEach(btn => {
       btn.onclick = function(e) {
         e.preventDefault();
@@ -681,7 +684,7 @@ window.addEventListener('load', function() {
   if (window.location.hash === '#order') {
     console.log('Found #order hash, attempting to open modal...');
     // Try to find and click the order button
-    const orderButtons = document.querySelectorAll('[data-i18n="order.cta"]');
+    const orderButtons = document.querySelectorAll('[data-i18n="order.cta"], [data-i18n="order.cta.bottom"]');
     console.log('Found order buttons:', orderButtons.length);
     
     if (orderButtons.length > 0) {
