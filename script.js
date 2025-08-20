@@ -609,9 +609,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Set default language from localStorage if available
-  const savedLang = localStorage.getItem('selectedLanguage') || 'en';
-  setLanguage(savedLang);
+  // Determine initial language: URL param `lang` overrides localStorage
+  function getLangFromUrl() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const qLang = (params.get('lang') || '').toLowerCase();
+      if (qLang) return qLang;
+      // Also support lang in hash, e.g., #order&lang=sr
+      const hashMatch = (window.location.hash || '').match(/(?:[?&])lang=([a-z]{2})/i);
+      return hashMatch ? hashMatch[1].toLowerCase() : '';
+    } catch (_) { return ''; }
+  }
+  const supportedLangs = Object.keys(translations);
+  const urlLang = getLangFromUrl();
+  const savedLang = (localStorage.getItem('selectedLanguage') || 'en').toLowerCase();
+  // Detect from browser if no URL or saved language
+  function getLangFromBrowser() {
+    try {
+      const prefer = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]).filter(Boolean);
+      for (const entry of prefer) {
+        const code = (entry || '').toLowerCase();
+        const base = code.split('-')[0];
+        if (supportedLangs.includes(code)) return code;
+        if (supportedLangs.includes(base)) return base;
+      }
+    } catch (_) {}
+    return '';
+  }
+  const browserLang = getLangFromBrowser();
+  const initialLang = supportedLangs.includes(urlLang)
+    ? urlLang
+    : (supportedLangs.includes(savedLang)
+      ? savedLang
+      : (supportedLangs.includes(browserLang) ? browserLang : 'en'));
+  if (supportedLangs.includes(urlLang)) {
+    localStorage.setItem('selectedLanguage', urlLang);
+  } else if (!supportedLangs.includes(savedLang) && supportedLangs.includes(browserLang)) {
+    // Persist browser-derived language if nothing saved yet or saved is invalid
+    localStorage.setItem('selectedLanguage', browserLang);
+  }
+  setLanguage(initialLang);
 
   // Ensure menu is updated on load with the correct language
   if (typeof window.updateMenu === 'function') {
