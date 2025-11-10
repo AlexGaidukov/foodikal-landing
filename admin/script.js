@@ -415,7 +415,7 @@ function renderOrdersTable() {
     if (currentOrders.length === 0) {
         ordersTableBody.innerHTML = `
             <tr>
-                <td colspan="11" style="text-align: center; padding: 60px 20px; color: #666;">
+                <td colspan="7" style="text-align: center; padding: 60px 20px; color: #666;">
                     <h3 style="margin-bottom: 10px; color: #999;">No orders yet</h3>
                     <p style="color: #aaa;">Orders will appear here once customers start placing them.</p>
                 </td>
@@ -424,21 +424,35 @@ function renderOrdersTable() {
         return;
     }
 
-    ordersTableBody.innerHTML = currentOrders.map(order => `
+    ordersTableBody.innerHTML = currentOrders.map(order => {
+        const visibleItems = order.order_items.slice(0, 2);
+        const hiddenItems = order.order_items.slice(2);
+        const hasMoreItems = order.order_items.length > 2;
+
+        return `
         <tr>
             <td class="table-order-id">#${order.id}</td>
             <td>${escapeHtml(order.customer_name)}</td>
             <td>${escapeHtml(order.customer_contact)}</td>
-            <td>${order.customer_email ? escapeHtml(order.customer_email) : '-'}</td>
-            <td style="max-width: 200px;">${escapeHtml(order.delivery_address)}</td>
             <td>
-                <div class="table-items-list">
-                    ${order.order_items.map(item => `
+                <div class="table-items-list" id="items-list-${order.id}">
+                    ${visibleItems.map(item => `
                         <div class="table-item">
                             <strong>${escapeHtml(item.name)}</strong><br>
                             Qty: ${item.quantity} × ${item.price} RSD
                         </div>
                     `).join('')}
+                    ${hiddenItems.map(item => `
+                        <div class="table-item table-item-hidden" data-order-id="${order.id}">
+                            <strong>${escapeHtml(item.name)}</strong><br>
+                            Qty: ${item.quantity} × ${item.price} RSD
+                        </div>
+                    `).join('')}
+                    ${hasMoreItems ? `
+                        <button class="table-expand-btn" onclick="toggleOrderItems(${order.id})">
+                            Show all ${order.order_items.length} items
+                        </button>
+                    ` : ''}
                 </div>
             </td>
             <td class="table-total">${order.total_price} RSD</td>
@@ -458,20 +472,41 @@ function renderOrdersTable() {
                     onchange="updateOrderConfirmationFromTable(${order.id}, 'confirmed_before_delivery', this.checked)"
                 >
             </td>
-            <td class="table-date">${new Date(order.created_at).toLocaleString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            })}</td>
-            <td>
-                <div class="table-actions">
-                    <button class="btn-danger" onclick="deleteOrderFromTable(${order.id})">Delete</button>
-                </div>
-            </td>
         </tr>
-    `).join('');
+        `;
+    }).join('');
+}
+
+// Toggle Order Items Visibility
+function toggleOrderItems(orderId) {
+    const hiddenItems = document.querySelectorAll(`.table-item-hidden[data-order-id="${orderId}"]`);
+    const button = document.querySelector(`#items-list-${orderId} .table-expand-btn`);
+    const order = currentOrders.find(o => o.id === orderId);
+
+    if (!order || hiddenItems.length === 0) return;
+
+    // Check if items are currently hidden (have the class)
+    const isCurrentlyHidden = hiddenItems[0].classList.contains('table-item-hidden');
+
+    hiddenItems.forEach(item => {
+        if (isCurrentlyHidden) {
+            // Show items
+            item.classList.remove('table-item-hidden');
+        } else {
+            // Hide items
+            item.classList.add('table-item-hidden');
+        }
+    });
+
+    if (button) {
+        if (isCurrentlyHidden) {
+            // We just showed items, so button should say "Show less"
+            button.textContent = 'Show less';
+        } else {
+            // We just hid items, so button should say "Show all"
+            button.textContent = `Show all ${order.order_items.length} items`;
+        }
+    }
 }
 
 // Update Order Confirmation from Table
@@ -663,5 +698,6 @@ window.updateOrderConfirmation = updateOrderConfirmation;
 window.deleteOrder = deleteOrder;
 window.updateOrderConfirmationFromTable = updateOrderConfirmationFromTable;
 window.deleteOrderFromTable = deleteOrderFromTable;
+window.toggleOrderItems = toggleOrderItems;
 window.showEditMenuForm = showEditMenuForm;
 window.deleteMenuItem = deleteMenuItem;
