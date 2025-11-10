@@ -431,8 +431,8 @@ function renderOrdersTable() {
 
         return `
         <tr>
-            <td class="table-order-id">#${order.id}</td>
-            <td>${escapeHtml(order.customer_name)}</td>
+            <td class="table-order-id"><span class="table-clickable" onclick="openOrderModal(${order.id})">#${order.id}</span></td>
+            <td><span class="table-clickable" onclick="openOrderModal(${order.id})">${escapeHtml(order.customer_name)}</span></td>
             <td>${escapeHtml(order.customer_contact)}</td>
             <td>
                 <div class="table-items-list" id="items-list-${order.id}">
@@ -728,11 +728,159 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// Open Order Details Modal
+function openOrderModal(orderId) {
+    const order = currentOrders.find(o => o.id === orderId);
+    if (!order) return;
+
+    const modal = document.getElementById('orderDetailsModal');
+    const modalBody = document.getElementById('orderDetailsBody');
+
+    // Render order details using the same format as card view
+    modalBody.innerHTML = `
+        <div class="order-card">
+            <div class="order-header">
+                <div class="order-id">Order #${order.id}</div>
+                <div class="order-total">${order.total_price} RSD</div>
+            </div>
+
+            <div class="order-details">
+                <div class="detail-item">
+                    <div class="detail-label">Customer Name</div>
+                    <div class="detail-value">${escapeHtml(order.customer_name)}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Contact</div>
+                    <div class="detail-value">${escapeHtml(order.customer_contact)}</div>
+                </div>
+                ${order.customer_email ? `
+                <div class="detail-item">
+                    <div class="detail-label">Email</div>
+                    <div class="detail-value">${escapeHtml(order.customer_email)}</div>
+                </div>
+                ` : ''}
+                <div class="detail-item">
+                    <div class="detail-label">Delivery Address</div>
+                    <div class="detail-value">${escapeHtml(order.delivery_address)}</div>
+                </div>
+                ${order.comments ? `
+                <div class="detail-item">
+                    <div class="detail-label">Comments</div>
+                    <div class="detail-value">${escapeHtml(order.comments)}</div>
+                </div>
+                ` : ''}
+            </div>
+
+            <div class="order-items">
+                <h4>Order Items (${order.order_items.length})</h4>
+                <div class="order-items-list">
+                    ${order.order_items.map(item => `
+                        <div class="order-item">
+                            <div>
+                                <span class="item-name">${escapeHtml(item.name)}</span>
+                                <span class="item-quantity">x${item.quantity}</span>
+                            </div>
+                            <div class="item-price">${item.price * item.quantity} RSD</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <div class="order-confirmations">
+                <div class="confirmation-item">
+                    <input
+                        type="checkbox"
+                        id="modal-confirm-creation-${order.id}"
+                        ${order.confirmed_after_creation ? 'checked' : ''}
+                        onchange="updateOrderConfirmationFromModal(${order.id}, 'confirmed_after_creation', this.checked)"
+                    >
+                    <label for="modal-confirm-creation-${order.id}">Confirmed after creation</label>
+                </div>
+                <div class="confirmation-item">
+                    <input
+                        type="checkbox"
+                        id="modal-confirm-delivery-${order.id}"
+                        ${order.confirmed_before_delivery ? 'checked' : ''}
+                        onchange="updateOrderConfirmationFromModal(${order.id}, 'confirmed_before_delivery', this.checked)"
+                    >
+                    <label for="modal-confirm-delivery-${order.id}">Confirmed before delivery</label>
+                </div>
+            </div>
+
+            <div class="order-actions">
+                <button class="btn-danger" onclick="deleteOrderFromModal(${order.id})">Delete Order</button>
+            </div>
+
+            <div class="order-meta">
+                Created: ${new Date(order.created_at).toLocaleString()} |
+                Updated: ${new Date(order.updated_at).toLocaleString()}
+            </div>
+        </div>
+    `;
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Order Details Modal
+function closeOrderModal() {
+    const modal = document.getElementById('orderDetailsModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Update Order Confirmation from Modal
+async function updateOrderConfirmationFromModal(orderId, field, value) {
+    try {
+        const updates = {};
+        updates[field] = value;
+
+        await adminAPI.updateOrderConfirmation(orderId, updates);
+
+        // Update local state
+        const order = currentOrders.find(o => o.id === orderId);
+        if (order) {
+            order[field] = value ? 1 : 0;
+        }
+
+        // Re-render table and card views if they're visible
+        renderOrdersTable();
+        renderOrders();
+    } catch (error) {
+        alert(`Error updating order: ${error.message}`);
+        // Reload orders to reset checkboxes
+        loadOrders();
+    }
+}
+
+// Delete Order from Modal
+async function deleteOrderFromModal(orderId) {
+    if (!confirm('Are you sure you want to delete this order? This action cannot be undone.')) {
+        return;
+    }
+
+    try {
+        await adminAPI.deleteOrder(orderId);
+        currentOrders = currentOrders.filter(o => o.id !== orderId);
+
+        // Close modal and refresh views
+        closeOrderModal();
+        renderOrdersTable();
+        renderOrders();
+    } catch (error) {
+        alert(`Error deleting order: ${error.message}`);
+    }
+}
+
 // Make functions globally accessible
 window.updateOrderConfirmation = updateOrderConfirmation;
 window.deleteOrder = deleteOrder;
 window.updateOrderConfirmationFromTable = updateOrderConfirmationFromTable;
 window.deleteOrderFromTable = deleteOrderFromTable;
 window.toggleOrderItems = toggleOrderItems;
+window.openOrderModal = openOrderModal;
+window.closeOrderModal = closeOrderModal;
+window.updateOrderConfirmationFromModal = updateOrderConfirmationFromModal;
+window.deleteOrderFromModal = deleteOrderFromModal;
 window.showEditMenuForm = showEditMenuForm;
 window.deleteMenuItem = deleteMenuItem;
