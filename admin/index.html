@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodikal Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <h1>Foodikal Admin</h1>
+            <form id="loginForm">
+                <label for="password">Admin Password</label>
+                <input type="password" id="password" placeholder="Enter admin password" required>
+                <button type="submit">Login</button>
+                <p id="loginError" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-content">
+                <h1>Foodikal Admin Panel</h1>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="admin-nav">
+            <button class="tab-btn active" data-tab="orders">Orders</button>
+            <button class="tab-btn" data-tab="menu">Menu</button>
+        </nav>
+
+        <!-- Orders Tab -->
+        <div id="ordersTab" class="tab-content active">
+            <div class="content-header">
+                <h2>Order Management</h2>
+                <button id="refreshOrders" class="btn-refresh">Refresh</button>
+            </div>
+
+            <div id="ordersLoading" class="loading">Loading orders...</div>
+            <div id="ordersError" class="error-message"></div>
+
+            <div id="ordersContainer" class="orders-container"></div>
+        </div>
+
+        <!-- Menu Tab -->
+        <div id="menuTab" class="tab-content">
+            <div class="content-header">
+                <h2>Menu Management</h2>
+                <button id="showAddMenuForm" class="btn-primary">Add New Item</button>
+            </div>
+
+            <!-- Add Menu Item Form -->
+            <div id="addMenuForm" class="menu-form" style="display: none;">
+                <h3>Add New Menu Item</h3>
+                <form id="menuItemForm">
+                    <div class="form-group">
+                        <label for="itemName">Name *</label>
+                        <input type="text" id="itemName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemCategory">Category *</label>
+                        <select id="itemCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Брускетты">Брускетты</option>
+                            <option value="Горячее">Горячее</option>
+                            <option value="Закуски">Закуски</option>
+                            <option value="Канапе">Канапе</option>
+                            <option value="Салат">Салат</option>
+                            <option value="Тарталетки">Тарталетки</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemDescription">Description</label>
+                        <textarea id="itemDescription" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemPrice">Price (RSD) *</label>
+                        <input type="number" id="itemPrice" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemImage">Image URL/Filename</label>
+                        <input type="text" id="itemImage">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Add Item</button>
+                        <button type="button" id="cancelAddMenu" class="btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Edit Menu Item Form -->
+            <div id="editMenuForm" class="menu-form" style="display: none;">
+                <h3>Edit Menu Item</h3>
+                <form id="menuEditForm">
+                    <input type="hidden" id="editItemId">
+
+                    <div class="form-group">
+                        <label for="editItemName">Name *</label>
+                        <input type="text" id="editItemName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editItemCategory">Category *</label>
+                        <select id="editItemCategory" required>
+                            <option value="Брускетты">Брускетты</option>
+                            <option value="Горячее">Горячее</option>
+                            <option value="Закуски">Закуски</option>
+                            <option value="Канапе">Канапе</option>
+                            <option value="Салат">Салат</option>
+                            <option value="Тарталетки">Тарталетки</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editItemDescription">Description</label>
+                        <textarea id="editItemDescription" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editItemPrice">Price (RSD) *</label>
+                        <input type="number" id="editItemPrice" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editItemImage">Image URL/Filename</label>
+                        <input type="text" id="editItemImage">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Update Item</button>
+                        <button type="button" id="cancelEditMenu" class="btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="menuLoading" class="loading">Loading menu items...</div>
+            <div id="menuError" class="error-message"></div>
+
+            <div id="menuContainer" class="menu-container"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
