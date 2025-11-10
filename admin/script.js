@@ -1,7 +1,7 @@
 // Admin API Class
 class FoodikalAdminAPI {
     constructor(password) {
-        this.baseURL = 'https://foodikal-ny-backend.x-gs-x.workers.dev';
+        this.baseURL = 'https://foodikal-ny-cors-wrapper.x-gs-x.workers.dev';
         this.password = password;
     }
 
@@ -172,7 +172,7 @@ async function handleLogin(e) {
     try {
         // Test authentication by trying to fetch orders
         adminAPI = new FoodikalAdminAPI(password);
-        const response = await fetch('https://foodikal-ny-backend.x-gs-x.workers.dev/api/admin/order_list', {
+        const response = await fetch('https://foodikal-ny-cors-wrapper.x-gs-x.workers.dev/api/admin/order_list', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${password}`
