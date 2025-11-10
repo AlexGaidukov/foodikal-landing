@@ -553,8 +553,21 @@ async function loadMenuItems() {
 
     try {
         const data = await adminAPI.getMenuList();
-        currentMenuItems = data.menu || [];
+        console.log('Menu API response:', data);
 
+        // Try different possible response formats
+        if (Array.isArray(data)) {
+            currentMenuItems = data;
+        } else if (data.menu && Array.isArray(data.menu)) {
+            currentMenuItems = data.menu;
+        } else if (data.items && Array.isArray(data.items)) {
+            currentMenuItems = data.items;
+        } else {
+            console.error('Unexpected menu data format:', data);
+            currentMenuItems = [];
+        }
+
+        console.log('Menu items loaded:', currentMenuItems.length);
         menuLoading.style.display = 'none';
         renderMenuItems();
     } catch (error) {
