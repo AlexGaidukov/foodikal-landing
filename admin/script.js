@@ -479,16 +479,17 @@ function renderOrdersTable() {
 
 // Toggle Order Items Visibility
 function toggleOrderItems(orderId) {
-    const hiddenItems = document.querySelectorAll(`.table-item-hidden[data-order-id="${orderId}"]`);
+    // Select by data-order-id attribute, not by class (since class changes on toggle)
+    const collapsibleItems = document.querySelectorAll(`[data-order-id="${orderId}"]`);
     const button = document.querySelector(`#items-list-${orderId} .table-expand-btn`);
     const order = currentOrders.find(o => o.id === orderId);
 
-    if (!order || hiddenItems.length === 0) return;
+    if (!order || collapsibleItems.length === 0) return;
 
     // Check if items are currently hidden (have the class)
-    const isCurrentlyHidden = hiddenItems[0].classList.contains('table-item-hidden');
+    const isCurrentlyHidden = collapsibleItems[0].classList.contains('table-item-hidden');
 
-    hiddenItems.forEach(item => {
+    collapsibleItems.forEach(item => {
         if (isCurrentlyHidden) {
             // Show items
             item.classList.remove('table-item-hidden');
