@@ -457,6 +457,8 @@ body {
     padding: 15px 8px;
     text-align: center;
     font-size: 12px;
+    white-space: normal;
+    line-height: 1.3;
 }
 
 .orders-table td {
