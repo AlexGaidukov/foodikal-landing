@@ -33,6 +33,7 @@
         <!-- Navigation Tabs -->
         <nav class="admin-nav">
             <button class="tab-btn active" data-tab="orders">Orders</button>
+            <button class="tab-btn" data-tab="ordersTable">Table of orders</button>
             <button class="tab-btn" data-tab="menu">Menu</button>
         </nav>
 
@@ -47,6 +48,39 @@
             <div id="ordersError" class="error-message"></div>
 
             <div id="ordersContainer" class="orders-container"></div>
+        </div>
+
+        <!-- Orders Table Tab -->
+        <div id="ordersTableTab" class="tab-content">
+            <div class="content-header">
+                <h2>Table of Orders</h2>
+                <button id="refreshOrdersTable" class="btn-refresh">Refresh</button>
+            </div>
+
+            <div id="ordersTableLoading" class="loading">Loading orders...</div>
+            <div id="ordersTableError" class="error-message"></div>
+
+            <div class="table-container">
+                <table id="ordersTable" class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Confirmed (Creation)</th>
+                            <th>Confirmed (Delivery)</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Menu Tab -->

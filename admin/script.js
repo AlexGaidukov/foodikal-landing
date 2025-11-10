@@ -96,6 +96,7 @@ const logoutBtn = document.getElementById('logoutBtn');
 // Tab Elements
 const tabButtons = document.querySelectorAll('.tab-btn');
 const ordersTab = document.getElementById('ordersTab');
+const ordersTableTab = document.getElementById('ordersTableTab');
 const menuTab = document.getElementById('menuTab');
 
 // Orders Elements
@@ -103,6 +104,12 @@ const refreshOrdersBtn = document.getElementById('refreshOrders');
 const ordersLoading = document.getElementById('ordersLoading');
 const ordersError = document.getElementById('ordersError');
 const ordersContainer = document.getElementById('ordersContainer');
+
+// Orders Table Elements
+const refreshOrdersTableBtn = document.getElementById('refreshOrdersTable');
+const ordersTableLoading = document.getElementById('ordersTableLoading');
+const ordersTableError = document.getElementById('ordersTableError');
+const ordersTableBody = document.getElementById('ordersTableBody');
 
 // Menu Elements
 const showAddMenuFormBtn = document.getElementById('showAddMenuForm');
@@ -135,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     refreshOrdersBtn.addEventListener('click', loadOrders);
+    refreshOrdersTableBtn.addEventListener('click', loadOrdersTable);
     showAddMenuFormBtn.addEventListener('click', () => {
         addMenuForm.style.display = 'block';
         editMenuForm.style.display = 'none';
@@ -219,11 +227,16 @@ function switchTab(tabName) {
     });
 
     // Update tab content
+    ordersTab.classList.remove('active');
+    ordersTableTab.classList.remove('active');
+    menuTab.classList.remove('active');
+
     if (tabName === 'orders') {
         ordersTab.classList.add('active');
-        menuTab.classList.remove('active');
+    } else if (tabName === 'ordersTable') {
+        ordersTableTab.classList.add('active');
+        loadOrdersTable();
     } else if (tabName === 'menu') {
-        ordersTab.classList.remove('active');
         menuTab.classList.add('active');
         loadMenuItems();
     }
@@ -372,6 +385,125 @@ async function deleteOrder(orderId) {
         await adminAPI.deleteOrder(orderId);
         currentOrders = currentOrders.filter(o => o.id !== orderId);
         renderOrders();
+        renderOrdersTable();
+    } catch (error) {
+        alert(`Error deleting order: ${error.message}`);
+    }
+}
+
+// Load Orders Table
+async function loadOrdersTable() {
+    ordersTableLoading.style.display = 'block';
+    ordersTableError.textContent = '';
+    ordersTableBody.innerHTML = '';
+
+    try {
+        const data = await adminAPI.getAllOrders();
+        currentOrders = data.orders;
+
+        ordersTableLoading.style.display = 'none';
+        renderOrdersTable();
+    } catch (error) {
+        ordersTableLoading.style.display = 'none';
+        ordersTableError.textContent = `Error loading orders: ${error.message}`;
+        console.error('Error loading orders table:', error);
+    }
+}
+
+// Render Orders Table
+function renderOrdersTable() {
+    if (currentOrders.length === 0) {
+        ordersTableBody.innerHTML = `
+            <tr>
+                <td colspan="11" style="text-align: center; padding: 60px 20px; color: #666;">
+                    <h3 style="margin-bottom: 10px; color: #999;">No orders yet</h3>
+                    <p style="color: #aaa;">Orders will appear here once customers start placing them.</p>
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    ordersTableBody.innerHTML = currentOrders.map(order => `
+        <tr>
+            <td class="table-order-id">#${order.id}</td>
+            <td>${escapeHtml(order.customer_name)}</td>
+            <td>${escapeHtml(order.customer_contact)}</td>
+            <td>${order.customer_email ? escapeHtml(order.customer_email) : '-'}</td>
+            <td style="max-width: 200px;">${escapeHtml(order.delivery_address)}</td>
+            <td>
+                <div class="table-items-list">
+                    ${order.order_items.map(item => `
+                        <div class="table-item">
+                            <strong>${escapeHtml(item.name)}</strong><br>
+                            Qty: ${item.quantity} × ${item.price} RSD
+                        </div>
+                    `).join('')}
+                </div>
+            </td>
+            <td class="table-total">${order.total_price} RSD</td>
+            <td class="table-status">
+                <input
+                    type="checkbox"
+                    class="table-checkbox"
+                    ${order.confirmed_after_creation ? 'checked' : ''}
+                    onchange="updateOrderConfirmationFromTable(${order.id}, 'confirmed_after_creation', this.checked)"
+                >
+            </td>
+            <td class="table-status">
+                <input
+                    type="checkbox"
+                    class="table-checkbox"
+                    ${order.confirmed_before_delivery ? 'checked' : ''}
+                    onchange="updateOrderConfirmationFromTable(${order.id}, 'confirmed_before_delivery', this.checked)"
+                >
+            </td>
+            <td class="table-date">${new Date(order.created_at).toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })}</td>
+            <td>
+                <div class="table-actions">
+                    <button class="btn-danger" onclick="deleteOrderFromTable(${order.id})">Delete</button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Update Order Confirmation from Table
+async function updateOrderConfirmationFromTable(orderId, field, value) {
+    try {
+        const updates = {};
+        updates[field] = value;
+
+        await adminAPI.updateOrderConfirmation(orderId, updates);
+
+        // Update local state
+        const order = currentOrders.find(o => o.id === orderId);
+        if (order) {
+            order[field] = value ? 1 : 0;
+        }
+    } catch (error) {
+        alert(`Error updating order: ${error.message}`);
+        // Reload orders to reset checkboxes
+        loadOrdersTable();
+    }
+}
+
+// Delete Order from Table
+async function deleteOrderFromTable(orderId) {
+    if (!confirm('Are you sure you want to delete this order? This action cannot be undone.')) {
+        return;
+    }
+
+    try {
+        await adminAPI.deleteOrder(orderId);
+        currentOrders = currentOrders.filter(o => o.id !== orderId);
+        renderOrdersTable();
     } catch (error) {
         alert(`Error deleting order: ${error.message}`);
     }
@@ -529,5 +661,7 @@ function escapeHtml(text) {
 // Make functions globally accessible
 window.updateOrderConfirmation = updateOrderConfirmation;
 window.deleteOrder = deleteOrder;
+window.updateOrderConfirmationFromTable = updateOrderConfirmationFromTable;
+window.deleteOrderFromTable = deleteOrderFromTable;
 window.showEditMenuForm = showEditMenuForm;
 window.deleteMenuItem = deleteMenuItem;
