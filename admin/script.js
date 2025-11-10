@@ -552,22 +552,43 @@ async function loadMenuItems() {
     menuContainer.innerHTML = '';
 
     try {
-        const data = await adminAPI.getMenuList();
-        console.log('Menu API response:', data);
+        const response = await adminAPI.getMenuList();
+        console.log('Menu API response:', response);
 
         // Try different possible response formats
-        if (Array.isArray(data)) {
-            currentMenuItems = data;
-        } else if (data.menu && Array.isArray(data.menu)) {
-            currentMenuItems = data.menu;
-        } else if (data.items && Array.isArray(data.items)) {
-            currentMenuItems = data.items;
+        if (Array.isArray(response)) {
+            currentMenuItems = response;
+        } else if (response.data) {
+            // Handle {success: true, data: {...}} format
+            const data = response.data;
+            if (Array.isArray(data)) {
+                currentMenuItems = data;
+            } else if (data.menu && Array.isArray(data.menu)) {
+                currentMenuItems = data.menu;
+            } else if (data.items && Array.isArray(data.items)) {
+                currentMenuItems = data.items;
+            } else {
+                // data might be an object with category keys
+                console.log('Data object structure:', Object.keys(data));
+                // Try to extract all items from all categories
+                currentMenuItems = [];
+                for (const key in data) {
+                    if (Array.isArray(data[key])) {
+                        currentMenuItems = currentMenuItems.concat(data[key]);
+                    }
+                }
+            }
+        } else if (response.menu && Array.isArray(response.menu)) {
+            currentMenuItems = response.menu;
+        } else if (response.items && Array.isArray(response.items)) {
+            currentMenuItems = response.items;
         } else {
-            console.error('Unexpected menu data format:', data);
+            console.error('Unexpected menu data format:', response);
             currentMenuItems = [];
         }
 
         console.log('Menu items loaded:', currentMenuItems.length);
+        console.log('Sample item:', currentMenuItems[0]);
         menuLoading.style.display = 'none';
         renderMenuItems();
     } catch (error) {
