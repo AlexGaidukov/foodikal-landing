@@ -1,0 +1,145 @@
+# Foodikal - .gitignore for static website project
+
+# =============================================================================
+# Operating System Files
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# =============================================================================
+# Editor & IDE Files
+# =============================================================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs (WebStorm, PHPStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw[a-p]
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# =============================================================================
+# Temporary & Log Files
+# =============================================================================
+
+# General temporary files
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Node.js (in case you add any tooling later)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# =============================================================================
+# Development & Build Files
+# =============================================================================
+
+# Node modules (if you ever add build tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build output directories
+dist/
+build/
+out/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# =============================================================================
+# Backup & Archive Files
+# =============================================================================
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Compressed files (temporary)
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# =============================================================================
+# Project-Specific Files
+# =============================================================================
+
+# Draft/work-in-progress files
+drafts/
+wip/
+scratch/
+
+# Local testing files
+test.html
+test.js
+test.css
+debug.html
+
+# Personal notes
+notes.txt
+TODO.txt
+NOTES.md
+
+# Claude Code documentation (local only)
+CLAUDE.md
+
+# Working CSV files
+*.csv
+
+# =============================================================================
+# Files to KEEP (explicitly not ignored)
+# =============================================================================
+
+# Keep .nojekyll for GitHub Pages
+!.nojekyll
+
+# Keep CNAME for custom domain
+!CNAME
