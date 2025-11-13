@@ -452,8 +452,8 @@ body {
     white-space: nowrap;
 }
 
-.orders-table th:nth-child(6),
-.orders-table th:nth-child(7) {
+.orders-table th:nth-child(7),
+.orders-table th:nth-child(8) {
     padding: 15px 8px;
     text-align: center;
     font-size: 12px;
@@ -531,8 +531,8 @@ body {
     cursor: pointer;
 }
 
-.orders-table td:nth-child(6),
-.orders-table td:nth-child(7) {
+.orders-table td:nth-child(7),
+.orders-table td:nth-child(8) {
     text-align: center;
     padding: 12px 8px;
 }

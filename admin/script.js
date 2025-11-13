@@ -290,7 +290,7 @@ function renderOrdersTable() {
     if (currentOrders.length === 0) {
         ordersTableBody.innerHTML = `
             <tr>
-                <td colspan="7" style="text-align: center; padding: 60px 20px; color: #666;">
+                <td colspan="8" style="text-align: center; padding: 60px 20px; color: #666;">
                     <h3 style="margin-bottom: 10px; color: #999;">No orders yet</h3>
                     <p style="color: #aaa;">Orders will appear here once customers start placing them.</p>
                 </td>
@@ -304,11 +304,19 @@ function renderOrdersTable() {
         const hiddenItems = order.order_items.slice(2);
         const hasMoreItems = order.order_items.length > 2;
 
+        // Format delivery date
+        const deliveryDate = order.delivery_date ? new Date(order.delivery_date).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        }) : '-';
+
         return `
         <tr>
             <td class="table-order-id"><span class="table-clickable" onclick="openOrderModal(${order.id})">#${order.id}</span></td>
             <td><span class="table-clickable" onclick="openOrderModal(${order.id})">${escapeHtml(order.customer_name)}</span></td>
             <td>${escapeHtml(order.customer_contact)}</td>
+            <td class="table-date">${deliveryDate}</td>
             <td>
                 <div class="table-items-list" id="items-list-${order.id}">
                     ${visibleItems.map(item => `
@@ -638,6 +646,17 @@ function openOrderModal(orderId) {
                     <div class="detail-label">Delivery Address</div>
                     <div class="detail-value">${escapeHtml(order.delivery_address)}</div>
                 </div>
+                ${order.delivery_date ? `
+                <div class="detail-item">
+                    <div class="detail-label">Delivery Date</div>
+                    <div class="detail-value">${new Date(order.delivery_date).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric'
+                    })}</div>
+                </div>
+                ` : ''}
                 ${order.comments ? `
                 <div class="detail-item">
                     <div class="detail-label">Comments</div>
