@@ -117,51 +117,6 @@
                 </form>
             </div>
 
-            <!-- Edit Menu Item Form -->
-            <div id="editMenuForm" class="menu-form" style="display: none;">
-                <h3>Edit Menu Item</h3>
-                <form id="menuEditForm">
-                    <input type="hidden" id="editItemId">
-
-                    <div class="form-group">
-                        <label for="editItemName">Name *</label>
-                        <input type="text" id="editItemName" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editItemCategory">Category *</label>
-                        <select id="editItemCategory" required>
-                            <option value="Брускетты">Брускетты</option>
-                            <option value="Горячее">Горячее</option>
-                            <option value="Закуски">Закуски</option>
-                            <option value="Канапе">Канапе</option>
-                            <option value="Салат">Салат</option>
-                            <option value="Тарталетки">Тарталетки</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editItemDescription">Description</label>
-                        <textarea id="editItemDescription" rows="3"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editItemPrice">Price (RSD) *</label>
-                        <input type="number" id="editItemPrice" min="0" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editItemImage">Image URL/Filename</label>
-                        <input type="text" id="editItemImage">
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn-primary">Update Item</button>
-                        <button type="button" id="cancelEditMenu" class="btn-secondary">Cancel</button>
-                    </div>
-                </form>
-            </div>
-
             <div id="menuLoading" class="loading">Loading menu items...</div>
             <div id="menuError" class="error-message"></div>
 
@@ -178,6 +133,59 @@
                 </div>
                 <div class="modal-body" id="orderDetailsBody">
                     <!-- Order details will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Menu Item Modal -->
+        <div id="editMenuModal" class="modal" style="display: none;">
+            <div class="modal-overlay" onclick="closeEditMenuModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit Menu Item</h2>
+                    <button class="modal-close" onclick="closeEditMenuModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="menuEditForm">
+                        <input type="hidden" id="editItemId">
+
+                        <div class="form-group">
+                            <label for="editItemName">Name *</label>
+                            <input type="text" id="editItemName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editItemCategory">Category *</label>
+                            <select id="editItemCategory" required>
+                                <option value="Брускетты">Брускетты</option>
+                                <option value="Горячее">Горячее</option>
+                                <option value="Закуски">Закуски</option>
+                                <option value="Канапе">Канапе</option>
+                                <option value="Салат">Салат</option>
+                                <option value="Тарталетки">Тарталетки</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editItemDescription">Description</label>
+                            <textarea id="editItemDescription" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editItemPrice">Price (RSD) *</label>
+                            <input type="number" id="editItemPrice" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editItemImage">Image URL/Filename</label>
+                            <input type="text" id="editItemImage">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Update Item</button>
+                            <button type="button" onclick="closeEditMenuModal()" class="btn-secondary">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

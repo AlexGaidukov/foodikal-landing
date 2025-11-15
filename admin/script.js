@@ -109,9 +109,8 @@ const showAddMenuFormBtn = document.getElementById('showAddMenuForm');
 const addMenuForm = document.getElementById('addMenuForm');
 const menuItemForm = document.getElementById('menuItemForm');
 const cancelAddMenuBtn = document.getElementById('cancelAddMenu');
-const editMenuForm = document.getElementById('editMenuForm');
+const editMenuModal = document.getElementById('editMenuModal');
 const menuEditForm = document.getElementById('menuEditForm');
-const cancelEditMenuBtn = document.getElementById('cancelEditMenu');
 const menuLoading = document.getElementById('menuLoading');
 const menuError = document.getElementById('menuError');
 const menuContainer = document.getElementById('menuContainer');
@@ -137,17 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
     refreshOrdersTableBtn.addEventListener('click', loadOrdersTable);
     showAddMenuFormBtn.addEventListener('click', () => {
         addMenuForm.style.display = 'block';
-        editMenuForm.style.display = 'none';
     });
 
     cancelAddMenuBtn.addEventListener('click', () => {
         addMenuForm.style.display = 'none';
         menuItemForm.reset();
-    });
-
-    cancelEditMenuBtn.addEventListener('click', () => {
-        editMenuForm.style.display = 'none';
-        menuEditForm.reset();
     });
 
     menuItemForm.addEventListener('submit', handleAddMenuItem);
@@ -554,11 +547,15 @@ function showEditMenuForm(itemId) {
     document.getElementById('editItemPrice').value = item.price;
     document.getElementById('editItemImage').value = item.image || '';
 
-    editMenuForm.style.display = 'block';
-    addMenuForm.style.display = 'none';
+    editMenuModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
 
-    // Scroll to form
-    editMenuForm.scrollIntoView({ behavior: 'smooth' });
+// Close Edit Menu Modal
+function closeEditMenuModal() {
+    editMenuModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    menuEditForm.reset();
 }
 
 // Handle Edit Menu Item
@@ -578,11 +575,8 @@ async function handleEditMenuItem(e) {
         await adminAPI.updateMenuItem(itemId, updates);
         alert('Menu item updated successfully!');
 
-        // Reset form and hide it
-        menuEditForm.reset();
-        editMenuForm.style.display = 'none';
-
-        // Reload menu items
+        // Close modal and reload menu items
+        closeEditMenuModal();
         loadMenuItems();
     } catch (error) {
         alert(`Error updating menu item: ${error.message}`);
@@ -769,4 +763,5 @@ window.closeOrderModal = closeOrderModal;
 window.updateOrderConfirmationFromModal = updateOrderConfirmationFromModal;
 window.deleteOrderFromModal = deleteOrderFromModal;
 window.showEditMenuForm = showEditMenuForm;
+window.closeEditMenuModal = closeEditMenuModal;
 window.deleteMenuItem = deleteMenuItem;
