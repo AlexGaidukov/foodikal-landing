@@ -636,12 +636,6 @@ function openOrderModal(orderId) {
                     <div class="detail-label">Contact</div>
                     <div class="detail-value">${escapeHtml(order.customer_contact)}</div>
                 </div>
-                ${order.customer_email ? `
-                <div class="detail-item">
-                    <div class="detail-label">Email</div>
-                    <div class="detail-value">${escapeHtml(order.customer_email)}</div>
-                </div>
-                ` : ''}
                 <div class="detail-item">
                     <div class="detail-label">Delivery Address</div>
                     <div class="detail-value">${escapeHtml(order.delivery_address)}</div>
