@@ -280,7 +280,10 @@ async function loadOrdersTable() {
 
 // Render Orders Table
 function renderOrdersTable() {
+    const totalSumElement = document.getElementById('ordersTotalSum');
+
     if (currentOrders.length === 0) {
+        totalSumElement.textContent = '';
         ordersTableBody.innerHTML = `
             <tr>
                 <td colspan="8" style="text-align: center; padding: 60px 20px; color: #666;">
@@ -291,6 +294,10 @@ function renderOrdersTable() {
         `;
         return;
     }
+
+    // Calculate total sum of all orders
+    const totalSum = currentOrders.reduce((sum, order) => sum + order.total_price, 0);
+    totalSumElement.textContent = `Total: ${totalSum.toLocaleString()} RSD (${currentOrders.length} orders)`;
 
     ordersTableBody.innerHTML = currentOrders.map(order => {
         const visibleItems = order.order_items.slice(0, 2);
