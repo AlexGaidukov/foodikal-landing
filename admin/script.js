@@ -85,6 +85,7 @@ class FoodikalAdminAPI {
 let adminAPI = null;
 let currentOrders = [];
 let currentMenuItems = [];
+let selectedCategory = 'all';
 
 // DOM Elements
 const loginScreen = document.getElementById('loginScreen');
@@ -145,6 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuItemForm.addEventListener('submit', handleAddMenuItem);
     menuEditForm.addEventListener('submit', handleEditMenuItem);
+
+    // Category filter buttons
+    const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
+    categoryFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update selected category
+            selectedCategory = btn.dataset.category;
+
+            // Update active button state
+            categoryFilterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Re-render menu items
+            renderMenuItems();
+        });
+    });
 });
 
 // Login Handler
@@ -493,24 +510,58 @@ function renderMenuItems() {
         return;
     }
 
-    menuContainer.innerHTML = currentMenuItems.map(item => `
-        <div class="menu-item-card">
-            <div class="menu-item-category">${escapeHtml(item.category)}</div>
-            <div class="menu-item-header">
-                <div class="menu-item-name">${escapeHtml(item.name)}</div>
-                <div class="menu-item-price">${item.price} RSD</div>
+    // Filter items by selected category
+    const filteredItems = selectedCategory === 'all'
+        ? currentMenuItems
+        : currentMenuItems.filter(item => item.category === selectedCategory);
+
+    if (filteredItems.length === 0) {
+        menuContainer.innerHTML = `
+            <div class="empty-state">
+                <h3>No items in this category</h3>
+                <p>Try selecting a different category.</p>
             </div>
-            ${item.description ? `
-                <div class="menu-item-description">${escapeHtml(item.description)}</div>
-            ` : ''}
-            ${item.image ? `
-                <div class="menu-item-image">Image: ${escapeHtml(item.image)}</div>
-            ` : ''}
-            <div class="menu-item-actions">
-                <button class="btn-edit" onclick="showEditMenuForm(${item.id})">Edit</button>
-                <button class="btn-danger" onclick="deleteMenuItem(${item.id})">Delete</button>
+        `;
+        return;
+    }
+
+    // Group items by category
+    const groupedItems = {};
+    filteredItems.forEach(item => {
+        if (!groupedItems[item.category]) {
+            groupedItems[item.category] = [];
+        }
+        groupedItems[item.category].push(item);
+    });
+
+    // Render items grouped by category
+    menuContainer.innerHTML = Object.keys(groupedItems).map(category => `
+        <div class="menu-category-section">
+            <h3 class="menu-category-title">
+                ${escapeHtml(category)}
+                <span class="menu-category-count">(${groupedItems[category].length} items)</span>
+            </h3>
+            <div class="menu-category-items">
+                ${groupedItems[category].map(item => `
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <div class="menu-item-name">${escapeHtml(item.name)}</div>
+                            <div class="menu-item-price">${item.price} RSD</div>
+                        </div>
+                        ${item.description ? `
+                            <div class="menu-item-description">${escapeHtml(item.description)}</div>
+                        ` : ''}
+                        ${item.image ? `
+                            <div class="menu-item-image">Image: ${escapeHtml(item.image)}</div>
+                        ` : ''}
+                        <div class="menu-item-actions">
+                            <button class="btn-edit" onclick="showEditMenuForm(${item.id})">Edit</button>
+                            <button class="btn-danger" onclick="deleteMenuItem(${item.id})">Delete</button>
+                        </div>
+                        <div class="menu-item-id">ID: ${item.id}</div>
+                    </div>
+                `).join('')}
             </div>
-            <div class="menu-item-id">ID: ${item.id}</div>
         </div>
     `).join('');
 }
