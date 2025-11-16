@@ -34,6 +34,7 @@
         <nav class="admin-nav">
             <button class="tab-btn active" data-tab="ordersTable">Table of orders</button>
             <button class="tab-btn" data-tab="menu">Menu</button>
+            <button class="tab-btn" data-tab="promoCodes">Promo Codes</button>
         </nav>
 
         <!-- Orders Table Tab -->
@@ -135,6 +136,44 @@
             <div id="menuError" class="error-message"></div>
 
             <div id="menuContainer" class="menu-container"></div>
+        </div>
+
+        <!-- Promo Codes Tab -->
+        <div id="promoCodesTab" class="tab-content">
+            <div class="content-header">
+                <h2>Promo Code Management</h2>
+                <div class="promo-discount-badge">All promo codes: 5% discount</div>
+            </div>
+
+            <!-- Create Promo Code Form -->
+            <div class="promo-create-section">
+                <h3>Create New Promo Code</h3>
+                <form id="promoCodeForm" class="promo-form">
+                    <div class="promo-form-row">
+                        <input
+                            type="text"
+                            id="promoCodeInput"
+                            placeholder="Enter code (e.g., NEWYEAR2026)"
+                            maxlength="20"
+                            required
+                        >
+                        <button type="submit" class="btn-primary">Create Promo Code</button>
+                    </div>
+                    <div class="promo-form-hint">
+                        Code must be 3-20 characters, alphanumeric only (A-Z, 0-9)
+                    </div>
+                    <div id="promoCodeError" class="error-message"></div>
+                </form>
+            </div>
+
+            <div id="promoCodesLoading" class="loading">Loading promo codes...</div>
+            <div id="promoCodesError" class="error-message"></div>
+
+            <!-- Promo Codes List -->
+            <div class="promo-codes-section">
+                <h3>Active Promo Codes (<span id="promoCodesCount">0</span>)</h3>
+                <div id="promoCodesContainer" class="promo-codes-container"></div>
+            </div>
         </div>
 
         <!-- Order Details Modal -->

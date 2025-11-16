@@ -79,12 +79,33 @@ class FoodikalAdminAPI {
         const data = await response.json();
         return data;
     }
+
+    // Promo Code Management
+    async getAllPromoCodes() {
+        return await this._request('/api/admin/promo_codes', {
+            method: 'GET'
+        });
+    }
+
+    async createPromoCode(code) {
+        return await this._request('/api/admin/promo_codes', {
+            method: 'POST',
+            body: JSON.stringify({ code })
+        });
+    }
+
+    async deletePromoCode(code) {
+        return await this._request(`/api/admin/promo_codes/${code}`, {
+            method: 'DELETE'
+        });
+    }
 }
 
 // Application State
 let adminAPI = null;
 let currentOrders = [];
 let currentMenuItems = [];
+let currentPromoCodes = [];
 let selectedCategory = 'all';
 
 // DOM Elements
@@ -116,6 +137,16 @@ const menuLoading = document.getElementById('menuLoading');
 const menuError = document.getElementById('menuError');
 const menuContainer = document.getElementById('menuContainer');
 
+// Promo Code Elements
+const promoCodesTab = document.getElementById('promoCodesTab');
+const promoCodeForm = document.getElementById('promoCodeForm');
+const promoCodeInput = document.getElementById('promoCodeInput');
+const promoCodeError = document.getElementById('promoCodeError');
+const promoCodesLoading = document.getElementById('promoCodesLoading');
+const promoCodesError = document.getElementById('promoCodesError');
+const promoCodesContainer = document.getElementById('promoCodesContainer');
+const promoCodesCount = document.getElementById('promoCodesCount');
+
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
     // Check if already logged in
@@ -146,6 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuItemForm.addEventListener('submit', handleAddMenuItem);
     menuEditForm.addEventListener('submit', handleEditMenuItem);
+
+    // Promo code form
+    promoCodeForm.addEventListener('submit', handleCreatePromoCode);
 
     // Category filter buttons
     const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
@@ -231,6 +265,7 @@ function switchTab(tabName) {
     // Update tab content
     ordersTableTab.classList.remove('active');
     menuTab.classList.remove('active');
+    promoCodesTab.classList.remove('active');
 
     if (tabName === 'ordersTable') {
         ordersTableTab.classList.add('active');
@@ -238,6 +273,9 @@ function switchTab(tabName) {
     } else if (tabName === 'menu') {
         menuTab.classList.add('active');
         loadMenuItems();
+    } else if (tabName === 'promoCodes') {
+        promoCodesTab.classList.add('active');
+        loadPromoCodes();
     }
 }
 
@@ -328,9 +366,15 @@ function renderOrdersTable() {
             year: 'numeric'
         }) : '-';
 
+        // Check if order has promo code
+        const hasPromo = order.promo_code && order.discount_amount > 0;
+
         return `
         <tr>
-            <td class="table-order-id"><span class="table-clickable" onclick="openOrderModal(${order.id})">#${order.id}</span></td>
+            <td class="table-order-id">
+                <span class="table-clickable" onclick="openOrderModal(${order.id})">#${order.id}</span>
+                ${hasPromo ? `<span class="promo-badge">🎟 ${escapeHtml(order.promo_code)}</span>` : ''}
+            </td>
             <td><span class="table-clickable" onclick="openOrderModal(${order.id})">${escapeHtml(order.customer_name)}</span></td>
             <td>${escapeHtml(order.customer_contact)}</td>
             <td class="table-date">${deliveryDate}</td>
@@ -355,7 +399,19 @@ function renderOrdersTable() {
                     ` : ''}
                 </div>
             </td>
-            <td class="table-total">${order.total_price} RSD</td>
+            <td class="table-total">
+                ${hasPromo ? `
+                    <div class="price-breakdown">
+                        <div style="text-decoration: line-through; color: #999; font-size: 12px;">
+                            ${order.original_price} RSD
+                        </div>
+                        <div class="discount" style="font-size: 11px;">
+                            -${order.discount_amount} RSD (5%)
+                        </div>
+                    </div>
+                ` : ''}
+                <strong>${order.total_price} RSD</strong>
+            </td>
             <td class="table-status">
                 <input
                     type="checkbox"
@@ -671,11 +727,17 @@ function openOrderModal(orderId) {
     const modal = document.getElementById('orderDetailsModal');
     const modalBody = document.getElementById('orderDetailsBody');
 
+    // Check if order has promo code
+    const hasPromo = order.promo_code && order.discount_amount > 0;
+
     // Render order details using the same format as card view
     modalBody.innerHTML = `
         <div class="order-card">
             <div class="order-header">
-                <div class="order-id">Order #${order.id}</div>
+                <div class="order-id">
+                    Order #${order.id}
+                    ${hasPromo ? `<span class="promo-badge">🎟 ${escapeHtml(order.promo_code)}</span>` : ''}
+                </div>
                 <div class="order-total">${order.total_price} RSD</div>
             </div>
 
@@ -725,6 +787,23 @@ function openOrderModal(orderId) {
                     `).join('')}
                 </div>
             </div>
+
+            ${hasPromo ? `
+            <div class="order-pricing">
+                <div class="detail-item">
+                    <div class="detail-label">Original Price</div>
+                    <div class="detail-value">${order.original_price} RSD</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Discount (5%)</div>
+                    <div class="detail-value discount">-${order.discount_amount} RSD</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label"><strong>Final Total</strong></div>
+                    <div class="detail-value"><strong>${order.total_price} RSD</strong></div>
+                </div>
+            </div>
+            ` : ''}
 
             <div class="order-confirmations">
                 <div class="confirmation-item">
@@ -810,6 +889,117 @@ async function deleteOrderFromModal(orderId) {
     }
 }
 
+// Promo Code Management Functions
+
+// Load Promo Codes
+async function loadPromoCodes() {
+    promoCodesLoading.style.display = 'block';
+    promoCodesError.textContent = '';
+    promoCodesContainer.innerHTML = '';
+
+    try {
+        const data = await adminAPI.getAllPromoCodes();
+        currentPromoCodes = data.promo_codes || [];
+
+        promoCodesLoading.style.display = 'none';
+        renderPromoCodes();
+    } catch (error) {
+        promoCodesLoading.style.display = 'none';
+        promoCodesError.textContent = `Error loading promo codes: ${error.message}`;
+        console.error('Error loading promo codes:', error);
+    }
+}
+
+// Render Promo Codes
+function renderPromoCodes() {
+    promoCodesCount.textContent = currentPromoCodes.length;
+
+    if (currentPromoCodes.length === 0) {
+        promoCodesContainer.innerHTML = `
+            <div class="promo-empty-state">
+                <h4>No promo codes yet</h4>
+                <p>Create your first promo code using the form above</p>
+            </div>
+        `;
+        return;
+    }
+
+    promoCodesContainer.innerHTML = currentPromoCodes.map(promo => `
+        <div class="promo-code-card">
+            <div class="promo-code-info">
+                <div class="promo-code-value">${escapeHtml(promo.code)}</div>
+                <div class="promo-code-date">Created: ${new Date(promo.created_at).toLocaleString()}</div>
+            </div>
+            <div class="promo-code-actions">
+                <button class="btn-danger" onclick="deletePromoCodeHandler('${escapeHtml(promo.code)}')">Delete</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Validate Promo Code
+function validatePromoCode(code) {
+    if (!code || code.length < 3 || code.length > 20) {
+        return 'Code must be 3-20 characters long';
+    }
+    if (!/^[A-Z0-9]+$/.test(code)) {
+        return 'Code must be alphanumeric only (A-Z, 0-9)';
+    }
+    return null;
+}
+
+// Handle Create Promo Code
+async function handleCreatePromoCode(e) {
+    e.preventDefault();
+
+    const code = promoCodeInput.value.trim().toUpperCase();
+    promoCodeError.textContent = '';
+
+    // Validate
+    const validationError = validatePromoCode(code);
+    if (validationError) {
+        promoCodeError.textContent = validationError;
+        return;
+    }
+
+    try {
+        await adminAPI.createPromoCode(code);
+
+        // Reset form
+        promoCodeForm.reset();
+
+        // Reload promo codes
+        loadPromoCodes();
+
+        alert(`Promo code "${code}" created successfully!`);
+    } catch (error) {
+        promoCodeError.textContent = error.message || 'Failed to create promo code';
+        console.error('Error creating promo code:', error);
+    }
+}
+
+// Delete Promo Code Handler
+async function deletePromoCodeHandler(code) {
+    if (!confirm(`Are you sure you want to delete promo code "${code}"?\n\nThis action cannot be undone.`)) {
+        return;
+    }
+
+    try {
+        await adminAPI.deletePromoCode(code);
+
+        // Remove from local state
+        currentPromoCodes = currentPromoCodes.filter(p => p.code !== code);
+
+        // Re-render
+        renderPromoCodes();
+
+        alert(`Promo code "${code}" deleted successfully!`);
+    } catch (error) {
+        alert(`Error deleting promo code: ${error.message}`);
+        console.error('Error deleting promo code:', error);
+    }
+}
+
 // Make functions globally accessible
 window.updateOrderConfirmation = updateOrderConfirmation;
 window.deleteOrder = deleteOrder;
@@ -823,3 +1013,4 @@ window.deleteOrderFromModal = deleteOrderFromModal;
 window.showEditMenuForm = showEditMenuForm;
 window.closeEditMenuModal = closeEditMenuModal;
 window.deleteMenuItem = deleteMenuItem;
+window.deletePromoCodeHandler = deletePromoCodeHandler;
