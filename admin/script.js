@@ -942,8 +942,8 @@ function validatePromoCode(code) {
     if (!code || code.length < 3 || code.length > 20) {
         return 'Code must be 3-20 characters long';
     }
-    if (!/^[A-Z0-9]+$/.test(code)) {
-        return 'Code must be alphanumeric only (A-Z, 0-9)';
+    if (!/^[A-Za-z0-9\u0400-\u04FF]+$/.test(code)) {
+        return 'Code must be alphanumeric only (Latin A-Z, Cyrillic А-Я, 0-9)';
     }
     return null;
 }
