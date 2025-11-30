@@ -99,6 +99,33 @@ class FoodikalAdminAPI {
             method: 'DELETE'
         });
     }
+
+    // Banner Management
+    async getAllBanners() {
+        return await this._request('/api/admin/banners', {
+            method: 'GET'
+        });
+    }
+
+    async createBanner(bannerData) {
+        return await this._request('/api/admin/banners', {
+            method: 'POST',
+            body: JSON.stringify(bannerData)
+        });
+    }
+
+    async updateBanner(bannerId, updates) {
+        return await this._request(`/api/admin/banners/${bannerId}`, {
+            method: 'PUT',
+            body: JSON.stringify(updates)
+        });
+    }
+
+    async deleteBanner(bannerId) {
+        return await this._request(`/api/admin/banners/${bannerId}`, {
+            method: 'DELETE'
+        });
+    }
 }
 
 // Application State
@@ -106,6 +133,7 @@ let adminAPI = null;
 let currentOrders = [];
 let currentMenuItems = [];
 let currentPromoCodes = [];
+let currentBanners = [];
 let selectedCategory = 'all';
 
 // DOM Elements
@@ -147,6 +175,23 @@ const promoCodesError = document.getElementById('promoCodesError');
 const promoCodesContainer = document.getElementById('promoCodesContainer');
 const promoCodesCount = document.getElementById('promoCodesCount');
 
+// Banner Elements
+const bannersTab = document.getElementById('bannersTab');
+const showAddBannerFormBtn = document.getElementById('showAddBannerForm');
+const bannersLoading = document.getElementById('bannersLoading');
+const bannersError = document.getElementById('bannersError');
+const bannersContainer = document.getElementById('bannersContainer');
+const bannerModal = document.getElementById('bannerModal');
+const bannerModalTitle = document.getElementById('bannerModalTitle');
+const bannerForm = document.getElementById('bannerForm');
+const editBannerId = document.getElementById('editBannerId');
+const bannerName = document.getElementById('bannerName');
+const bannerItemLink = document.getElementById('bannerItemLink');
+const bannerImageUrl = document.getElementById('bannerImageUrl');
+const bannerDisplayOrder = document.getElementById('bannerDisplayOrder');
+const bannerImagePreview = document.getElementById('bannerImagePreview');
+const bannerImagePreviewGroup = document.getElementById('bannerImagePreviewGroup');
+
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
     // Check if already logged in
@@ -180,6 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Promo code form
     promoCodeForm.addEventListener('submit', handleCreatePromoCode);
+
+    // Banner form and buttons
+    showAddBannerFormBtn.addEventListener('click', openCreateBannerModal);
+    bannerForm.addEventListener('submit', handleBannerFormSubmit);
+    bannerImageUrl.addEventListener('blur', previewBannerImage);
 
     // Category filter buttons
     const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
@@ -266,6 +316,7 @@ function switchTab(tabName) {
     ordersTableTab.classList.remove('active');
     menuTab.classList.remove('active');
     promoCodesTab.classList.remove('active');
+    bannersTab.classList.remove('active');
 
     if (tabName === 'ordersTable') {
         ordersTableTab.classList.add('active');
@@ -276,6 +327,9 @@ function switchTab(tabName) {
     } else if (tabName === 'promoCodes') {
         promoCodesTab.classList.add('active');
         loadPromoCodes();
+    } else if (tabName === 'banners') {
+        bannersTab.classList.add('active');
+        loadBanners();
     }
 }
 
@@ -1000,6 +1054,213 @@ async function deletePromoCodeHandler(code) {
     }
 }
 
+// ============================
+// Banner Management Functions
+// ============================
+
+// Load Banners
+async function loadBanners() {
+    bannersLoading.style.display = 'block';
+    bannersError.textContent = '';
+    bannersContainer.innerHTML = '';
+
+    try {
+        const response = await adminAPI.getAllBanners();
+        currentBanners = response.banners || [];
+
+        if (currentBanners.length === 0) {
+            bannersContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No banners yet. Click "Add New Banner" to create one.</p>';
+            return;
+        }
+
+        // Sort by display_order
+        currentBanners.sort((a, b) => a.display_order - b.display_order);
+
+        bannersContainer.innerHTML = currentBanners.map(banner => `
+            <div class="banner-item" data-banner-id="${banner.id}">
+                <div class="banner-preview">
+                    <img src="${escapeHtml(banner.image_url)}" alt="${escapeHtml(banner.name)}"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22100%22%3E%3Crect fill=%22%23ddd%22 width=%22200%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImage Error%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="banner-info">
+                    <div class="banner-name">${escapeHtml(banner.name)}</div>
+                    <div class="banner-meta">
+                        <div class="banner-link">
+                            <strong>Link:</strong>
+                            <a href="${escapeHtml(banner.item_link)}" target="_blank" rel="noopener">${escapeHtml(banner.item_link)}</a>
+                        </div>
+                        <div class="banner-order">
+                            <strong>Display Order:</strong> ${banner.display_order}
+                        </div>
+                        <div class="banner-date">
+                            <strong>Created:</strong> ${new Date(banner.created_at).toLocaleDateString()}
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-actions">
+                    <button class="btn-primary" onclick="editBanner(${banner.id})">Edit</button>
+                    <button class="btn-danger" onclick="deleteBanner(${banner.id})">Delete</button>
+                </div>
+            </div>
+        `).join('');
+
+    } catch (error) {
+        bannersError.textContent = `Error loading banners: ${error.message}`;
+        console.error('Error loading banners:', error);
+    } finally {
+        bannersLoading.style.display = 'none';
+    }
+}
+
+// Open Create Banner Modal
+function openCreateBannerModal() {
+    editBannerId.value = '';
+    bannerModalTitle.textContent = 'Add New Banner';
+    bannerForm.reset();
+    bannerDisplayOrder.value = currentBanners.length + 1;
+    clearBannerErrors();
+    bannerImagePreviewGroup.style.display = 'none';
+    bannerModal.style.display = 'flex';
+}
+
+// Edit Banner
+async function editBanner(bannerId) {
+    const banner = currentBanners.find(b => b.id === bannerId);
+
+    if (!banner) {
+        alert('Banner not found');
+        return;
+    }
+
+    editBannerId.value = banner.id;
+    bannerModalTitle.textContent = 'Edit Banner';
+    bannerName.value = banner.name;
+    bannerItemLink.value = banner.item_link;
+    bannerImageUrl.value = banner.image_url;
+    bannerDisplayOrder.value = banner.display_order;
+
+    // Show preview
+    bannerImagePreview.src = banner.image_url;
+    bannerImagePreviewGroup.style.display = 'block';
+
+    clearBannerErrors();
+    bannerModal.style.display = 'flex';
+}
+
+// Close Banner Modal
+function closeBannerModal() {
+    bannerModal.style.display = 'none';
+    bannerForm.reset();
+    editBannerId.value = '';
+    clearBannerErrors();
+    bannerImagePreviewGroup.style.display = 'none';
+}
+
+// Clear Banner Form Errors
+function clearBannerErrors() {
+    document.getElementById('bannerNameError').textContent = '';
+    document.getElementById('bannerItemLinkError').textContent = '';
+    document.getElementById('bannerImageUrlError').textContent = '';
+    document.getElementById('bannerDisplayOrderError').textContent = '';
+}
+
+// Display Banner Validation Errors
+function displayBannerErrors(details) {
+    clearBannerErrors();
+    if (details.name) {
+        document.getElementById('bannerNameError').textContent = details.name;
+    }
+    if (details.item_link) {
+        document.getElementById('bannerItemLinkError').textContent = details.item_link;
+    }
+    if (details.image_url) {
+        document.getElementById('bannerImageUrlError').textContent = details.image_url;
+    }
+    if (details.display_order) {
+        document.getElementById('bannerDisplayOrderError').textContent = details.display_order;
+    }
+}
+
+// Handle Banner Form Submit
+async function handleBannerFormSubmit(e) {
+    e.preventDefault();
+    clearBannerErrors();
+
+    const bannerData = {
+        name: bannerName.value.trim(),
+        item_link: bannerItemLink.value.trim(),
+        image_url: bannerImageUrl.value.trim(),
+        display_order: parseInt(bannerDisplayOrder.value)
+    };
+
+    try {
+        const bannerId = editBannerId.value;
+
+        if (bannerId) {
+            // Update existing banner
+            await adminAPI.updateBanner(parseInt(bannerId), bannerData);
+            alert('Banner updated successfully!');
+        } else {
+            // Create new banner
+            await adminAPI.createBanner(bannerData);
+            alert('Banner created successfully!');
+        }
+
+        closeBannerModal();
+        loadBanners();
+
+    } catch (error) {
+        console.error('Error saving banner:', error);
+
+        // Try to parse error details
+        if (error.message.includes('Invalid banner data')) {
+            displayBannerErrors({
+                name: 'Please check all fields for valid data',
+                item_link: 'URL must start with http:// or https://',
+                image_url: 'URL must start with http:// or https://',
+                display_order: 'Must be a non-negative integer (0, 1, 2, ...)'
+            });
+        } else {
+            alert(`Error saving banner: ${error.message}`);
+        }
+    }
+}
+
+// Delete Banner
+async function deleteBanner(bannerId) {
+    const banner = currentBanners.find(b => b.id === bannerId);
+
+    if (!banner) {
+        alert('Banner not found');
+        return;
+    }
+
+    if (!confirm(`Are you sure you want to delete the banner "${banner.name}"?\n\nThis action cannot be undone.`)) {
+        return;
+    }
+
+    try {
+        await adminAPI.deleteBanner(bannerId);
+        alert('Banner deleted successfully!');
+        loadBanners();
+    } catch (error) {
+        alert(`Error deleting banner: ${error.message}`);
+        console.error('Error deleting banner:', error);
+    }
+}
+
+// Preview Banner Image
+function previewBannerImage() {
+    const imageUrl = bannerImageUrl.value.trim();
+
+    if (imageUrl && (imageUrl.startsWith('http://') || imageUrl.startsWith('https://'))) {
+        bannerImagePreview.src = imageUrl;
+        bannerImagePreviewGroup.style.display = 'block';
+    } else {
+        bannerImagePreviewGroup.style.display = 'none';
+    }
+}
+
 // Make functions globally accessible
 window.updateOrderConfirmation = updateOrderConfirmation;
 window.deleteOrder = deleteOrder;
@@ -1014,3 +1275,6 @@ window.showEditMenuForm = showEditMenuForm;
 window.closeEditMenuModal = closeEditMenuModal;
 window.deleteMenuItem = deleteMenuItem;
 window.deletePromoCodeHandler = deletePromoCodeHandler;
+window.editBanner = editBanner;
+window.deleteBanner = deleteBanner;
+window.closeBannerModal = closeBannerModal;

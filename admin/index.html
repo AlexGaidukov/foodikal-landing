@@ -35,6 +35,7 @@
             <button class="tab-btn active" data-tab="ordersTable">Table of orders</button>
             <button class="tab-btn" data-tab="menu">Menu</button>
             <button class="tab-btn" data-tab="promoCodes">Promo Codes</button>
+            <button class="tab-btn" data-tab="banners">Banners</button>
         </nav>
 
         <!-- Orders Table Tab -->
@@ -176,6 +177,19 @@
             </div>
         </div>
 
+        <!-- Banners Tab -->
+        <div id="bannersTab" class="tab-content">
+            <div class="content-header">
+                <h2>Banner Management</h2>
+                <button id="showAddBannerForm" class="btn-primary">Add New Banner</button>
+            </div>
+
+            <div id="bannersLoading" class="loading">Loading banners...</div>
+            <div id="bannersError" class="error-message"></div>
+
+            <div id="bannersContainer" class="banners-container"></div>
+        </div>
+
         <!-- Order Details Modal -->
         <div id="orderDetailsModal" class="modal" style="display: none;">
             <div class="modal-overlay" onclick="closeOrderModal()"></div>
@@ -237,6 +251,59 @@
                         <div class="form-actions">
                             <button type="submit" class="btn-primary">Update Item</button>
                             <button type="button" onclick="closeEditMenuModal()" class="btn-secondary">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner Create/Edit Modal -->
+        <div id="bannerModal" class="modal" style="display: none;">
+            <div class="modal-overlay" onclick="closeBannerModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="bannerModalTitle">Add New Banner</h2>
+                    <button class="modal-close" onclick="closeBannerModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="bannerForm">
+                        <input type="hidden" id="editBannerId">
+
+                        <div class="form-group">
+                            <label for="bannerName">Banner Name *</label>
+                            <input type="text" id="bannerName" placeholder="Свиная рулька запеченная" required>
+                            <div id="bannerNameError" class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bannerItemLink">Item Link *</label>
+                            <input type="url" id="bannerItemLink" placeholder="https://ny2026.foodikal.rs/menu/gorachee" required>
+                            <small>Full URL to the menu item or category</small>
+                            <div id="bannerItemLinkError" class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bannerImageUrl">Image URL *</label>
+                            <input type="url" id="bannerImageUrl" placeholder="https://ny2026.foodikal.rs/images/banners/banner.jpg" required>
+                            <small>Full URL to the banner image</small>
+                            <div id="bannerImageUrlError" class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bannerDisplayOrder">Display Order *</label>
+                            <input type="number" id="bannerDisplayOrder" min="0" value="1" required>
+                            <small>Lower numbers appear first (0, 1, 2, ...)</small>
+                            <div id="bannerDisplayOrderError" class="error-message"></div>
+                        </div>
+
+                        <div class="form-group" id="bannerImagePreviewGroup" style="display: none;">
+                            <label>Image Preview</label>
+                            <img id="bannerImagePreview" style="max-width: 100%; max-height: 200px; border-radius: 4px;">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" onclick="closeBannerModal()" class="btn-secondary">Cancel</button>
+                            <button type="submit" class="btn-primary">Save Banner</button>
                         </div>
                     </form>
                 </div>
