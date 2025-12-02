@@ -171,6 +171,11 @@ body {
     margin-bottom: 30px;
 }
 
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
 .content-header h2 {
     font-size: 28px;
     color: #333;

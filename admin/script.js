@@ -126,6 +126,23 @@ class FoodikalAdminAPI {
             method: 'DELETE'
         });
     }
+
+    // Weekly Workbook
+    async downloadWeeklyWorkbook() {
+        const response = await fetch(`${this.baseURL}/api/admin/generate_weekly_workbook`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this.password}`
+            }
+        });
+
+        if (!response.ok) {
+            const data = await response.json().catch(() => ({ error: 'Download failed' }));
+            throw new Error(data.error || 'Failed to download workbook');
+        }
+
+        return response.blob();
+    }
 }
 
 // Application State
@@ -150,6 +167,7 @@ const menuTab = document.getElementById('menuTab');
 
 // Orders Table Elements
 const refreshOrdersTableBtn = document.getElementById('refreshOrdersTable');
+const downloadWeeklyXlsxBtn = document.getElementById('downloadWeeklyXlsx');
 const ordersTableLoading = document.getElementById('ordersTableLoading');
 const ordersTableError = document.getElementById('ordersTableError');
 const ordersTableBody = document.getElementById('ordersTableBody');
@@ -211,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     refreshOrdersTableBtn.addEventListener('click', loadOrdersTable);
+    downloadWeeklyXlsxBtn.addEventListener('click', handleDownloadWeeklyXlsx);
     showAddMenuFormBtn.addEventListener('click', () => {
         addMenuForm.style.display = 'block';
     });
@@ -384,6 +403,42 @@ async function loadOrdersTable() {
         ordersTableLoading.style.display = 'none';
         ordersTableError.textContent = `Error loading orders: ${error.message}`;
         console.error('Error loading orders table:', error);
+    }
+}
+
+// Download Weekly XLSX Workbook
+async function handleDownloadWeeklyXlsx() {
+    const originalText = downloadWeeklyXlsxBtn.textContent;
+    downloadWeeklyXlsxBtn.disabled = true;
+    downloadWeeklyXlsxBtn.textContent = 'Generating...';
+
+    try {
+        const blob = await adminAPI.downloadWeeklyWorkbook();
+
+        // Create download link
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Заказы_фуршет_нг.xlsx';
+        document.body.appendChild(a);
+        a.click();
+
+        // Cleanup
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        // Show success message briefly
+        downloadWeeklyXlsxBtn.textContent = '✓ Downloaded';
+        setTimeout(() => {
+            downloadWeeklyXlsxBtn.textContent = originalText;
+            downloadWeeklyXlsxBtn.disabled = false;
+        }, 2000);
+
+    } catch (error) {
+        console.error('Error downloading workbook:', error);
+        alert(`Failed to download workbook: ${error.message}`);
+        downloadWeeklyXlsxBtn.textContent = originalText;
+        downloadWeeklyXlsxBtn.disabled = false;
     }
 }
 
