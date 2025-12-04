@@ -408,9 +408,9 @@ async function loadOrdersTable() {
 
 // Download Weekly XLSX Workbook
 async function handleDownloadWeeklyXlsx() {
-    const originalText = downloadWeeklyXlsxBtn.textContent;
+    const originalText = downloadWeeklyXlsxBtn.innerHTML;
     downloadWeeklyXlsxBtn.disabled = true;
-    downloadWeeklyXlsxBtn.textContent = 'Generating...';
+    downloadWeeklyXlsxBtn.innerHTML = '<span class="spinner"></span>Generating...';
 
     try {
         const blob = await adminAPI.downloadWeeklyWorkbook();
@@ -428,16 +428,16 @@ async function handleDownloadWeeklyXlsx() {
         window.URL.revokeObjectURL(url);
 
         // Show success message briefly
-        downloadWeeklyXlsxBtn.textContent = '✓ Downloaded';
+        downloadWeeklyXlsxBtn.innerHTML = '✓ Downloaded';
         setTimeout(() => {
-            downloadWeeklyXlsxBtn.textContent = originalText;
+            downloadWeeklyXlsxBtn.innerHTML = originalText;
             downloadWeeklyXlsxBtn.disabled = false;
         }, 2000);
 
     } catch (error) {
         console.error('Error downloading workbook:', error);
         alert(`Failed to download workbook: ${error.message}`);
-        downloadWeeklyXlsxBtn.textContent = originalText;
+        downloadWeeklyXlsxBtn.innerHTML = originalText;
         downloadWeeklyXlsxBtn.disabled = false;
     }
 }
