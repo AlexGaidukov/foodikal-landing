@@ -128,8 +128,8 @@ class FoodikalAdminAPI {
     }
 
     // Weekly Workbook
-    async downloadWeeklyWorkbook() {
-        const response = await fetch(`${this.baseURL}/api/admin/generate_weekly_workbook`, {
+    async downloadWeeklyWorkbook(range) {
+        const response = await fetch(`${this.baseURL}/api/admin/generate_weekly_workbook?range=${range}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this.password}`
@@ -167,7 +167,8 @@ const menuTab = document.getElementById('menuTab');
 
 // Orders Table Elements
 const refreshOrdersTableBtn = document.getElementById('refreshOrdersTable');
-const downloadWeeklyXlsxBtn = document.getElementById('downloadWeeklyXlsx');
+const downloadXlsxFirstHalfBtn = document.getElementById('downloadXlsxFirstHalf');
+const downloadXlsxSecondHalfBtn = document.getElementById('downloadXlsxSecondHalf');
 const ordersTableLoading = document.getElementById('ordersTableLoading');
 const ordersTableError = document.getElementById('ordersTableError');
 const ordersTableBody = document.getElementById('ordersTableBody');
@@ -229,7 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     refreshOrdersTableBtn.addEventListener('click', loadOrdersTable);
-    downloadWeeklyXlsxBtn.addEventListener('click', handleDownloadWeeklyXlsx);
+    downloadXlsxFirstHalfBtn.addEventListener('click', () => handleDownloadWeeklyXlsx('first_half', downloadXlsxFirstHalfBtn));
+    downloadXlsxSecondHalfBtn.addEventListener('click', () => handleDownloadWeeklyXlsx('second_half', downloadXlsxSecondHalfBtn));
     showAddMenuFormBtn.addEventListener('click', () => {
         addMenuForm.style.display = 'block';
     });
@@ -407,19 +409,20 @@ async function loadOrdersTable() {
 }
 
 // Download Weekly XLSX Workbook
-async function handleDownloadWeeklyXlsx() {
-    const originalText = downloadWeeklyXlsxBtn.innerHTML;
-    downloadWeeklyXlsxBtn.disabled = true;
-    downloadWeeklyXlsxBtn.innerHTML = '<span class="spinner"></span>Generating...';
+async function handleDownloadWeeklyXlsx(range, button) {
+    const originalText = button.innerHTML;
+    button.disabled = true;
+    button.innerHTML = '<span class="spinner"></span>Generating...';
 
     try {
-        const blob = await adminAPI.downloadWeeklyWorkbook();
+        const blob = await adminAPI.downloadWeeklyWorkbook(range);
 
         // Create download link
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'Заказы_фуршет_нг.xlsx';
+        const fileName = range === 'first_half' ? 'Заказы_25-28.xlsx' : 'Заказы_29-31.xlsx';
+        a.download = fileName;
         document.body.appendChild(a);
         a.click();
 
@@ -428,17 +431,17 @@ async function handleDownloadWeeklyXlsx() {
         window.URL.revokeObjectURL(url);
 
         // Show success message briefly
-        downloadWeeklyXlsxBtn.innerHTML = '✓ Downloaded';
+        button.innerHTML = '✓ Downloaded';
         setTimeout(() => {
-            downloadWeeklyXlsxBtn.innerHTML = originalText;
-            downloadWeeklyXlsxBtn.disabled = false;
+            button.innerHTML = originalText;
+            button.disabled = false;
         }, 2000);
 
     } catch (error) {
         console.error('Error downloading workbook:', error);
         alert(`Failed to download workbook: ${error.message}`);
-        downloadWeeklyXlsxBtn.innerHTML = originalText;
-        downloadWeeklyXlsxBtn.disabled = false;
+        button.innerHTML = originalText;
+        button.disabled = false;
     }
 }
 
