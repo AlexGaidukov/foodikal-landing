@@ -391,7 +391,8 @@ main > .hero:first-child {
   padding: 5rem 0;
   scroll-margin-top: 4rem;
   border-bottom: 1px solid var(--color-accent2);
-  background: linear-gradient(rgba(22,33,20,0.5), rgba(22,33,20,0.2)), url('img/Banner_dish.png') center/cover no-repeat;
+  /* OLD BANNER - Uncomment to restore: background: linear-gradient(rgba(22,33,20,0.5), rgba(22,33,20,0.2)), url('img/Banner_dish.png') center/cover no-repeat; */
+  background: linear-gradient(rgba(22,33,20,0.5), rgba(22,33,20,0.2)), url('img/banner_ny.jpg') center/cover no-repeat;
   color: #fff;
 }
 

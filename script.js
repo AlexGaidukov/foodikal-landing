@@ -17,10 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.form.thanks': 'Thank you! We will contact you soon.',
       'nav.home': 'Home',
       'nav.menu': 'Menu',
-      'hero.headline': 'You work. We feed you.',
-      'hero.subtitle': 'Everyone focuses on what they do best.',
+      // OLD: 'hero.headline': 'You work. We feed you.',
+      // OLD: 'hero.subtitle': 'Everyone focuses on what they do best.',
+      'hero.headline': 'New Year menu from Foodikal',
+      'hero.subtitle': 'Let us handle your holiday worries',
       'hero.cta': 'View Menu',
-      'order.cta': 'Contact us',
+      'hero.cta.ny': 'Order now', // New Year hero button
+      'order.cta': 'Contact us', // Restored for header link
       'order.cta.bottom': 'Make order',
       'menu.header': 'Dishes from Our Menu',
       'services.header': 'Our Services',
@@ -49,10 +52,13 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.form.thanks': 'Hvala! Uskoro ćemo vam se javiti.',
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
-      'hero.headline': 'Vi radite. Mi vas hranimo.',
-      'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
+      // OLD: 'hero.headline': 'Vi radite. Mi vas hranimo.',
+      // OLD: 'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
+      'hero.headline': 'Novogodišnji meni od Foodikal-a',
+      'hero.subtitle': 'Prepustite nam sve brige tokom praznika',
       'hero.cta': 'Meni',
-      'order.cta': 'Kontaktirajte nas',
+      'hero.cta.ny': 'Naruči sada', // New Year hero button
+      'order.cta': 'Kontaktirajte nas', // Restored for header link
       'order.cta.bottom': 'Napravi porudžbinu',
       'menu.header': 'Jela iz našeg menija',
       'services.header': 'Naše usluge',
@@ -81,10 +87,13 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.form.thanks': 'Спасибо! Мы скоро свяжемся с вами.',
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
-      'hero.headline': 'Вы работаете. Мы кормим.',
-      'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
+      // OLD: 'hero.headline': 'Вы работаете. Мы кормим.',
+      // OLD: 'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
+      'hero.headline': 'Новогоднее меню от Foodikal',
+      'hero.subtitle': 'Позвольте нам позаботиться о ваших праздничных заботах',
       'hero.cta': 'Наше меню',
-      'order.cta': 'Связаться с нами',
+      'hero.cta.ny': 'Заказать сейчас', // New Year hero button
+      'order.cta': 'Связаться с нами', // Restored for header link
       'order.cta.bottom': 'Сделать заказ',
       'menu.header': 'Блюда из нашего меню',
       'services.header': 'Наши услуги',
@@ -121,6 +130,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let code = lang.toUpperCase();
         selected.textContent = code;
       }
+      // Update active class on dropdown options
+      const options = langCustom.querySelectorAll('.custom-select__option');
+      options.forEach(opt => {
+        const isActive = opt.getAttribute('data-lang') === lang;
+        opt.classList.toggle('active', isActive);
+      });
     }
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
@@ -508,6 +523,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   // Attach modal open to hero CTA button (after openModal is defined)
+  // DISABLED FOR NEW YEAR BANNER - hero button now links to external URL
+  // To restore: uncomment this block and change hero button back to <button>
+  /*
   var heroCtaBtn = document.getElementById('hero-cta-btn');
   if (heroCtaBtn) {
     heroCtaBtn.addEventListener('click', function(e) {
@@ -515,6 +533,7 @@ document.addEventListener('DOMContentLoaded', function () {
       openModal();
     });
   }
+  */
   // Attach modal open to header order link
   var headerOrderLink = document.getElementById('header-order-link');
   if (headerOrderLink) {
