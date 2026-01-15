@@ -17,12 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.form.thanks': 'Thank you! We will contact you soon.',
       'nav.home': 'Home',
       'nav.menu': 'Menu',
-      // OLD: 'hero.headline': 'You work. We feed you.',
-      // OLD: 'hero.subtitle': 'Everyone focuses on what they do best.',
-      'hero.headline': 'New Year menu from Foodikal',
-      'hero.subtitle': 'Let us handle your holiday worries',
+      'hero.headline': 'You work. We feed you.',
+      'hero.subtitle': 'Everyone focuses on what they do best.',
       'hero.cta': 'View Menu',
-      'hero.cta.ny': 'Order now', // New Year hero button
       'order.cta': 'Contact us', // Restored for header link
       'order.cta.bottom': 'Make order',
       'menu.header': 'Dishes from Our Menu',
@@ -52,12 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.form.thanks': 'Hvala! Uskoro ćemo vam se javiti.',
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
-      // OLD: 'hero.headline': 'Vi radite. Mi vas hranimo.',
-      // OLD: 'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
-      'hero.headline': 'Novogodišnji meni od Foodikal-a',
-      'hero.subtitle': 'Prepustite nam sve brige tokom praznika',
+      'hero.headline': 'Vi radite. Mi vas hranimo.',
+      'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
       'hero.cta': 'Meni',
-      'hero.cta.ny': 'Naruči sada', // New Year hero button
       'order.cta': 'Kontaktirajte nas', // Restored for header link
       'order.cta.bottom': 'Napravi porudžbinu',
       'menu.header': 'Jela iz našeg menija',
@@ -87,12 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
       'modal.form.thanks': 'Спасибо! Мы скоро свяжемся с вами.',
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
-      // OLD: 'hero.headline': 'Вы работаете. Мы кормим.',
-      // OLD: 'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
-      'hero.headline': 'Новогоднее меню от Foodikal',
-      'hero.subtitle': 'Позвольте нам позаботиться о ваших праздничных заботах',
+      'hero.headline': 'Вы работаете. Мы кормим.',
+      'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
       'hero.cta': 'Наше меню',
-      'hero.cta.ny': 'Заказать сейчас', // New Year hero button
       'order.cta': 'Связаться с нами', // Restored for header link
       'order.cta.bottom': 'Сделать заказ',
       'menu.header': 'Блюда из нашего меню',
