@@ -116,6 +116,7 @@ out/
 drafts/
 wip/
 scratch/
+offline_data/
 
 # Local testing files
 test.html
