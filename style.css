@@ -1092,6 +1092,17 @@ body.menu-page {
   letter-spacing: 0.03em;
   line-height: 1 !important;
 }
+.menu-page .menu__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  position: relative;
+  top: -0.2em;
+}
+.menu-page .menu__meta .menu__price {
+  position: static;
+  top: auto;
+}
 .menu-page .menu__price {
   display: block;
   font-family: 'Inter', Arial, sans-serif;
@@ -1104,6 +1115,16 @@ body.menu-page {
   letter-spacing: 0.01em;
   position: relative;
   top: -0.2em;
+}
+.menu-page .menu__weight {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #a3a389;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-left: 0.3rem;
+  padding-left: 0.8rem;
+  border-left: 1px solid #a3a389;
 }
 .menu-page .menu__item em {
   display: block;
