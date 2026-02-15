@@ -3,11 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu | Foodikal</title>
+  <meta name="description" content="Full weekly catering menu from Foodikal — Breakfast, soups, salads, main courses, sides and drinks. Fresh meals delivered to offices across Belgrade." />
+  <title>Catering Menu — Foodikal | Office Meal Delivery in Belgrade</title>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="canonical" href="https://foodikal.rs/menu.html" />
+  <link rel="alternate" hreflang="en" href="https://foodikal.rs/menu.html" />
+  <link rel="alternate" hreflang="sr" href="https://foodikal.rs/menu.html?lang=sr" />
+  <link rel="alternate" hreflang="ru" href="https://foodikal.rs/menu.html?lang=ru" />
+  <link rel="alternate" hreflang="x-default" href="https://foodikal.rs/menu.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Foodikal" />
+  <meta property="og:title" content="Catering Menu — Foodikal | Office Meal Delivery in Belgrade" />
+  <meta property="og:description" content="Full weekly catering menu — Breakfast, soups, salads, main courses, sides and drinks. Fresh meals delivered to offices across Belgrade." />
+  <meta property="og:url" content="https://foodikal.rs/menu.html" />
+  <meta property="og:image" content="https://foodikal.rs/img/Banner_dish.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="sr_RS" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Catering Menu — Foodikal | Office Meal Delivery in Belgrade" />
+  <meta name="twitter:description" content="Full weekly catering menu — fresh meals delivered to offices across Belgrade." />
+  <meta name="twitter:image" content="https://foodikal.rs/img/Banner_dish.png" />
   <link rel="stylesheet" href="fonts.css" />
   <link rel="stylesheet" href="style.css" />
   <!-- Google tag (gtag.js) -->
@@ -17,6 +36,23 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-JF4KTVRWVK');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    "name": "Foodikal Catering Menu",
+    "description": "Full weekly catering menu — Breakfast, soups, salads, main courses, sides and drinks delivered to offices in Belgrade.",
+    "url": "https://foodikal.rs/menu.html",
+    "hasMenuSection": [
+      { "@type": "MenuSection", "name": "Breakfast" },
+      { "@type": "MenuSection", "name": "Soups" },
+      { "@type": "MenuSection", "name": "Salads" },
+      { "@type": "MenuSection", "name": "Main Course" },
+      { "@type": "MenuSection", "name": "Side Dishes" },
+      { "@type": "MenuSection", "name": "Drinks" }
+    ]
+  }
   </script>
 </head>
 <body class="menu-page">
@@ -51,6 +87,7 @@
 </header>
 
   <main>
+    <h1 class="sr-only" data-i18n="menuPage.h1">Catering Menu — Fresh Office Meals in Belgrade</h1>
     <section class="menu-section" id="breakfast">
       <h2 class="section__header"><span class="section__header-line"></span><span data-menu-category="breakfast">BREAKFAST</span></h2>
       <div class="menu__grid"></div>
@@ -86,6 +123,12 @@
   </div>
 </div>
 
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <span data-i18n="footer.rights">&copy; 2026 Foodikal. All rights reserved.</span>
+    </div>
+  </footer>
 
   <script src="menu-translations.js"></script>
   <script>

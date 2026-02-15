@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
       'nav.home': 'Home',
       'nav.menu': 'Menu',
       'hero.headline': 'You work. We feed you.',
-      'hero.subtitle': 'Everyone focuses on what they do best.',
+      'hero.subtitle': 'Corporate catering in Belgrade — everyone focuses on what they do best.',
       'hero.cta': 'View Menu',
-      'order.cta': 'Contact us', // Restored for header link
+      'order.cta': 'Contact us',
       'order.cta.bottom': 'Make order',
-      'menu.header': 'Dishes from Our Menu',
-      'services.header': 'Our Services',
+      'menu.header': 'Dishes from Our Catering Menu',
+      'services.header': 'Catering Services',
       'services.title1': 'Regular meals delivery for offices',
       'services.title2': 'Setting up the buffet in your place',
       'services.title3': 'Catering and banquets for events',
@@ -35,12 +35,19 @@ document.addEventListener('DOMContentLoaded', function () {
       'menu.item3.desc': 'Hearty pilaf with tender beef and spices — the perfect dinner after a long day.',
       'menu.item4.title': 'Achik-chuchuk Salad',
       'menu.item4.desc': 'Vibrant Achik-chuchuk salad of fresh tomatoes, onions, and greens makes the perfect side for any dish.',
+      'seo.index.title': 'Foodikal — Corporate Catering in Belgrade | Daily Office Meals',
+      'seo.index.description': 'Foodikal — Corporate catering in Belgrade. Fresh homemade meals delivered daily to your office. Buffet setup, event catering, and regular meal delivery for teams across Belgrade.',
+      'seo.menu.title': 'Catering Menu — Foodikal | Office Meal Delivery Belgrade',
+      'seo.menu.description': 'Full weekly catering menu from Foodikal — Breakfast, soups, salads, main courses, sides and drinks. Fresh meals delivered to offices across Belgrade.',
+      'menuPage.h1': 'Catering Menu — Fresh Office Meals in Belgrade',
+      'footer.privacy': 'Privacy Policy',
+      'footer.rights': '\u00a9 2026 Foodikal. All rights reserved.',
     },
     sr: {
       'modal.header': 'Kontaktirajte svog ličnog menadžera',
       'modal.btn1': 'Telegram',
       'modal.btn2': 'Viber',
-      'modal.btn3': 'Pozovi nas',
+      'modal.btn3': 'Pozovite nas',
       'modal.instructions': 'Ili ostavite svoje podatke i kontaktiraćemo vas.',
       'modal.leave': 'Ostavite svoje podatke za kontakt',
       'modal.form.name': 'Ime',
@@ -50,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
       'nav.home': 'Početna',
       'nav.menu': 'Meni',
       'hero.headline': 'Vi radite. Mi vas hranimo.',
-      'hero.subtitle': 'Svi su fokusirani na ono što najbolje rade.',
+      'hero.subtitle': 'Ketering u Beogradu — svako radi ono što najbolje zna.',
       'hero.cta': 'Meni',
-      'order.cta': 'Kontaktirajte nas', // Restored for header link
+      'order.cta': 'Kontaktirajte nas',
       'order.cta.bottom': 'Napravi porudžbinu',
-      'menu.header': 'Jela iz našeg menija',
-      'services.header': 'Naše usluge',
+      'menu.header': 'Jela iz našeg ketering menija',
+      'services.header': 'Usluge keteringa',
       'services.title1': 'Redovna dostava obroka za kancelarije',
       'services.title2': 'Postavljanje švedskog stola na vašoj lokaciji',
       'services.title3': 'Ketering i banketi za događaje',
@@ -67,6 +74,13 @@ document.addEventListener('DOMContentLoaded', function () {
       'menu.item3.desc': 'Zasićujući pilav sa nežnim goveđim mesom i začinima — idealna večera posle dugog dana.',
       'menu.item4.title': 'Ačučuk salata',
       'menu.item4.desc': 'Šarena Ačučuk salata od svežih paradajza, luka i zelenila — idealan prilog svakom jelu.',
+      'seo.index.title': 'Foodikal — Ketering u Beogradu | Dostava hrane za firme',
+      'seo.index.description': 'Foodikal — Ketering u Beogradu. Sveža domaća hrana sa svakodnevnom dostavom u vašu kancelariju. Švedski sto, ketering za događaje i redovna dostava obroka za timove u Beogradu.',
+      'seo.menu.title': 'Ketering meni — Foodikal | Dostava obroka Beograd',
+      'seo.menu.description': 'Kompletan nedeljni ketering meni — Foodikal | Doručak, supe, salate, glavna jela, prilozi i napici. Sveži obroci za kancelarije u Beogradu.',
+      'menuPage.h1': 'Ketering meni — Sveži obroci za kancelarije u Beogradu',
+      'footer.privacy': 'Politika privatnosti',
+      'footer.rights': '\u00a9 2026 Foodikal. Sva prava zadržana.',
     },
     ru: {
       'modal.header': 'Свяжитесь с персональным менеджером',
@@ -82,12 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
       'nav.home': 'Главная',
       'nav.menu': 'Меню',
       'hero.headline': 'Вы работаете. Мы кормим.',
-      'hero.subtitle': 'Каждый сосредоточен на том, что получается лучше всего.',
+      'hero.subtitle': 'Кейтеринг в Белграде — каждый сосредоточен на том, что получается лучше всего.',
       'hero.cta': 'Наше меню',
-      'order.cta': 'Связаться с нами', // Restored for header link
+      'order.cta': 'Связаться с нами',
       'order.cta.bottom': 'Сделать заказ',
-      'menu.header': 'Блюда из нашего меню',
-      'services.header': 'Наши услуги',
+      'menu.header': 'Блюда из нашего меню кейтеринга',
+      'services.header': 'Услуги кейтеринга',
       'services.title1': 'Регулярная доставка питания в офисы',
       'services.title2': 'Организация шведского стола в вашей локации',
       'services.title3': 'Кейтеринг и банкеты для мероприятий',
@@ -99,6 +113,13 @@ document.addEventListener('DOMContentLoaded', function () {
       'menu.item3.desc': 'Сытный плов с нежной говядиной и пряностями — идеальный ужин после долгого дня.',
       'menu.item4.title': 'Салат Ачучук',
       'menu.item4.desc': 'Яркий салат Ачучук из свежих томатов, лука и зелени станет отличным дополнением к любому блюду.',
+      'seo.index.title': 'Foodikal — Кейтеринг в Белграде | Доставка еды в офис',
+      'seo.index.description': 'Foodikal — Кейтеринг в Белграде. Свежая домашняя еда с доставкой в офис каждый день. Шведский стол, кейтеринг для мероприятий и регулярная доставка обедов для команд в Белграде.',
+      'seo.menu.title': 'Меню кейтеринга — Foodikal | Доставка обедов Белград',
+      'seo.menu.description': 'Полное недельное меню кейтеринга от Foodikal — Завтраки, супы, салаты, основные блюда, гарниры и напитки. Свежие обеды для офисов в Белграде.',
+      'menuPage.h1': 'Меню кейтеринга — Свежие обеды для офисов в Белграде',
+      'footer.privacy': 'Политика конфиденциальности',
+      'footer.rights': '\u00a9 2026 Foodikal. Все права защищены.',
     },
   };
 
@@ -134,6 +155,43 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typeof window.updateMenu === 'function') {
       window.updateMenu(lang);
     }
+
+    // Dynamic SEO updates
+    document.documentElement.lang = lang === 'sr' ? 'sr' : lang === 'ru' ? 'ru' : 'en';
+
+    var isMenu = window.location.pathname.indexOf('menu') !== -1;
+    var titleKey = isMenu ? 'seo.menu.title' : 'seo.index.title';
+    var descKey = isMenu ? 'seo.menu.description' : 'seo.index.description';
+    if (translations[lang] && translations[lang][titleKey]) {
+      document.title = translations[lang][titleKey];
+    }
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && translations[lang] && translations[lang][descKey]) {
+      metaDesc.setAttribute('content', translations[lang][descKey]);
+    }
+
+    // Update canonical URL
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      var basePath = isMenu ? 'https://foodikal.rs/menu.html' : 'https://foodikal.rs/';
+      canonical.setAttribute('href', lang === 'en' ? basePath : basePath + (basePath.indexOf('?') !== -1 ? '&' : '?') + 'lang=' + lang);
+    }
+
+    // Update OG tags
+    var ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle && translations[lang] && translations[lang][titleKey]) {
+      ogTitle.setAttribute('content', translations[lang][titleKey]);
+    }
+    var ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc && translations[lang] && translations[lang][descKey]) {
+      ogDesc.setAttribute('content', translations[lang][descKey]);
+    }
+    var ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) {
+      var localeMap = { en: 'en_US', sr: 'sr_RS', ru: 'ru_RU' };
+      ogLocale.setAttribute('content', localeMap[lang] || 'en_US');
+    }
+
     localStorage.setItem('selectedLanguage', lang);
   }
 

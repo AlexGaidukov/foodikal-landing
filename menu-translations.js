@@ -121,45 +121,45 @@ window.menuTranslations = {
  dishes: {
  breakfast: [
  { name: "Banana hleb", desc: "Jaje, Maslac, Brašno, Šećer, Banana, Prašak za pecivo, Jogurt", price: "440 RSD", weight: "" },
- { name: "Finski palačinka sa piletinom", desc: "Jaje, Mleko, Brašno, Šećer, Vanila, Maslac, Piletina, Crni luk, Crni biber", price: "520 RSD", weight: "200 g" },
+ { name: "Finska palačinka sa piletinom", desc: "Jaje, Mleko, Brašno, Šećer, Vanila, Maslac, Piletina, Crni luk, Crni biber", price: "520 RSD", weight: "200 g" },
  { name: "Palačinke sa šunkom i sirom", desc: "Jaje, Šećer, Pavlaka, Brašno, Mleko, Šunka, Gauda, Suncokretovo ulje", price: "520 RSD", weight: "140 g" },
  { name: "Palačinke sa sirom", desc: "Jaje, Šećer, Pavlaka, Brašno, Mleko, Sir", price: "520 RSD", weight: "180 g" },
  { name: "Vafli sa krompirom i sirom", desc: "Brašno, Mleko, Jaje, Krompir, Gauda, Pavlaka", price: "590 RSD", weight: "200 g" },
  { name: "Ovsena kaša sa bananom i orasima na kokosovom mleku", desc: "Ovsene pahuljice, Kokosovo mleko, Šećer, Banana, Oras", price: "450 RSD", weight: "340 g" },
  { name: "Ovsena kaša sa bananom i orasima na kravljem mleku", desc: "Ovsene pahuljice, Mleko, Šećer, Banana, Oras", price: "450 RSD", weight: "340 g" },
- { name: "Rizova kaša sa kokosovim pavlakama i jagodama na kokosovom mleku", desc: "Pirinač, Kokosovo mleko, Šećer, Jagoda, Krompir škrob, Bosiljak, Limun, Kokosove pavlake", price: "450 RSD", weight: "340 g" },
- { name: "Rizova kaša sa kokosovim pavlakama i jagodama na kravljem mleku", desc: "Pirinač, Mleko, Šećer, Jagoda, Krompir škrob, Bosiljak, Limun, Kokosove pavlake", price: "450 RSD", weight: "340 g" },
+ { name: "Rizova kaša sa kokosovom pavlakom i čatnijem od jagoda na kokosovom mleku", desc: "Pirinač, Kokosovo mleko, Šećer, Jagoda, Krompir škrob, Bosiljak, Limun, Kokosova pavlaka", price: "450 RSD", weight: "340 g" },
+ { name: "Rizova kaša sa kokosovom pavlakom i čatnijem od jagoda na kravljem mleku", desc: "Pirinač, Mleko, Šećer, Jagoda, Krompir škrob, Bosiljak, Limun, Kokosova pavlaka", price: "450 RSD", weight: "340 g" },
  { name: "Omlet sa pečenim brokolijem", desc: "Jaje, Brokoli, Mleko, Beli luk", price: "490 RSD", weight: "150 g" },
  { name: "Sendvič sa šunkom i jajetom", desc: "Beli hleb, Majonez, Senf, Jaje, Šunka, Zelena salata", price: "580 RSD", weight: "200 g" },
  { name: "Sendvič sa lososom", desc: "Losos, Šećer, Limun, Pomoranža, Beli hleb, Sir, Zelena salata, Krastavac", price: "650 RSD", weight: "175 g" },
  { name: "Sendvič sa tunom", desc: "Beli hleb, Zelena salata, Majonez, Soja sos, Slatka paprika, Tuna, Jaje, Krastavac", price: "520 RSD", weight: "175 g" },
  { name: "Kuvana musaka", desc: "Sir, Jaje, Šećer, Pavlaka, Krompir škrob, Kokosova prašina, Vanila", price: "520 RSD", weight: "200 g" },
- { name: "Hashbrown sa pečurkastim sosom", desc: "Hashbrown, Šampinjone, Pavlaka, Pavlaka, Crni biber", price: "490 RSD", weight: "250 g" },
+ { name: "Hashbrown sa sosom od pečuraka", desc: "Hashbrown, Šampinjone, Pavlaka, Pavlaka, Crni biber", price: "490 RSD", weight: "250 g" },
  { name: "Jaja na oko sa kobasicama", desc: "Jaje, Kobasice, Paradajz, Crni biber", price: "590 RSD", weight: "170 g" }
  ],
  salads: [
  { name: "Vinegret", desc: "Krompir, Cvekla, Šargarepa, Krastavac kiseljeni, Zeleni grašak, Crni luk", price: "410 RSD", weight: "200 g" },
  { name: "Vitamin salata", desc: "Kupus, Šargarepa, Sirće, Šećer", price: "370 RSD", weight: "170 g" },
  { name: "Salata od rakova sa pirinčem", desc: "Rakove štapići, Kukuruz, Krastavac, Pirinač na pari, Jaje, Majonez", price: "420 RSD", weight: "200 g" },
- { name: "Povrćna salata", desc: "Cherry paradajz, Krastavac, Crvena paprika", price: "390 RSD", weight: "200 g" },
+ { name: "Povrtna salata", desc: "Cherry paradajz, Krastavac, Crvena paprika", price: "390 RSD", weight: "200 g" },
  { name: "Olivje sa pečenom piletinom", desc: "Krompir, Krastavac kiseljeni, Šargarepa, Zeleni grašak, Piletina, Crni biber, Slatka paprika, Jaje, Majonez", price: "450 RSD", weight: "200 g" },
- { name: "Salata piletina-pavlaka", desc: "Zelena salata, Piletina, Crni biber, Slatka paprika, Crvena pasulj, Crvena paprika, Semenke suncokreta, Senf", price: "450 RSD", weight: "150 g" },
+ { name: "Salata sa piletinom i pasuljem", desc: "Zelena salata, Piletina, Crni biber, Slatka paprika, Crveni pasulj, Crvena paprika, Semenke suncokreta, Senf", price: "450 RSD", weight: "150 g" },
  { name: "Cezar salata", desc: "Zelena salata, Paradajz, Jaje, Piletina, Crni biber, Slatka paprika, Beli hleb, Ančovi, Beli luk, Senf, Šećer, Worcestershire sos, Majonez", price: "600 RSD", weight: "245 g" },
- { name: "Srdela pod krznom", desc: "Cvekla, Šargarepa, Krompir, Crni luk, Majonez, Srdela", price: "490 RSD", weight: "190 g" },
+ { name: "Haringa pod krznom", desc: "Cvekla, Šargarepa, Krompir, Crni luk, Majonez, Haringa", price: "490 RSD", weight: "190 g" },
  { name: "Šopska salata", desc: "Krastavac, Paradajz, Crvena paprika, Brynza, Crveni luk", price: "390 RSD", weight: "170 g" },
  { name: "Korejska šargarepa", desc: "Šargarepa, Slatka paprika, Beli luk, Sirće, Crni biber, Začini za korejsku šargarepu", price: "370 RSD", weight: "150 g" }
  ],
  soups: [
  { name: "Boršč", desc: "Cvekla, Šargarepa, Crni luk, Krompir, Kupus, Beli luk, Paradajz, Govedina, Šećer, Sirće, Kopar", price: "480 RSD", weight: "350 g" },
- { name: "Pečurkov supa (vegan)", desc: "Šampinjone, Paradajz, Krompir, Crni luk, Šargarepa, Povrćni bujon, Pečurke, Crni biber", price: "390 RSD", weight: "350 g" },
- { name: "Pečurkov supa sa piletinom", desc: "Šampinjone, Paradajz, Krompir, Crni luk, Šargarepa, Povrćni bujon, Pečurke, Crni biber, Piletina (Batak, bez kostiju), Slatka paprika", price: "420 RSD", weight: "350 g" },
+ { name: "Supa od pečuraka (vegan)", desc: "Šampinjone, Paradajz, Krompir, Crni luk, Šargarepa, Povrćni bujon, Pečurke, Crni biber", price: "390 RSD", weight: "350 g" },
+ { name: "Supa od pečuraka sa piletinom", desc: "Šampinjone, Paradajz, Krompir, Crni luk, Šargarepa, Povrćni bujon, Pečurke, Crni biber, Piletina (Batak, bez kostiju), Slatka paprika", price: "420 RSD", weight: "350 g" },
  { name: "Krem supa od karfiola", desc: "Karfiol, Krompir, Crni luk, Pavlaka, Beli luk", price: "390 RSD", weight: "350 g" },
  { name: "Soljanka", desc: "Kobasice, Pile, Crni biber, Slatka paprika, Slanina, Crveni luk, Krastavac kiseljeni, Masline, Paradajz, Krompir, Limun", price: "480 RSD", weight: "" },
- { name: "Sirni krem-sup sa piletinom", desc: "Pile (But, bez kosti), Slatka paprika, Krompir, Šargarepa, Crveni luk, Beli luk, Topljeni sir", price: "480 RSD", weight: "350 g" },
- { name: "Paradajz sup sa morskim plodovima", desc: "Midije, Škampi, Paradajz, Paradajz, Pesto sos, Povrćni bujon, Crni biber", price: "480 RSD", weight: "350 g" }
+ { name: "Krem supa od sira sa piletinom", desc: "Pile (But, bez kosti), Slatka paprika, Krompir, Šargarepa, Crveni luk, Beli luk, Topljeni sir", price: "480 RSD", weight: "350 g" },
+ { name: "Supa od paradajza sa morskim plodovima", desc: "Midije, Škampi, Paradajz, Paradajz, Pesto sos, Povrćni bujon, Crni biber", price: "480 RSD", weight: "350 g" }
  ],
  main: [
- { name: "Bela riba u kremasto-spanać sosu", desc: "Pangasius, Pavlaka, Spanać, Limun, Crni biber", price: "830 RSD", weight: "170 g" },
+ { name: "Bela riba u kremastom sosu od spanaća", desc: "Pangasius, Pavlaka, Spanać, Limun, Crni biber", price: "830 RSD", weight: "170 g" },
  { name: "Befstroganov sa krompirom", desc: "Krompir, Govedina, Šampinjoni, Crveni luk, Pavlaka, Pavlaka, Crni biber", price: "790 RSD", weight: "280 g" },
  { name: "Bowl sa piletinom", desc: "Pirinač, Pirinčani sirće, Šećer, Pile (But, bez kosti), Brokoli, Terijaki sos, Soja sos, Med, Krompir škrob, Susamovo ulje, Cherry paradajz, Beli susam, Crni susam", price: "790 RSD", weight: "350 g" },
  { name: "Bowl sa ribom u pohu", desc: "Pangasius, Pirinač, Pirinčani sirće, Šećer, Đumbir, Susam sos, Edamame, Prezle, Crni susam, Beli susam", price: "790 RSD", weight: "300 g" },
@@ -167,19 +167,19 @@ window.menuTranslations = {
  { name: "Veganski pilav sa bulgurom i gljivama", desc: "Bulgur, Crveni luk, Šargarepa, Šampinjoni, Paradajz, Beli luk, Origano, Hmeli-suneli", price: "600 RSD", weight: "350 g" },
  { name: "Bečki šnicl sa Cezer sosom", desc: "Pile, Prezle, Crni biber, Brašno, Jaje, Ančovi, Beli luk, Senf, Šećer, Worcestershire sos, Majonez", price: "690 RSD", weight: "200 g" },
  { name: "Pohovana pileća jetra", desc: "Pileća jetra, Krompir, Crveni luk, Paradajz, Pavlaka, Maslac, Soja sos, Crni biber, Peršun svež", price: "600 RSD", weight: "300 g" },
- { name: "Kotleto domaće sa pireom", desc: "Govedina, Svinjetina, Crveni luk, Crni biber, Beli luk, Mleko, Beli hleb, Jaje, Prezle, Krompir, Maslac, Krompir pire, MSG, Zeleni grašak", price: "750 RSD", weight: "310 g" },
- { name: "Kotleto po-kijevski sa pireom", desc: "Piletina, Prezle, Jaje, Beli luk, Peršun, Limun, Krompir, Mleko, Maslac, Krompir pire, MSG", price: "750 RSD", weight: "260 g" },
+ { name: "Domaća kotleta sa pireom", desc: "Govedina, Svinjetina, Crveni luk, Crni biber, Beli luk, Mleko, Beli hleb, Jaje, Prezle, Krompir, Maslac, Krompir pire, MSG, Zeleni grašak", price: "750 RSD", weight: "310 g" },
+ { name: "Kijevska kotleta sa pireom", desc: "Piletina, Prezle, Jaje, Beli luk, Peršun, Limun, Krompir, Mleko, Maslac, Krompir pire, MSG", price: "750 RSD", weight: "260 g" },
  { name: "Pileća kotleta pod povrćem sa testeninom", desc: "Piletina, Crni biber, So, Beli luk, Kopar, Crveni luk, Šargarepa, Pavlaka, Jaje, Majonez, Crni biber, Bosiljak, Lovorov list, Fusilli, Parmezan", price: "750 RSD", weight: "250 g" },
  { name: "Pileće file u sirnom sosu", desc: "Pile, Čedar, Pavlaka, Slatka paprika, Crni biber, Beli susam, Crni susam", price: "790 RSD", weight: "200 g" },
- { name: "Piletina kobasice sa pečenim krompirom", desc: "Piletina, So, Crni biber, Slatka paprika, Gauda, Krompir, Beli luk", price: "690 RSD", weight: "300 g" },
- { name: "Piletina kari sa začinjenim pirinčem", desc: "Piletina (But, bez kostiju), Piletina, Pavlaka, Kari, Đumbir, Kari pasta, Pirinač, Pirinčani sirće, Šećer, Cherry paradajz, Beli susam, Crni susam", price: "790 RSD", weight: "300 g" },
+ { name: "Pileće kobasice sa pečenim krompirom", desc: "Piletina, So, Crni biber, Slatka paprika, Gauda, Krompir, Beli luk", price: "690 RSD", weight: "300 g" },
+ { name: "Piletina u kari sosu sa začinjenim pirinčem", desc: "Piletina (But, bez kostiju), Piletina, Pavlaka, Kari, Đumbir, Kari pasta, Pirinač, Pirinčani sirće, Šećer, Cherry paradajz, Beli susam, Crni susam", price: "790 RSD", weight: "300 g" },
  { name: "Pasta Bolonjez", desc: "Špageti, Govedina, Crni biber, Svinjetina, Piletina cela, Crni luk, Suvi beli luk mleveni, Paradajz, Celer, Šargarepa, Maslac, Šećer, Bosiljak, Origano, Parmezan", price: "600 RSD", weight: "270 g" },
  { name: "Pasta sa lososom", desc: "Taljatele, Pastramka, Pavlaka, Kremasti sir, Pesto sos", price: "720 RSD", weight: "" },
  { name: "Peljmeni", desc: "Peljmeni, Maslac", price: "750 RSD", weight: "200 g" },
- { name: "Pilo sa govedinom", desc: "Pirinač, Crni luk, Šargarepa, Leblebija, Grožđice, Beli luk, Kumin, Koriander, Govedina, Peršun", price: "720 RSD", weight: "300 g" },
+ { name: "Pilav sa govedinom", desc: "Pirinač, Crni luk, Šargarepa, Leblebija, Grožđice, Beli luk, Kumin, Koriander, Govedina, Peršun", price: "720 RSD", weight: "300 g" },
  { name: "Poke sa dimljenim tofujem", desc: "Tofu, Crveni kupus, Crvena paprika, Šargarepa, Edamame, Susam sos, Kinoa", price: "600 RSD", weight: "250 g" },
  { name: "Poke sa slabo slanim lososom", desc: "Losos, Šećer, Limun, Pomoranža, Crveni kupus, Crvena paprika, Šargarepa, Edamame, Susam sos, Kinoa", price: "750 RSD", weight: "250 g" },
- { name: "Svinjetina po Azijski", desc: "Crvena paprika, Svinjetina, Crni luk, Muer gljive, Pirinčani sirće, Soja sos, Šećer, Beli susam, Pirinač, Crni susam", price: "690 RSD", weight: "300 g" }
+ { name: "Svinjetina na azijski način", desc: "Crvena paprika, Svinjetina, Crni luk, Muer gljive, Pirinčani sirće, Soja sos, Šećer, Beli susam, Pirinač, Crni susam", price: "690 RSD", weight: "300 g" }
  ],
  sides: [
  { name: "Heljda", desc: "Heljda, Maslac", price: "390 RSD", weight: "160 g" },
@@ -193,7 +193,7 @@ window.menuTranslations = {
  { name: "Miks Jabuka-Kivi-Menta (0,33)", desc: "Jabuka, Kivi, Menta", price: "420 RSD" },
  { name: "Mors crna ribizla (0,33)", desc: "Crna ribizla, Šećer", price: "300 RSD" },
  { name: "Mors Cherry Storm (0,33)", desc: "Višnja, Šećer, Badijan, Cimet", price: "300 RSD" },
- { name: "Freš Narandžasti (0,33)", desc: "Pomoranža", price: "420 RSD" }
+ { name: "Freš od pomorandže (0,33)", desc: "Pomorandža", price: "420 RSD" }
  ]
  },
  },

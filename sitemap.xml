@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <!-- Homepage -->
   <url>
-    <loc>https://foodikal.com/</loc>
-    <lastmod>2025-07-30</lastmod>
+    <loc>https://foodikal.rs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://foodikal.rs/" />
+    <xhtml:link rel="alternate" hreflang="sr" href="https://foodikal.rs/?lang=sr" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://foodikal.rs/?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://foodikal.rs/" />
+    <lastmod>2026-02-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- Menu Page -->
   <url>
-    <loc>https://foodikal.com/menu.html</loc>
-    <lastmod>2025-07-30</lastmod>
+    <loc>https://foodikal.rs/menu.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://foodikal.rs/menu.html" />
+    <xhtml:link rel="alternate" hreflang="sr" href="https://foodikal.rs/menu.html?lang=sr" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://foodikal.rs/menu.html?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://foodikal.rs/menu.html" />
+    <lastmod>2026-02-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
 </urlset>

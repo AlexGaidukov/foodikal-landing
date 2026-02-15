@@ -622,6 +622,10 @@ main > .hero:first-child {
   color: var(--color-accent3);
   font-size: 1rem;
 }
+.footer__links { margin-bottom: 0.75rem; }
+.footer__link { color: var(--color-accent3); text-decoration: none; margin-right: 1.5rem; font-size: 0.9rem; }
+.footer__link:hover { text-decoration: underline; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 /* Responsive Styles */
 .nav__close {
   display: none;
